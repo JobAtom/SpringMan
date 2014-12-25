@@ -6,7 +6,11 @@ public class HeroPowers : MonoBehaviour
 	Animator anim;
     public GameObject Barrier;
     private GameObject player;
+	private GameObject upperFlare;
+	private GameObject lowerFlare;
     private HeroController heroController;
+	private SpriteRenderer upperFlareRender;
+	private SpriteRenderer lowerFlareRender;
 	public static bool ChargeSkill = true;
 	float lastTime;
 	public float ArrowLeftCount;
@@ -19,7 +23,11 @@ public class HeroPowers : MonoBehaviour
     {
 		anim = GetComponentInParent<Animator> ();
         player = GameObject.FindGameObjectWithTag("Player");
+		upperFlare = GameObject.Find ("Upper Flare");
+		lowerFlare = GameObject.Find ("Lower Flare");
         heroController = player.GetComponent<HeroController>();
+		upperFlareRender = upperFlare.GetComponent<SpriteRenderer> ();
+		lowerFlareRender = lowerFlare.GetComponent<SpriteRenderer> ();
 		ArrowLeftCount = 0;
 		ArrowRightCount = 0;
 		HeroStartCharge=false;
@@ -147,6 +155,8 @@ public class HeroPowers : MonoBehaviour
 		{
 			HeroStartCharge=true;
 			anim.SetBool("Charge", true);
+			upperFlareRender.enabled = true;
+			lowerFlareRender.enabled = true;
 			Debug.Log ("I charge now");
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
@@ -157,8 +167,6 @@ public class HeroPowers : MonoBehaviour
 				player.rigidbody2D.velocity = new Vector2 (-50f, player.rigidbody2D.velocity.y);
 			}
 		}
-
-
 	}
 	void StopCharge()
 	{
@@ -167,7 +175,7 @@ public class HeroPowers : MonoBehaviour
 		success = false;
 		HeroStartCharge = false;
 		anim.SetBool ("Charge", false);
+		upperFlareRender.enabled = false;
+		lowerFlareRender.enabled = false;
 	}
-
-
 }
