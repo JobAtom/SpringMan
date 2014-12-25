@@ -3,11 +3,11 @@ using System.Collections;
 
 public class HeroPowers : MonoBehaviour
 {
-
+	Animator anim;
     public GameObject Barrier;
     private GameObject player;
     private HeroController heroController;
-	public static bool ChargeSkill = false;
+	public static bool ChargeSkill = true;
 	float lastTime;
 	public float ArrowLeftCount;
 	public float ArrowRightCount;
@@ -17,14 +17,14 @@ public class HeroPowers : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		anim = GetComponentInParent<Animator> ();
         player = GameObject.FindGameObjectWithTag("Player");
         heroController = player.GetComponent<HeroController>();
 		ArrowLeftCount = 0;
 		ArrowRightCount = 0;
 		HeroStartCharge=false;
 		success = false;
-
-
+		anim.SetBool ("Charge", false);
     }
 	
     // Update is called once per frame
@@ -146,6 +146,7 @@ public class HeroPowers : MonoBehaviour
 		if (success&&!HeroController.GameOver) 
 		{
 			HeroStartCharge=true;
+			anim.SetBool("Charge", true);
 			Debug.Log ("I charge now");
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
@@ -165,8 +166,7 @@ public class HeroPowers : MonoBehaviour
 		Debug.Log ("stoped");
 		success = false;
 		HeroStartCharge = false;
-
-
+		anim.SetBool ("Charge", false);
 	}
 
 
