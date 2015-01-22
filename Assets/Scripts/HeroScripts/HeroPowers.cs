@@ -93,13 +93,13 @@ public class HeroPowers : MonoBehaviour
 
 				
 		}*/
-		if (Input.GetAxis ("Charge")==1&&!HeroStartCharge&&!HeroController .GameOver&&!success ) 
+		if (Input.GetButtonDown ("Charge")&&!HeroStartCharge&&!HeroController .GameOver&&!success ) 
 		{
 			if(ChargeSkill)
 				HeroCharge ();
 
 		}
-		if (Input.GetAxis ("Charge") == 0 && HeroStartCharge&&!HeroController .GameOver )
+		if (Input.GetButtonUp ("Charge") && HeroStartCharge&&!HeroController .GameOver )
 		{
 			HeroStartCharge=false;
 
