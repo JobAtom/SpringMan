@@ -154,25 +154,23 @@ public class HeroPowers : MonoBehaviour
 		if (success&&!HeroController.GameOver) 
 		{
 			HeroStartCharge=true;
-			heroController .falling=false;
 			anim.SetBool("Charge", true);
 			upperFlareRender.enabled = true;
 			lowerFlareRender.enabled = true;
 			Debug.Log ("I charge now");
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
-				player.rigidbody2D.velocity = new Vector2 (50f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (50f, player.rigidbody2D.velocity.y);
 			}
 			if (!player.GetComponent<HeroController> ().facingRight)
 			{
-				player.rigidbody2D.velocity = new Vector2 (-50f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (-50f, player.rigidbody2D.velocity.y);
 			}
 		}
 	}
 	void StopCharge()
 	{
 		CancelInvoke ();
-		heroController .falling = true;
 		Debug.Log ("stoped");
 		success = false;
 		HeroStartCharge = false;
