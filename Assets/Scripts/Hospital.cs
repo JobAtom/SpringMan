@@ -26,12 +26,15 @@ public class Hospital : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Score.memory = 110;
+		//Score.memory = 110;
+		Score.score = 100;
 		vital = new VitalsScript ();
+
 		
 		ColorRepeat = 3;
 		scorecolor = GameObject.Find ("Score").GetComponent<GUIText> ();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -143,6 +146,22 @@ public class Hospital : MonoBehaviour {
 		}
 		vital.HandleEnergy ();
 		Shop.EndUIResizing ();
+		if (Score.score != 0) 
+		{
+			StartCoroutine(ScoreToMemory());
+		}
+
+	}
+	IEnumerator  ScoreToMemory()
+	{
+		float time = 1f;
+		while (Score.score!=0) 
+		{
+			Score.score--;
+			Score.memory +=10;
+			yield return new WaitForSeconds (time);
+
+		}
 
 	}
 	void DoMyWindow(int windowID)
@@ -228,4 +247,7 @@ public class Hospital : MonoBehaviour {
 		}
 		TypeSound .Stop ();
 	}
+
+
 }
+

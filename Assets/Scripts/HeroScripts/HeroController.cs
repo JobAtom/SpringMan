@@ -27,8 +27,20 @@ public class HeroController : MonoBehaviour
 
     public static bool GameOver = false;
 
+
+	public bool GetFall()
+	{
+		return falling;
+	}
+	public bool SetFall(bool c)
+	{
+		falling = c;
+		return falling;
+	}
     void Start()
     {
+
+		//power.HeroStartCharge = false;
         anim = GetComponent<Animator>();
         particle = GetComponent<ParticleSystem>();
         Collider2D[] col = GetComponentsInChildren<Collider2D>();
@@ -80,7 +92,7 @@ public class HeroController : MonoBehaviour
         {
             Jump();
         }
-        else if (falling)
+		else if (falling)
         {
             Fall();
         }
@@ -89,7 +101,7 @@ public class HeroController : MonoBehaviour
         {
             Invoke("ResetFatigue", .01f);
         }
-        else if (!grounded)
+		else if (!grounded&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge )
         {
             falling = true;
             if (Input.GetAxis("Jump") == 0)

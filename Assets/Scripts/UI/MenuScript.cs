@@ -11,6 +11,7 @@ public class MenuScript : MonoBehaviour {
 	public static float Volume = .3f;
     public static bool Hints = true;
 	private Shop s;
+	private Hospital H;
 	public AudioSource ButtonSound;
 
 	public bool IsLevel;
@@ -30,6 +31,8 @@ public class MenuScript : MonoBehaviour {
 	void Start () {
 		if(Application.loadedLevelName =="Level_Shop")
 			s = GameObject.Find ("Shop").GetComponent<Shop> ();
+		if (Application.loadedLevelName == "Level_Hospital")
+			H = GameObject.Find ("Shop").GetComponent<Hospital > ();
 		AudioListener.volume = .3f;
 		MenuScript.Volume = AudioListener.volume;
 		if (!IsLevel)
@@ -183,6 +186,11 @@ public class MenuScript : MonoBehaviour {
 				s.enabled=false;
 				s.PowerUp =false;
 				s.SkillUp =false;
+			}
+			if(Application.loadedLevelName=="Level_Hospital")
+			{
+				H .enabled=false;
+				//GameObject.Find ("EntireUI").gameObject .SetActive (false);
 			}
 			Time.timeScale = 0;
 			int boxHeight, boxWidth;

@@ -155,16 +155,17 @@ public class HeroPowers : MonoBehaviour
 		{
 			HeroStartCharge=true;
 			anim.SetBool("Charge", true);
+			heroController .SetFall(false);
 			upperFlareRender.enabled = true;
 			lowerFlareRender.enabled = true;
 			Debug.Log ("I charge now");
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
-				player.rigidbody2D.velocity = new Vector2 (50f, player.rigidbody2D.velocity.y);
+				player.rigidbody2D.velocity = new Vector2 (50f, 0f);
 			}
 			if (!player.GetComponent<HeroController> ().facingRight)
 			{
-				player.rigidbody2D.velocity = new Vector2 (-50f, player.rigidbody2D.velocity.y);
+				player.rigidbody2D.velocity = new Vector2 (-50f, 0f);
 			}
 		}
 	}
@@ -172,6 +173,7 @@ public class HeroPowers : MonoBehaviour
 	{
 		CancelInvoke ();
 		Debug.Log ("stoped");
+		heroController .SetFall (true);
 		success = false;
 		HeroStartCharge = false;
 		anim.SetBool ("Charge", false);

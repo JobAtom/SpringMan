@@ -26,9 +26,11 @@ public class EnemyScript : MonoBehaviour
         {
 			if(this.gameObject.name=="Boss")
 			{
+				AudioSource.PlayClipAtPoint(Springkill, transform.position);
 				if(this.gameObject.GetComponent<ChargeBoss>().stun)
 				{
 					BossHealth--;
+
 					this.gameObject.GetComponent<ChargeBoss>().startNormal ();
 				}
 				if(BossHealth<=0)

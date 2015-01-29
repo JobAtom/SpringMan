@@ -66,8 +66,8 @@ public class Shop : MonoBehaviour
     {
 
         //Speed.SetActive (true);
-		Score.memory = 110;
-
+		//Score.memory = 110;
+		Score.score = 10;
 		ColorRepeat = 3;
         PowerUp = true;
         SkillUp = false;
@@ -318,7 +318,23 @@ public class Shop : MonoBehaviour
 
         
 		EndUIResizing ();
+		if (Score.score != 0) 
+		{
+			StartCoroutine(ScoreToMemory());
+		}
     }
+	IEnumerator  ScoreToMemory()
+	{
+		float time = 1f;
+		while (Score.score!=0) 
+		{
+			Score.score--;
+			Score.memory +=10;
+			yield return new WaitForSeconds (time);
+			
+		}
+		
+	}
 
    
 
