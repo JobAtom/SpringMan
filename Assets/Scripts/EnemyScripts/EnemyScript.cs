@@ -120,9 +120,12 @@ public class EnemyScript : MonoBehaviour
             foreach (Collider2D cc in col)
                 cc.isTrigger = true;
             Rigidbody2D body = GetComponent<Rigidbody2D>();
+			this.rigidbody2D.gravityScale = 1f;
             body.AddForce(new Vector2(0, 200f));
             body.fixedAngle = false;
             body.AddTorque(Random.Range(-100f, 100f));
+
+			//Debug.Log ("stomped");
 
             Score.score += scoreReleased;
             dead = true;
