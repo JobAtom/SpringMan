@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class HeroController : MonoBehaviour
 {
 
-    Animator anim;
+    public Animator anim;
     public ParticleSystem particle;
     public bool grounded = false;
     private float groundRadius = 0.01f;
@@ -26,7 +26,7 @@ public class HeroController : MonoBehaviour
     public VitalsScript Vitals;
 
     public static bool GameOver = false;
-
+	private bool OnElevator;
 
 	public bool GetFall()
 	{
@@ -37,9 +37,10 @@ public class HeroController : MonoBehaviour
 		falling = c;
 		return falling;
 	}
+
     void Start()
     {
-
+		OnElevator = false;
 		//power.HeroStartCharge = false;
         anim = GetComponent<Animator>();
         particle = GetComponent<ParticleSystem>();
@@ -59,6 +60,7 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
+
 		if (Application .loadedLevelName != "MainMenu")
 		{
 			Vitals.HandleEnergy ();
@@ -90,13 +92,18 @@ public class HeroController : MonoBehaviour
         }
         if (jumping)
         {
+			OnElevator =false;
             Jump();
+
         }
 		else if (falling)
         {
             Fall();
         }
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		if (!OnElevator)
+				grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
+		else
+				grounded = true;
         if (grounded && numberOfJumps > 0)
         {
             Invoke("ResetFatigue", .01f);
@@ -107,8 +114,15 @@ public class HeroController : MonoBehaviour
             if (Input.GetAxis("Jump") == 0)
                 numberOfJumps++;
         }
+
         anim.SetBool("Ground", grounded);
-        anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+		if (!OnElevator)
+			anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		else
+		{
+			anim.SetFloat ("vSpeed", 0f);
+
+		}
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
         Walk(move, rigidbody2D.velocity.y);
@@ -137,7 +151,14 @@ public class HeroController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-
+		if (other.collider .tag == ("elevator")) 
+		{
+			OnElevator = true;
+		}
+		else 
+		{
+			OnElevator =false;
+		}
 		if ((other.collider.tag == ("Weapon") || other.collider.tag == ("Enemy")||other.collider.tag=="Boss")&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
         {
             if (Time.time > lastHitTime + .55)
@@ -169,7 +190,9 @@ public class HeroController : MonoBehaviour
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
 		}
 
+
     }
+
 	/*void OnCollisionStay2D(Collision2D other)
 	{
 		if (this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge&&this.enabled) 
@@ -182,7 +205,13 @@ public class HeroController : MonoBehaviour
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
 		}
 	}*/
-
+	/*void OnCollisionExit2D(Collision2D other)
+	{
+		if (other.collider.tag == "elevator") 
+		{
+			OnElevator =false;
+		}
+	}*/
     void TakeHit(Collision2D other)
     {
 		if (other.gameObject.GetComponent<MoveProjectileScript> () != null)
