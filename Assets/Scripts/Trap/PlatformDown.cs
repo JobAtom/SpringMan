@@ -15,7 +15,7 @@ public class PlatformDown : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		//vel=this.gameObject.rigidbody2D.velocity.y;
 		if (touchedorNot&&player!=null) 
 		{
@@ -36,6 +36,7 @@ public class PlatformDown : MonoBehaviour {
 			touchedorNot=true;
 			//other.gameObject.transform.position=new Vector2(other.gameObject.transform.position.x, this.gameObject.transform.position.y+3.36f);
 			this.gameObject.rigidbody2D .velocity=new Vector2(0,-3f);
+
 			//this.gameObject.rigidbody2D .isKinematic =false;
 
 			//Invoke ("donotKinematic",1.5f);
