@@ -81,7 +81,7 @@ public class VitalsScript
 
     public void TakeDamage()
     {
-        if (Time.time > lastHitTime + .55)
+        if (Time.time > lastHitTime + 1.55)
         {
             CurrentHealth--;
             HandleHealth();

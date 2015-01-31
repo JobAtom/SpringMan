@@ -217,11 +217,12 @@ public class HeroController : MonoBehaviour
 		if (other.gameObject.GetComponent<MoveProjectileScript> () != null)
 						Destroy (other.gameObject);
         stunned = true;
+		anim.SetBool ("Hurt", true);
         if (transform.position.x < other.transform.position.x)
             rigidbody2D.velocity = new Vector2(-10f, rigidbody2D.velocity.y / 2 + 5f);
         else
             rigidbody2D.velocity = new Vector2(10f, rigidbody2D.velocity.y / 2);
-        Invoke("unstun", 0.15f);
+        Invoke("unstun", 0.25f);
         var shield = transform.Find("SpikeShield").gameObject;
         shield.GetComponent<SpikeShieldScript>().Drop();
         particle.Emit(15);
@@ -238,6 +239,7 @@ public class HeroController : MonoBehaviour
     void unstun()
     {
         stunned = false;
+		anim.SetBool ("Hurt", false);
     }
 
     public void Restart()
