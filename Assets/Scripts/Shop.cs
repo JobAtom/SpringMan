@@ -67,7 +67,7 @@ public class Shop : MonoBehaviour
 
         //Speed.SetActive (true);
 		//Score.memory = 110;
-		Score.score = 10;
+		//Score.score = 10;
 		ColorRepeat = 3;
         PowerUp = true;
         SkillUp = false;
