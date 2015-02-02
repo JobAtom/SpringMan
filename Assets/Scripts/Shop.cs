@@ -118,7 +118,7 @@ public class Shop : MonoBehaviour
 				if(GUI.Button (new Rect(130,240,220,75),"SEND"))
 				{
 					ButtonSound .Play();
-					Debug.Log (scoreCost );
+
 
 					if(Score.memory-scoreCost>=0)
 					{

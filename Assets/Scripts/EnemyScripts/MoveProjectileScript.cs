@@ -24,7 +24,6 @@ public class MoveProjectileScript : MonoBehaviour {
     }
 
     void FixedUpdate () {
-		Debug.Log ("xSpeed: " + rigidbody2D.velocity.x + " ySpeed: " + rigidbody2D.velocity.y);
         if (timeLeft <= 0) //Switch to time based.
             Destroy(this.gameObject);
         else
