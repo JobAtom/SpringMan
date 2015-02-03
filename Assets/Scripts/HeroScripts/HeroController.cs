@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class HeroController : MonoBehaviour
 {
 
-    Animator anim;
+    public Animator anim;
     public ParticleSystem particle;
     public bool grounded = false;
     private float groundRadius = 0.01f;
@@ -17,6 +17,7 @@ public class HeroController : MonoBehaviour
     private bool letgo = true;
     private bool jumping;
     private bool falling = true;
+	private bool InWater = false;
 
     public Transform groundCheck;
     public LayerMask whatIsGround;
@@ -26,9 +27,22 @@ public class HeroController : MonoBehaviour
     public VitalsScript Vitals;
 
     public static bool GameOver = false;
+	private bool OnElevator;
+
+	public bool GetFall()
+	{
+		return falling;
+	}
+	public bool SetFall(bool c)
+	{
+		falling = c;
+		return falling;
+	}
 
     void Start()
     {
+		OnElevator = false;
+		//power.HeroStartCharge = false;
         anim = GetComponent<Animator>();
         particle = GetComponent<ParticleSystem>();
         Collider2D[] col = GetComponentsInChildren<Collider2D>();
@@ -47,6 +61,7 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
+
 		if (Application .loadedLevelName != "MainMenu")
 		{
 			Vitals.HandleEnergy ();
@@ -78,32 +93,51 @@ public class HeroController : MonoBehaviour
         }
         if (jumping)
         {
+			OnElevator =false;
             Jump();
+
         }
-        else if (falling)
+		else if (falling)
         {
             Fall();
         }
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		if (!OnElevator)
+				grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
+		else
+				grounded = true;
         if (grounded && numberOfJumps > 0)
         {
             Invoke("ResetFatigue", .01f);
         }
-        else if (!grounded)
+		else if (!grounded&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge )
         {
             falling = true;
             if (Input.GetAxis("Jump") == 0)
                 numberOfJumps++;
         }
+
         anim.SetBool("Ground", grounded);
-        anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+		if (!OnElevator)
+			anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		else
+		{
+			anim.SetFloat ("vSpeed", 0f);
+
+		}
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
-        Walk(move, rigidbody2D.velocity.y);
+		if (!InWater)
+			Walk (move, rigidbody2D.velocity.y);
+		else
+			Walk (-move, rigidbody2D.velocity.y);
         if (move > 0 && !facingRight)
             Flip();
         else if (move < 0 && facingRight)
             Flip();
+		if (InWater && Input.GetAxis ("Jump") == 1) 
+		{
+			rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,-20f);
+		}
     }
 
     void Walk(float move, float fallSpeed)
@@ -125,7 +159,14 @@ public class HeroController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-
+		if (other.collider .tag == ("elevator")) 
+		{
+			OnElevator = true;
+		}
+		else 
+		{
+			OnElevator =false;
+		}
 		if ((other.collider.tag == ("Weapon") || other.collider.tag == ("Enemy")||other.collider.tag=="Boss")&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
         {
             if (Time.time > lastHitTime + .55)
@@ -157,7 +198,22 @@ public class HeroController : MonoBehaviour
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
 		}
 
+
     }
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Water") 
+		{
+			InWater=true;
+		}
+	}
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.tag == "Water") 
+		{
+			InWater=false;
+		}
+	}
 	/*void OnCollisionStay2D(Collision2D other)
 	{
 		if (this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge&&this.enabled) 
@@ -170,17 +226,24 @@ public class HeroController : MonoBehaviour
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
 		}
 	}*/
-
+	/*void OnCollisionExit2D(Collision2D other)
+	{
+		if (other.collider.tag == "elevator") 
+		{
+			OnElevator =false;
+		}
+	}*/
     void TakeHit(Collision2D other)
     {
 		if (other.gameObject.GetComponent<MoveProjectileScript> () != null)
 						Destroy (other.gameObject);
         stunned = true;
+		anim.SetBool ("Hurt", true);
         if (transform.position.x < other.transform.position.x)
             rigidbody2D.velocity = new Vector2(-10f, rigidbody2D.velocity.y / 2 + 5f);
         else
             rigidbody2D.velocity = new Vector2(10f, rigidbody2D.velocity.y / 2);
-        Invoke("unstun", 0.15f);
+        Invoke("unstun", 0.25f);
         var shield = transform.Find("SpikeShield").gameObject;
         shield.GetComponent<SpikeShieldScript>().Drop();
         particle.Emit(15);
@@ -197,6 +260,7 @@ public class HeroController : MonoBehaviour
     void unstun()
     {
         stunned = false;
+		anim.SetBool ("Hurt", false);
     }
 
     public void Restart()
@@ -239,6 +303,8 @@ public class HeroController : MonoBehaviour
     int jumpHeldTime = 0;
     void Jump()
     {
+		if (InWater)
+				return;
         if (jumpHeldTime < maxJumpTime && numberOfJumps == 0)
         {
             anim.SetBool("Ground", false);
@@ -288,13 +354,21 @@ public class HeroController : MonoBehaviour
 
     void Fall()
     {
-        maxFallSpeed = -40;
-        if (rigidbody2D.velocity.y < maxFallSpeed)
-        {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, maxFallSpeed);
-        }
-        else
-            rigidbody2D.AddForce(new Vector2(0, -50f));
+		maxFallSpeed = -40;
+		if (InWater) 
+		{
+			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -3f);
+						
+		} 
+		else 
+		{
+			if (rigidbody2D.velocity.y < maxFallSpeed)
+			{
+				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, maxFallSpeed);
+			} 
+			else
+				rigidbody2D.AddForce (new Vector2 (0, -50f));
+		}
     }
 	void StopCharge()
 	{
