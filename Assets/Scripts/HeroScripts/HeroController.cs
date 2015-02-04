@@ -12,6 +12,7 @@ public class HeroController : MonoBehaviour
     private bool stunned = false;
     private bool restarting = false;    //Checks if HandleDeath has been called.
     private int numberOfJumps = 0;
+	private float acceleratorNum=1f;
 
     public bool facingRight = true;
     private bool letgo = true;
@@ -75,6 +76,7 @@ public class HeroController : MonoBehaviour
         {
             Controls();
         }
+
     }
 
     void Controls()
@@ -125,30 +127,40 @@ public class HeroController : MonoBehaviour
 
 		}
         float move = Input.GetAxis("Horizontal");
+		float UpOrDown = Input.GetAxis ("Vertical");
         anim.SetFloat("Speed", Mathf.Abs(move));
-		if (!InWater)
-			Walk (move, rigidbody2D.velocity.y);
-		else
-			Walk (move, rigidbody2D.velocity.y);
         if (move > 0 && !facingRight)
             Flip();
         else if (move < 0 && facingRight)
             Flip();
-		if (InWater && Input.GetAxis ("Jump") == 1) 
+		if (InWater) 
 		{
-			rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,-20f);
+			if(Input.GetAxis ("Jump") == 1)
+				acceleratorNum =2f;
+				//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
+			Swim(UpOrDown*acceleratorNum ,rigidbody2D.velocity.x);
+
 		}
+		Walk (move*acceleratorNum  , rigidbody2D.velocity.y);
+		acceleratorNum = 1f;
     }
 
     void Walk(float move, float fallSpeed)
     {
 
-        if (grounded&&!this.gameObject.GetComponentInChildren<HeroPowers >().HeroStartCharge )
-            rigidbody2D.velocity = new Vector2(move * walkSpeed, fallSpeed);
+        if (grounded&&!this.gameObject.GetComponentInChildren<HeroPowers >().HeroStartCharge)
+            rigidbody2D.velocity = new Vector2(move*walkSpeed, fallSpeed);
         if(!grounded&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
-            rigidbody2D.velocity = new Vector2(move * walkSpeed, fallSpeed);
-    }
+			rigidbody2D.velocity = new Vector2(move*walkSpeed , fallSpeed);
 
+    }
+	void Swim(float move, float fallSpeed)
+	{
+		if (grounded&&!this.gameObject.GetComponentInChildren<HeroPowers >().HeroStartCharge )
+			rigidbody2D.velocity = new Vector2(fallSpeed, move*walkSpeed-3f);
+		if(!grounded&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
+			rigidbody2D.velocity = new Vector2(fallSpeed, move*walkSpeed-3f );
+	}
     void Flip()
     {
         facingRight = !facingRight;
@@ -355,21 +367,17 @@ public class HeroController : MonoBehaviour
     void Fall()
     {
 		maxFallSpeed = -40;
-		if (InWater) 
-		{
-			rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, -3f);
-						
-		} 
-		else 
-		{
+
+		 
+
 			if (rigidbody2D.velocity.y < maxFallSpeed)
 			{
 				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, maxFallSpeed);
 			} 
 			else
 				rigidbody2D.AddForce (new Vector2 (0, -50f));
-		}
-    }
+	}
+    
 	void StopCharge()
 	{
 
