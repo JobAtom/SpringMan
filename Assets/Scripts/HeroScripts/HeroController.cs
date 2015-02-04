@@ -129,7 +129,7 @@ public class HeroController : MonoBehaviour
 		if (!InWater)
 			Walk (move, rigidbody2D.velocity.y);
 		else
-			Walk (-move, rigidbody2D.velocity.y);
+			Walk (move, rigidbody2D.velocity.y);
         if (move > 0 && !facingRight)
             Flip();
         else if (move < 0 && facingRight)
