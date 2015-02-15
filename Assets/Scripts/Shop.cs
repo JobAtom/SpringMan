@@ -329,7 +329,7 @@ public class Shop : MonoBehaviour
 		while (Score.score!=0) 
 		{
 			Score.score--;
-			Score.memory +=10;
+			Score.memory +=3;
 			yield return new WaitForSeconds (time);
 			
 		}
