@@ -10,9 +10,11 @@ public class MenuScript : MonoBehaviour {
 	public List <Texture2D> skillsTextures;
 	public static float Volume = .3f;
     public static bool Hints = true;
+	private HeroController player;
 	private Shop s;
 	private Hospital H;
 	public AudioSource ButtonSound;
+	private camerafollowing cameracontrol;
 
 	public bool IsLevel;
 	private bool IsOpen = false;
@@ -29,6 +31,14 @@ public class MenuScript : MonoBehaviour {
 	private float t=0;
 
 	void Start () {
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController> ();
+		cameracontrol = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent <camerafollowing > ();
+		if (player != null&&!IsLevel )
+						player.enabled = false;
+		if (!IsLevel && cameracontrol != null) 
+		{
+			cameracontrol.enabled=false;
+		}
 		if(Application.loadedLevelName =="Level_Shop")
 			s = GameObject.Find ("Shop").GetComponent<Shop> ();
 		if (Application.loadedLevelName == "Level_Hospital")
@@ -64,7 +74,7 @@ public class MenuScript : MonoBehaviour {
 		int boxHeight, boxWidth;
 		boxWidth = 1000;
         
-		if (chapterSelect)
+		/*if (chapterSelect)
 		{
 			boxHeight = 600;
 			GUI.BeginGroup (new Rect (1920 / 2 - 500, 1080 / 2 - 150, 1000, boxHeight));
@@ -112,8 +122,8 @@ public class MenuScript : MonoBehaviour {
                 Application.LoadLevel(6);
             }
 
-		}
-		else if (settings)
+		}*/
+		 if (settings)
 		{
 			SettingsMenu();
         }
@@ -142,7 +152,7 @@ public class MenuScript : MonoBehaviour {
 		{
 
 			GUI.Label(new Rect(25, 25, 600, 200), "Spring Man: \nA Robot's Life");
-			boxHeight = 600;
+			boxHeight = 400;
 			GUI.BeginGroup (new Rect (1920 / 2 - 500, 1080 / 2 - 150, 1000, boxHeight));
 			GUI.Box (new Rect (0,0,1000,boxHeight), "");
 			if (GUI.Button(new Rect(100, 30, 800, 90), "PLAY"))
@@ -152,20 +162,25 @@ public class MenuScript : MonoBehaviour {
 				System.Threading .Thread.Sleep (300);
 				CheckPoint.CheckPointOne =false;
 				CheckPoint.triggered =false;
-				Application.LoadLevel(1);
+				//Application.LoadLevel(1);
 
+				cameracontrol .enabled=true;
+				iTween.MoveTo (GameObject.FindGameObjectWithTag ("MainCamera"), iTween.Hash ("x",GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>().position.x,"y",GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>().position.y,"time",1.8));
+				Invoke ("track",2f);
+				IsLevel=true;
+				IsOpen=false;
 			}
-			if (GUI.Button(new Rect(100, 180, 800, 90), "CHAPTER SELECT"))
+			/*if (GUI.Button(new Rect(100, 180, 800, 90), "CHAPTER SELECT"))
 			{
 				ButtonSound.Play();
 				chapterSelect = true;
-			}
-			if (GUI.Button(new Rect(100, 330,800, 90), "SETTINGS"))
+			}*/
+			if (GUI.Button(new Rect(100, 160,800, 90), "SETTINGS"))
 			{
 				ButtonSound.Play();
 				settings = true;
 			}
-			if (GUI.Button(new Rect(100, 480, 800, 90), "QUIT GAME"))
+			if (GUI.Button(new Rect(100, 290, 800, 90), "QUIT GAME"))
 			{
 				ButtonSound.Play();
 			
@@ -174,6 +189,14 @@ public class MenuScript : MonoBehaviour {
 			}
 		}
 		GUI.EndGroup ();
+	}
+	void track()
+	{
+
+		cameracontrol.trackX = true;
+		cameracontrol.trackY = true;
+		if(GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>().position.x==GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>().position.x)
+			player.enabled=true;
 	}
 
 	private void GameMenu()

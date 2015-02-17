@@ -11,7 +11,7 @@ public class HeroPowers : MonoBehaviour
     private HeroController heroController;
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
-	public static bool ChargeSkill = true;
+	public static bool ChargeSkill = false;
 	float lastTime;
 	public float ArrowLeftCount;
 	public float ArrowRightCount;
