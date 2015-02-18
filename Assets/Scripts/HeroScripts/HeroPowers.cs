@@ -38,61 +38,17 @@ public class HeroPowers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        //if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+		if(Input.GetButtonDown("Barrier") && !HeroController.GameOver)
         {
             SummonBarrier();
         }	
-		/*if (!ChargeSkill&&!HeroController .GameOver) 
+
+		if (Input.GetButtonDown("Drill") && !HeroController.GameOver)
 		{
+			UseDrill();
+		}
 
-			if((Input.GetKeyDown (KeyCode.LeftArrow)))
-			{
-				ArrowLeftCount=1;
-
-				if(Time.time<lastTime+0.3f&&!player.GetComponent<HeroController>().facingRight&&!HeroStartCharge )
-				{
-					ArrowLeftCount=2;
-					lastTime =0;
-				}
-				else
-					lastTime=Time.time;
-
-			}
-			if((Input.GetKeyDown (KeyCode.RightArrow)))
-			{
-				ArrowRightCount=1;
-
-				if(Time.time<lastTime+0.3f&&player.GetComponent<HeroController>().facingRight&&!HeroStartCharge)
-				{
-					ArrowRightCount=2;
-					lastTime=0f;
-				}
-				else
-					lastTime=Time.time;
-
-			}
-			if (Input.GetKeyUp (KeyCode.LeftArrow)&&HeroStartCharge&&!player.GetComponent<HeroController>().facingRight) 
-			{
-				ArrowLeftCount = 0;
-				HeroStartCharge=false;
-				HeroController.walkSpeed=20f;
-			}
-			if (Input.GetKeyUp (KeyCode.RightArrow)&&HeroStartCharge&&player.GetComponent<HeroController>().facingRight)
-			{
-				ArrowRightCount = 0;
-				HeroStartCharge=false;
-				HeroController.walkSpeed=20f;
-			}
-
-			if((ArrowLeftCount>=2||ArrowRightCount>=2)&&!HeroStartCharge)
-			{
-
-				HeroCharge();
-
-			}
-
-				
-		}*/
 		if (Input.GetButtonDown ("Charge")&&!HeroStartCharge&&!HeroController .GameOver&&!success ) 
 		{
 			if(ChargeSkill)
@@ -120,29 +76,16 @@ public class HeroPowers : MonoBehaviour
         }
     }
 
-    //This creates a shield around the hero, protecting him from harm.
-    public void Shield()
-    {
+	public void UseDrill()
+	{
+		bool success = heroController.Vitals.UseEnergy (4);
+		if (success) 
+		{
+			//Destroy(Physics2d.overlapcircle(transform.root.find("groundCHeck").transform.position, 1f, 1 << 11).gameObject);
+			Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
+		}
+	}
 
-    }
-
-    //Releases the energy stored within the hero in a sphere of destruction, destroying everything on screen.
-    public void Bomb()
-    {
-        //bool success = heroController.Vitals.UseEnergy(100);
-    }
-
-    //Slows time, allowing the hero to outmaneuver the meteor and enemies.
-    public void TimeWarp()
-    {
-        //bool success = heroController.Vitals.UseEnergy(100);
-    }
-
-    //Uses energy to regenerate health.
-    public void Heal()
-    {
-        //bool success = heroController.Vitals.UseEnergy(66);
-    }
 	public void HeroCharge()
 	{
 		Invoke ("StopCharge", 0.2f);
@@ -160,11 +103,11 @@ public class HeroPowers : MonoBehaviour
 			lowerFlareRender.enabled = true;
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
-				player.rigidbody2D.velocity = new Vector2 (50f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (25f, 0f);
 			}
 			if (!player.GetComponent<HeroController> ().facingRight)
 			{
-				player.rigidbody2D.velocity = new Vector2 (-50f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (-25f, 0f);
 			}
 		}
 	}
