@@ -65,6 +65,7 @@ public class HeroPowers : MonoBehaviour
     public void SummonBarrier()
     {
         var meteor = GameObject.Find("Meteor");
+
         bool success = heroController.Vitals.UseEnergy(3);
         if (success)
         {

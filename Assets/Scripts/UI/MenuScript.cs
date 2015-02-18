@@ -159,7 +159,7 @@ public class MenuScript : MonoBehaviour {
 			{
 
 				ButtonSound.Play();
-				System.Threading .Thread.Sleep (300);
+				//System.Threading .Thread.Sleep (300);
 				CheckPoint.CheckPointOne =false;
 				CheckPoint.triggered =false;
 				//Application.LoadLevel(1);
@@ -195,8 +195,11 @@ public class MenuScript : MonoBehaviour {
 
 		cameracontrol.trackX = true;
 		cameracontrol.trackY = true;
-		if(GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>().position.x==GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>().position.x)
-			player.enabled=true;
+		if (GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform> ().position.x == GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position.x) 
+		{
+			player.enabled = true;
+			player.GetComponentInChildren <HeroPowers >().enabled=false;
+		}
 	}
 
 	private void GameMenu()
