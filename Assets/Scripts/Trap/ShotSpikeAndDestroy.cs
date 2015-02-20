@@ -16,10 +16,10 @@ public class ShotSpikeAndDestroy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(startmove&&faceright)
-			transform.position = new Vector2 (transform.position.x + moveSpeed, transform.position.y);
+			transform.position = new Vector3 (transform.position.x + moveSpeed, transform.position.y,1f);
 		if (startmove && faceleft) 
 		{	
-			transform.position = new Vector2 (transform.position.x - moveSpeed, transform.position.y);
+			transform.position = new Vector3 (transform.position.x - moveSpeed, transform.position.y,1f);
 		}
 		Invoke ("CanMove", 1f);
 	}

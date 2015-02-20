@@ -3,13 +3,14 @@ using System.Collections;
 
 public class MoveLeftOrRight : MonoBehaviour {
 	public  bool faceright;
-	private float moveSpeed=0.05f;
+	private float moveSpeed=0.08f;
 	// Use this for initialization
 	void Start () {
-		faceright = false;
+		//faceright = false;
+
 	}
 	
-	void FixedUpdate () 
+	void Update () 
 	{
 
 			if (faceright)
@@ -29,7 +30,7 @@ public class MoveLeftOrRight : MonoBehaviour {
 	void Flip()
 	{
 		faceright=!faceright;
-		Vector3 theScale = transform.localScale;
+		Vector3 theScale =transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
@@ -37,20 +38,28 @@ public class MoveLeftOrRight : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 
-		if (other.collider.tag == "trap"||other.collider.tag=="Wall"||other.collider.tag=="ground")
+		if (other.collider.tag == "trap"||other.collider.tag=="Wall"||other.collider.tag=="ground"||other.collider.tag=="block")
 		{
 			//faceright =!faceright ;
-			
-			Flip ();
+			Debug.Log("touched");
+			Invoke ("StartFlip",0.01f);
+			/*Flip ();
 			if(faceright)
 				transform.position=new Vector2(transform.position.x+1f,transform.position.y);
 			else
-				transform.position=new Vector2(transform.position.x-1f,transform.position.y);
+				transform.position=new Vector2(transform.position.x-1f,transform.position.y);*/
 			
 		}
 		
 		
-		
-		
 	}
+	void StartFlip()
+	{
+		Flip ();
+		if(faceright)
+			transform.position=new Vector2(transform.position.x+1f,transform.position.y);
+		else
+			transform.position=new Vector2(transform.position.x-1f,transform.position.y);
+	}
+
 }
