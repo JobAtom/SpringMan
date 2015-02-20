@@ -63,18 +63,8 @@ public class PlatformDown : MonoBehaviour {
 		if(other.collider.tag=="Player")
 			touchedorNot = false;
 	}
-<<<<<<< HEAD
-	void OnCollisionStay2D(Collision2D other)
-	{
-		if(other.collider.tag=="Player")
-			touchedorNot = true;
-	}
 
-	void OnCollisionExit2D(Collision2D other)
-	{
-		if(other.collider.tag=="Player")
-			touchedorNot = false;
-=======
+
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -89,7 +79,7 @@ public class PlatformDown : MonoBehaviour {
 
 
 		}
->>>>>>> origin/wujk
+
 	}
 
 
