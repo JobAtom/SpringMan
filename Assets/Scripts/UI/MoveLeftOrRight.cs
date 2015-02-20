@@ -41,7 +41,7 @@ public class MoveLeftOrRight : MonoBehaviour {
 		if (other.collider.tag == "trap"||other.collider.tag=="Wall"||other.collider.tag=="ground"||other.collider.tag=="block")
 		{
 			//faceright =!faceright ;
-			Debug.Log("touched");
+
 			Invoke ("StartFlip",0.01f);
 			/*Flip ();
 			if(faceright)
