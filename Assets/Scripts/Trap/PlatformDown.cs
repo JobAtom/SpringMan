@@ -41,7 +41,15 @@ public class PlatformDown : MonoBehaviour {
 
 			//Invoke ("donotKinematic",1.5f);
 		}
-
+		/*
+		if (other.collider.tag == "ground") 
+		{
+				Debug.Log ("hitground");
+				this.gameObject.GetComponent<Rigidbody2D> ().gravityScale = 0;
+				this.gameObject.rigidbody2D.mass = 1000000;
+				this.gameObject.rigidbody2D.velocity = new Vector2 (0, 0);	
+				this.gameObject.GetComponent<Rigidbody2D> ().isKinematic = false;
+		}*/
 
 	}
 	void OnCollisionStay2D(Collision2D other)
@@ -54,6 +62,34 @@ public class PlatformDown : MonoBehaviour {
 	{
 		if(other.collider.tag=="Player")
 			touchedorNot = false;
+	}
+<<<<<<< HEAD
+	void OnCollisionStay2D(Collision2D other)
+	{
+		if(other.collider.tag=="Player")
+			touchedorNot = true;
+	}
+
+	void OnCollisionExit2D(Collision2D other)
+	{
+		if(other.collider.tag=="Player")
+			touchedorNot = false;
+=======
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "ElevatorStopSign") 
+		{
+			Debug.Log ("stop");
+			this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+			this.gameObject.rigidbody2D.mass=1000000;
+			this.gameObject.rigidbody2D.velocity=new Vector2(0,0);	
+			this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
+
+
+		}
+>>>>>>> origin/wujk
 	}
 
 
