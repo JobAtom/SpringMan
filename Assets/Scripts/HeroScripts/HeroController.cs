@@ -136,7 +136,7 @@ public class HeroController : MonoBehaviour
 		if (InWater) 
 		{
 			if(Input.GetAxis ("Jump") == 1)
-				acceleratorNum =2f;
+				acceleratorNum =1.6f;
 				//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
 			Swim(UpOrDown*acceleratorNum ,rigidbody2D.velocity.x);
 
