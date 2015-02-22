@@ -4,11 +4,11 @@ using System.Collections;
 public class SpikeProduce : MonoBehaviour {
 	public GameObject spike;
 	private int spikeNum;
-	public float 
+
 	// Use this for initialization
-	void Start () {
+	void  Start () {
 		spikeNum = 0;
-	
+
 	}
 	
 	// Update is called once per frame
