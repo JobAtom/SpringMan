@@ -12,6 +12,7 @@ public class HeroPowers : MonoBehaviour
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
 	public static bool ChargeSkill = false;
+	public static bool DrillSkill=false;
 	float lastTime;
 	public float ArrowLeftCount;
 	public float ArrowRightCount;
@@ -46,7 +47,8 @@ public class HeroPowers : MonoBehaviour
 
 		if (Input.GetButtonDown("Drill") && !HeroController.GameOver)
 		{
-			UseDrill();
+			if(DrillSkill)
+				UseDrill();
 		}
 
 		if (Input.GetButtonDown ("Charge")&&!HeroStartCharge&&!HeroController .GameOver&&!success ) 

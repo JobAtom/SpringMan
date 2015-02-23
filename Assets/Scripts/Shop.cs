@@ -33,6 +33,7 @@ public class Shop : MonoBehaviour
 	private static bool barrierlv3Selected = false;
 	private static bool barrierlv4Selected = false;
 	private static bool chargeSelected = false;
+	private static bool drillSelected=false;
 	private int buttonHeight=40;
 
 
@@ -50,6 +51,7 @@ public class Shop : MonoBehaviour
 	private static bool sendBarrierlv3 = false; 
 	private static bool sendBarrierlv4 = false;
 	private static bool sendCharge = false;
+	private static bool sendDrill = false;
 	private int scoreCost=0;
 	private bool sendSuccess=false;
 	private string word;
@@ -264,6 +266,8 @@ public class Shop : MonoBehaviour
 						energylv4Selected =false;
 					if(chargeSelected &&!sendCharge )
 						chargeSelected =false;
+					if(drillSelected&&!sendDrill)
+						drillSelected =false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -389,12 +393,36 @@ public class Shop : MonoBehaviour
 				if (GUI.Button (new Rect (10, 60, 580, 75), "CHARGE") && currentword == null) 
 				{
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [ALT] TO USE CHARGE COST:10MB\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:10MB ENERGY COST:2\n\r"));
 					chargeSelected = true;
 					scoreCost = 10;
 					ButtonSound .Play();
 				}
 						
+			}
+			if(sendDrill)
+			{
+				GUI.enabled = false;
+				GUI.Button (new Rect (10, 140, 580, 75), "DRILL(LEARNED)");
+				HeroPowers.DrillSkill=true;
+				GUI.enabled = true;
+			}
+			if(drillSelected&&!sendDrill)
+			{
+				GUI.enabled=false;
+				GUI.Button (new Rect(10,140,580,75),"DRILL");
+				GUI.enabled=true;
+			}
+			if(!drillSelected)
+			{
+				if(GUI.Button (new Rect(10,140,580,75),"DRILL")&&currentword==null)
+				{
+					StopAllCoroutines ();
+					StartCoroutine (TypeWritter ("PRESS [Z] TO DRILL COST:50MB ENERGY COST:4\n\r"));
+					drillSelected=true;
+					scoreCost=50;
+					ButtonSound.Play ();
+				}
 			}
 		}
 		if (windowID == 1) 
