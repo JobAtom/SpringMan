@@ -9,7 +9,7 @@ public class LevelChangeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		levels = new List<string>(){"Level_1-1", "Level_1-2", "Level_1-3", "Level_2-1","Level_2-2","Level_2-3"};
+		levels = new List<string>(){"Level_1-1", "Level_1-2", "Level_1-3", "Level_1-4","Level_1-5","Level_1-6","Level_1-7"};
 	}
 
     void OnCollisionEnter2D(Collision2D other)
