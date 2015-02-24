@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 
     public bool dead;
     public AudioClip enemydead;
-    public int energyReleased;
+   // public int energyReleased;
     public int scoreReleased;
     public AudioClip Springkill;
     private Meteor meteor;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpikeProduce : MonoBehaviour {
 	public GameObject spike;
-	private int spikeNum;
+	public int spikeNum;
 	public float StartDelayTime;
 
 	// Use this for initialization
@@ -22,7 +22,7 @@ public class SpikeProduce : MonoBehaviour {
 		{
 
 			spikeNum++;
-			Invoke ("clearSpikeNum",1.8f+StartDelayTime);
+			Invoke ("clearSpikeNum",2f+StartDelayTime);
 		}
 
 		/*if (GameObject.Find ("spikeFaceright(Clone)") == null)

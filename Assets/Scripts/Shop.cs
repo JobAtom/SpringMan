@@ -401,7 +401,7 @@ public class Shop : MonoBehaviour
 				if (GUI.Button (new Rect (10, 60, 580, 75), "CHARGE") && currentword == null) 
 				{
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:10MB ENERGY COST:2\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:10MB ENERGY COST:1\n\r"));
 					chargeSelected = true;
 					scoreCost = 10;
 					ButtonSound .Play();
@@ -426,7 +426,7 @@ public class Shop : MonoBehaviour
 				if(GUI.Button (new Rect(10,140,580,75),"DRILL")&&currentword==null)
 				{
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [Z] TO DRILL COST:50MB ENERGY COST:4\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [SHIFT] TO DRILL COST:50MB ENERGY COST:4\n\r"));
 					drillSelected=true;
 					scoreCost=50;
 					ButtonSound.Play ();

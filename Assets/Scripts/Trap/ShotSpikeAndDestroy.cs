@@ -21,7 +21,7 @@ public class ShotSpikeAndDestroy : MonoBehaviour {
 		{	
 			transform.position = new Vector3 (transform.position.x - moveSpeed, transform.position.y,1f);
 		}
-		Invoke ("CanMove", 0.4f);
+		Invoke ("CanMove", 0.8f);
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
