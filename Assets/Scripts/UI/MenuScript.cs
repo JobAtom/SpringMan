@@ -31,7 +31,8 @@ public class MenuScript : MonoBehaviour {
 	private float t=0;
 
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController> ();
+		if(Application.loadedLevelName!="Level_Shop")
+			player = GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController> ();
 		cameracontrol = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent <camerafollowing > ();
 		if (player != null&&!IsLevel )
 						player.enabled = false;

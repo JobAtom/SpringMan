@@ -151,6 +151,13 @@ public class Shop : MonoBehaviour
 							sendCharge=true;
 						}
 					}
+					if(drillSelected&&!sendDrill)
+					{
+						if(sendSuccess)
+						{
+							sendDrill=true;
+						}
+					}
 					if(energylv1Selected&&!sendEnergylv1 )
 					{
 						if(sendSuccess)
@@ -349,7 +356,8 @@ public class Shop : MonoBehaviour
 	{
 
 		scorecolor.color = Color.red;
-
+		StopAllCoroutines ();
+		StartCoroutine (TypeWritter("YOU DO NOT HAVE ENOUGH MEMORY CHIPS\n\r"));
 		InvokeRepeating ("ChangeColor", 0.1f,0.3f);
 
 	}
