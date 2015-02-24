@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveLeftOrRight : MonoBehaviour {
 	public  bool faceright;
-	private float moveSpeed=0.08f;
+	private float moveSpeed=0.1f;
 	// Use this for initialization
 	void Start () {
 		//faceright = false;
