@@ -53,60 +53,60 @@ TextureImporter:
     - name: submarine_near_combat_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 2706
-        width: 1168
-        height: 669
+        x: 66
+        y: 2694
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: submarine_near_combat_1
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1960
-        width: 1161
-        height: 654
+        x: 65
+        y: 1946
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: submarine_near_combat_2
       rect:
         serializedVersion: 2
-        x: 59
-        y: 1179
-        width: 1174
-        height: 667
+        x: 68
+        y: 1178
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: submarine_near_combat_3
       rect:
         serializedVersion: 2
-        x: 54
-        y: 331
-        width: 1179
-        height: 699
+        x: 65
+        y: 347
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: submarine_near_combat_4
       rect:
         serializedVersion: 2
-        x: 1292
-        y: 2614
-        width: 1154
-        height: 702
+        x: 1318
+        y: 2670
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: submarine_near_combat_5
       rect:
         serializedVersion: 2
-        x: 1288
-        y: 1927
-        width: 1156
-        height: 666
+        x: 1318
+        y: 1931
+        width: 1115
+        height: 660
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
