@@ -320,6 +320,34 @@ public class Shop : MonoBehaviour
 		if (GUI.Button(new Rect(1920*2 / 3+100 , 1080 - 200+offset.y/guiScaleFactor,400 , 150), "CONTINUE"))
         {
 			ButtonSound .Play();
+			if(healthlv1Selected&&!sendHealthlv1)
+				healthlv1Selected =false;
+			if(healthlv2Selected&&!sendHealthlv2)
+				healthlv2Selected=false;
+			if(healthlv3Selected&&!sendHealthlv3 )
+				healthlv3Selected =false;
+			if(healthlv4Selected&&!sendHealthlv4 )
+				healthlv4Selected =false;
+			if(energylv1Selected&&!sendEnergylv1)
+				energylv1Selected =false;
+			if(energylv2Selected&&!sendEnergylv2 )
+				energylv2Selected =false;
+			if(energylv3Selected&&!sendEnergylv3)
+				energylv3Selected =false;
+			if(energylv4Selected &&!sendEnergylv4)
+				energylv4Selected =false;
+			if(chargeSelected &&!sendCharge )
+				chargeSelected =false;
+			if(drillSelected&&!sendDrill)
+				drillSelected =false;
+			if(barrierlv1Selected &&!sendBarrierlv1 )
+				barrierlv1Selected =false;
+			if(barrierlv2Selected &&!sendBarrierlv2 )
+				barrierlv2Selected =false;
+			if(barrierlv3Selected &&!sendBarrierlv3 )
+				barrierlv3Selected =false;
+			if(barrierlv4Selected &&!sendBarrierlv4 )
+				barrierlv4Selected =false;
 			System.Threading .Thread.Sleep (300);
 			VitalsScript .CurrentHealth =VitalsScript .MaxHealth ;
 			VitalsScript.CurrentEnergy =0;
