@@ -31,7 +31,7 @@ public class ArrowPosition : MonoBehaviour {
 			if (Enemy [i] != null&&!EnemyMarked[i])//&&!//EnemyMarked[i])
 			{
 
-				if (this.gameObject.transform.position.y - Enemy [i].transform.position.y < 10f && Mathf.Abs (this.gameObject.transform.position.x - Enemy [i].transform.position.x) == 0f) 
+				if (this.gameObject.transform.position.y - Enemy [i].transform.position.y < 20f && Mathf.Abs (this.gameObject.transform.position.x - Enemy [i].transform.position.x) == 0f) 
 				{
 					EnemyNum = i;
 
@@ -52,7 +52,7 @@ public class ArrowPosition : MonoBehaviour {
 		if (Enemy [EnemyNum] != null) 
 		{
 			this.gameObject.transform.position = new Vector2 (Enemy [EnemyNum].transform.position.x, GameObject.Find ("ArrowProduce").GetComponent<Transform> ().position.y);
-			if(this.gameObject.transform.position.y - Enemy [EnemyNum].transform.position.y <= 3f)
+			if(this.gameObject.transform.position.y - Enemy [EnemyNum].transform.position.y <= 0f)
 				Destroy (this.gameObject);
 		}
 

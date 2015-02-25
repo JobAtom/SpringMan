@@ -10,7 +10,7 @@ public class MoveLeftOrRight : MonoBehaviour {
 
 	}
 	
-	void Update () 
+	void FixedUpdate () 
 	{
 
 			if (faceright)

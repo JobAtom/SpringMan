@@ -23,7 +23,7 @@ public class ShowEnemyPosition : MonoBehaviour {
 		{
 			if(Enemy[i]!=null)
 			{
-				if ((this.gameObject.transform.position.y - Enemy[i].transform.position.y < 10f)&&(this.gameObject.transform.position.y - Enemy[i].transform.position.y > 0f))
+				if ((this.gameObject.transform.position.y - Enemy[i].transform.position.y < 10f)&&(this.gameObject.transform.position.y - Enemy[i].transform.position.y > 0f)&&!Enemy[i].gameObject.GetComponent<EnemyScript>().dead)
 				{
 					Instantiate (Arrow, new Vector3 (Enemy[i].transform.position.x, this.gameObject.transform.position.y, 1f), Quaternion.Euler (new Vector3 (0, 0,270)));
 				

@@ -277,7 +277,7 @@ public class HeroController : MonoBehaviour
 
     public void Restart()
     {
-        LevelChangeScript.RestartLevel();
+		LevelChangeScript.RestartLevel();
         VitalsScript .CurrentEnergy = 0;
         VitalsScript .CurrentHealth = VitalsScript.MaxHealth ;
         Score.score = 0;
