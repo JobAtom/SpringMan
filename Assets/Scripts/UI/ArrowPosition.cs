@@ -52,7 +52,7 @@ public class ArrowPosition : MonoBehaviour {
 		if (Enemy [EnemyNum] != null) 
 		{
 			this.gameObject.transform.position = new Vector2 (Enemy [EnemyNum].transform.position.x, GameObject.Find ("ArrowProduce").GetComponent<Transform> ().position.y);
-			if(this.gameObject.transform.position.y - Enemy [EnemyNum].transform.position.y <= 0f)
+			if(this.gameObject.transform.position.y - Enemy [EnemyNum].transform.position.y <= 3f)
 				Destroy (this.gameObject);
 		}
 

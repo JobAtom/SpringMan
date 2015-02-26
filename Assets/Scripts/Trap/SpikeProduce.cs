@@ -22,7 +22,7 @@ public class SpikeProduce : MonoBehaviour {
 		{
 
 			spikeNum++;
-			Invoke ("clearSpikeNum",2f+StartDelayTime);
+			Invoke ("clearSpikeNum",3f+StartDelayTime);
 		}
 
 		/*if (GameObject.Find ("spikeFaceright(Clone)") == null)
