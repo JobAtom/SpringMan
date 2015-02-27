@@ -58,6 +58,7 @@ public class Shop : MonoBehaviour
 	public AudioSource ButtonSound;
 	public AudioSource TypeSound;
 	public AudioSource WarningSound;
+	public AudioSource UpgradeSound;
 	public static float guiScaleFactor = -1.0f;
 	public static Vector3 offset = Vector3.zero;
 	public static bool _didResizeUI=false;
@@ -141,6 +142,8 @@ public class Shop : MonoBehaviour
 						{
 							sendHealthlv1=true;
 							VitalsScript.MaxHealth += 1;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 						
 						
@@ -150,6 +153,8 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendCharge=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(drillSelected&&!sendDrill)
@@ -157,6 +162,8 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendDrill=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(energylv1Selected&&!sendEnergylv1 )
@@ -165,6 +172,8 @@ public class Shop : MonoBehaviour
 						{
 							sendEnergylv1=true;
 							VitalsScript .MaxEnergy +=1;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(healthlv2Selected&&!sendHealthlv2)
@@ -172,7 +181,10 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							VitalsScript.MaxHealth += 1;
+
 							sendHealthlv2=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 						
 					}
@@ -182,6 +194,8 @@ public class Shop : MonoBehaviour
 						{
 							sendEnergylv2 =true;
 							VitalsScript .MaxEnergy +=1;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(healthlv3Selected &&!sendHealthlv3)
@@ -190,6 +204,8 @@ public class Shop : MonoBehaviour
 						{
 							VitalsScript.MaxHealth += 1;
 							sendHealthlv3=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(energylv3Selected &&!sendEnergylv3)
@@ -198,6 +214,8 @@ public class Shop : MonoBehaviour
 						{
 							VitalsScript .MaxEnergy +=1;
 							sendEnergylv3=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(healthlv4Selected &&!sendHealthlv4)
@@ -206,6 +224,8 @@ public class Shop : MonoBehaviour
 						{
 							VitalsScript.MaxHealth += 1;
 							sendHealthlv4=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(energylv4Selected&&!sendEnergylv4 )
@@ -214,6 +234,8 @@ public class Shop : MonoBehaviour
 						{
 							VitalsScript .MaxEnergy +=1;
 							sendEnergylv4=true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(barrierlv1Selected&& !sendBarrierlv1)
@@ -222,6 +244,8 @@ public class Shop : MonoBehaviour
 						{
 							sendBarrierlv1=true;
 							Meteor.barrierTime++;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(barrierlv2Selected&& !sendBarrierlv2)
@@ -230,6 +254,8 @@ public class Shop : MonoBehaviour
 						{
 							sendBarrierlv2=true;
 							Meteor.barrierTime++;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(barrierlv3Selected&& !sendBarrierlv3)
@@ -238,6 +264,8 @@ public class Shop : MonoBehaviour
 						{
 							sendBarrierlv3=true;
 							Meteor.barrierTime++;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					if(barrierlv4Selected&& !sendBarrierlv4)
@@ -246,6 +274,8 @@ public class Shop : MonoBehaviour
 						{
 							sendBarrierlv4=true;
 							Meteor.barrierTime++;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
 						}
 					}
 					sendSuccess =false;
