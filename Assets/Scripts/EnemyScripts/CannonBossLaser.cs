@@ -13,6 +13,7 @@ public class CannonBossLaser : MonoBehaviour
 	private GameObject bossBody;
 	private GameObject playerBody;
 	private GameObject laserChargeBall;
+	private GameObject bossLaser;
 
 	//Bools
 	private bool playerInRange;
@@ -28,7 +29,9 @@ public class CannonBossLaser : MonoBehaviour
 	{
 		bossBody = gameObject;
 		playerBody = GameObject.FindGameObjectWithTag("Player");
-		laserChargeBall = transform.FindChild("Sphere").gameObject;
+		laserChargeBall = transform.FindChild("Charge").gameObject;
+		bossLaser = transform.FindChild("Blast").gameObject;
+		bossLaser.SetActive(false);
 		laserOnCooldown = false;
 		playerInRange = false;
 		laserFullCharge = false;
@@ -100,7 +103,9 @@ public class CannonBossLaser : MonoBehaviour
 	{
 		laserFiring = true;
 		laserFullCharge = false;
+		bossLaser.SetActive(true);
 		yield return new WaitForSeconds(laserShootTime);
+		bossLaser.SetActive(false);
 		laserFiring = false;
 	}
 
