@@ -42,6 +42,10 @@ public class HeroPowers : MonoBehaviour
         {
             SummonBarrier();
         }	
+		if(Input.GetButton ("Fire1"))
+		{
+			Drill();
+		}
 		/*if (!ChargeSkill&&!HeroController .GameOver) 
 		{
 
@@ -136,13 +140,20 @@ public class HeroPowers : MonoBehaviour
     public void TimeWarp()
     {
         //bool success = heroController.Vitals.UseEnergy(100);
-    }
+	}
 
     //Uses energy to regenerate health.
     public void Heal()
     {
         //bool success = heroController.Vitals.UseEnergy(66);
     }
+
+	public void Drill()
+	{
+//		if(anim.GetBool("Ground"))
+//			Destroy(Physics2D.OverlapCircle (transform.root.Find ("groundCheck").transform.position, 1f, 1 << 11).gameObject);
+	}
+
 	public void HeroCharge()
 	{
 		Invoke ("StopCharge", 0.2f);

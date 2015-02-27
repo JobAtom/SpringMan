@@ -18,7 +18,7 @@ public class BossCheckpoint : MonoBehaviour {
 		if (other.tag == "Player") {
 			camera.BossCamera ();
 			Instantiate (Barrier, new Vector3 (0.5859733f, transform.position.y + 4, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
-			Destroy(this.gameObject);
+			//Destroy(this.gameObject);
 		}
 	}
 }
