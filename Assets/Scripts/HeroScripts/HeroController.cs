@@ -190,16 +190,27 @@ public class HeroController : MonoBehaviour
         else
         {
         }
+		if(other.collider.tag=="Boss"&&this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
+		{
+
+			other.collider.GetComponent <ChargeBoss>().Stuned ();
+		}
 		if ((other.collider.tag == ("Weapon") || other.collider.tag == ("Enemy")) && this.gameObject.GetComponentInChildren<HeroPowers> ().HeroStartCharge)
 		{
 			if (other.collider.GetComponent<EnemyScript>() != null||other.collider.name!="Boss")
 				other.collider.GetComponent<EnemyScript>().Kill();
+
+			if(facingRight )
+				this.gameObject.rigidbody2D.velocity=new Vector2(40f,0f);
+			else
+				this.gameObject.rigidbody2D.velocity=new Vector2(-40f,0f);
+
 		
 		}
 		else if (other.collider.tag == "trap"||other.collider.tag=="Wall"&&this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge) 
 		{
 			StopCharge();
-		}
+		}/*
 		else if (this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge) 
 		{
 			if(facingRight )
@@ -208,7 +219,7 @@ public class HeroController : MonoBehaviour
 			}
 			else
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
-		}
+		}*/
 
 
     }
@@ -305,6 +316,7 @@ public class HeroController : MonoBehaviour
             foreach (Collider2D cc in col)
                 cc.isTrigger = true;
             restarting = true;
+			this.gameObject.rigidbody2D.velocity=new Vector2(0,0);
             falling = true;
             Invoke("Restart", 2);
 

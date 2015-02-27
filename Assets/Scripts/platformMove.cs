@@ -13,7 +13,7 @@ public class platformMove : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (!HeroController.GameOver)
 		{
 			if (transform.position.x >= position+distance) {

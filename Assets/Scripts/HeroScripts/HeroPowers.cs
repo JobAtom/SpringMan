@@ -11,7 +11,7 @@ public class HeroPowers : MonoBehaviour
     private HeroController heroController;
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
-	public static bool ChargeSkill = false;
+	public static bool ChargeSkill =false;
 	public static bool DrillSkill=false;
 	float lastTime;
 	public float ArrowLeftCount;
@@ -106,11 +106,11 @@ public class HeroPowers : MonoBehaviour
 			lowerFlareRender.enabled = true;
 			if (player.GetComponent<HeroController> ().facingRight) 
 			{
-				player.rigidbody2D.velocity = new Vector2 (25f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (40f, 0f);
 			}
 			if (!player.GetComponent<HeroController> ().facingRight)
 			{
-				player.rigidbody2D.velocity = new Vector2 (-25f, 0f);
+				player.rigidbody2D.velocity = new Vector2 (-40f, 0f);
 			}
 		}
 	}

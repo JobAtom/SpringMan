@@ -60,14 +60,17 @@ public class ChargeBoss : MonoBehaviour {
 				}
 			}
 		}
-		if (stun) {
-						this.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
-				} else
-						this.gameObject.GetComponent<SpriteRenderer> ().color = bosscolor;
+		if (stun) 
+		{
+				this.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
+		}
+		else
+				this.gameObject.GetComponent<SpriteRenderer> ().color = bosscolor;
 	
 	}
 	void Flip()
 	{
+
 		this.gameObject.GetComponent<EnemyMove>().faceright=!this.gameObject.GetComponent<EnemyMove>().faceright;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
@@ -75,6 +78,8 @@ public class ChargeBoss : MonoBehaviour {
 	}
 	void startCharge()
 	{
+		if (stun)
+						return;
 		CancelInvoke ();
 		if(chargeRight)
 						this.gameObject.rigidbody2D .velocity = new Vector2 (50f, 0);
@@ -82,10 +87,15 @@ public class ChargeBoss : MonoBehaviour {
 						this.gameObject.rigidbody2D.velocity = new Vector2 (-50f, 0);
 	}
 
-	void Stuned()
+	public void Stuned()
 	{
+		if(!stun)
+			this.gameObject.rigidbody2D.AddForce (new Vector2 ((this.gameObject.transform.position.x - player.transform.position.x)/Mathf.Abs(this.gameObject.transform.position.x-player.transform.position.x)*200000f, 0f));
 		stun = true;
+		CancelInvoke ();
+
 		Invoke ("startNormal", 3f);
+
 
 
 	}
@@ -95,7 +105,8 @@ public class ChargeBoss : MonoBehaviour {
 		{	
 			//this.gameObject.rigidbody2D .velocity = new Vector2 (0, 0);
 			Flip ();
-			iTween.ShakePosition (background ,new Vector3(0.6f,0.6f,0),1.5f);
+			if(!stun)
+				iTween.ShakePosition (background ,new Vector3(0.6f,0.6f,0),1.5f);
 			Stuned ();
 
 		}

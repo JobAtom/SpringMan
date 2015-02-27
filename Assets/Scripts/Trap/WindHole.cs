@@ -20,7 +20,7 @@ public class WindHole : MonoBehaviour {
 		if (other.gameObject.tag == "Player") 
 		{
 
-			other.rigidbody2D .AddForce (new Vector2(0,600f));
+			other.rigidbody2D .AddForce (new Vector2(0,1200f));
 			/*if (Time.time > lastHitTime + 1.25)
 			{
 				player.TakeDamage (30);

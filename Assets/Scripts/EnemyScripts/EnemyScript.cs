@@ -30,7 +30,7 @@ public class EnemyScript : MonoBehaviour
 				if(this.gameObject.GetComponent<ChargeBoss>().stun)
 				{
 					BossHealth--;
-
+					player.Vitals.AbsorbEnergy(1);
 					this.gameObject.GetComponent<ChargeBoss>().startNormal ();
 				}
 				if(BossHealth<=0)
@@ -103,7 +103,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (!dead && !HeroController.GameOver)
         {
-            if (stomped)
+			if (stomped&&!playerObj.gameObject.GetComponentInChildren<HeroPowers> ().HeroStartCharge)
 			{
 				playerObj.rigidbody2D.velocity = new Vector2(playerObj.rigidbody2D.velocity.x, (-playerObj.rigidbody2D.velocity.y<25f)?18f:22f);
 				Invoke ("cancelJump",0.1f);
@@ -123,6 +123,7 @@ public class EnemyScript : MonoBehaviour
                 cc.isTrigger = true;
             Rigidbody2D body = GetComponent<Rigidbody2D>();
 			this.rigidbody2D.gravityScale = 1f;
+			body.velocity=new Vector2(0f,0f);
             body.AddForce(new Vector2(0, 200f));
             body.fixedAngle = false;
             body.AddTorque(Random.Range(-100f, 100f));

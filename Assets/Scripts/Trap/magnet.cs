@@ -25,7 +25,7 @@ public class magnet : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		distance.x=gameObject.transform.position.x-player.transform.position.x;
 		distance.y = gameObject.transform .position.y - player.transform.position.y;
