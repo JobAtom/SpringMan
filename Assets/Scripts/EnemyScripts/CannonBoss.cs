@@ -36,11 +36,15 @@ public class CannonBoss : MonoBehaviour
 	void Update () 
 	{
 		//follow player
-		Debug.Log("Tangent: " + Mathf.Atan(transform.position.y/playerBody.transform.position.x));
+
 		//players position locally = our position + their position?
-		float angle = Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
-//			Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,Mathf.Atan2((playerBody.transform.position.y - transform.position.y),(playerBody.transform.position.x + transform.position.x)) * Mathf.Rad2Deg), Time.deltaTime);
+		Debug.Log("Player Position: " + playerBody.transform.position);
+		Debug.Log("Cannon Position: " + transform.position);
+		float displacement = 90 * Mathf.Deg2Rad;
+		float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
+		Debug.Log("Tangent: " + angle);
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+//			Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,angle), Time.deltaTime);
 //			0,0, Mathf.Tan(transform.position.y/playerBody.transform.position.y));
 	}
 

@@ -45,13 +45,13 @@ public class CannonBossLaser : MonoBehaviour
 
 		if(fireOnce)
 			fireLaser ();
-		else
-			Debug.Log("On Cooldown.");
+//		else
+//			Debug.Log("On Cooldown.");
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log(other.tag);
+//		Debug.Log(other.tag);
 		if(other.tag.Equals("Player"))
 			playerInRange = true;
 	}
@@ -64,12 +64,12 @@ public class CannonBossLaser : MonoBehaviour
 
 	private void fireLaser()
 	{
-		Debug.Log("in fire laser");
-		Debug.Log("Laser not on cooldown");
+//		Debug.Log("in fire laser");
+//		Debug.Log("Laser not on cooldown");
 
 		if(!laserFullCharge && !laserFiring)
 		{
-			Debug.Log("In !laserFullCharge Loop");
+//			Debug.Log("In !laserFullCharge Loop");
 			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/2);
 			StartCoroutine("laserCharge");
 		}
@@ -79,7 +79,7 @@ public class CannonBossLaser : MonoBehaviour
 
 		if(laserFiring)
 		{
-			Debug.Log("I'mma firrin mah lazor");
+//			Debug.Log("I'mma firrin mah lazor");
 			laserChargeBall.transform.localScale = new Vector3(0,0,0);
 			laserOnCooldown = true;
 			StartCoroutine("laserCooldown");
@@ -88,7 +88,7 @@ public class CannonBossLaser : MonoBehaviour
 
 	IEnumerator laserCharge()
 	{
-		Debug.Log("in laser charge");
+//		Debug.Log("in laser charge");
 		if(!laserFullCharge)
 		{
 			yield return new WaitForSeconds(laserChargeTime);
