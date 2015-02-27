@@ -57,6 +57,7 @@ public class Shop : MonoBehaviour
 	private string word;
 	public AudioSource ButtonSound;
 	public AudioSource TypeSound;
+	public AudioSource WarningSound;
 	public static float guiScaleFactor = -1.0f;
 	public static Vector3 offset = Vector3.zero;
 	public static bool _didResizeUI=false;
@@ -68,7 +69,7 @@ public class Shop : MonoBehaviour
     {
 
         //Speed.SetActive (true);
-		Score.memory = 110;
+		//Score.memory = 110;
 		//Score.score = 10;
 		ColorRepeat = 3;
         PowerUp = true;
@@ -310,12 +311,70 @@ public class Shop : MonoBehaviour
             PowerUp = true;
 			ButtonSound .Play();
             SkillUp = false;
+			currentword=null;
+			if(healthlv1Selected&&!sendHealthlv1)
+				healthlv1Selected =false;
+			if(healthlv2Selected&&!sendHealthlv2)
+				healthlv2Selected=false;
+			if(healthlv3Selected&&!sendHealthlv3 )
+				healthlv3Selected =false;
+			if(healthlv4Selected&&!sendHealthlv4 )
+				healthlv4Selected =false;
+			if(energylv1Selected&&!sendEnergylv1)
+				energylv1Selected =false;
+			if(energylv2Selected&&!sendEnergylv2 )
+				energylv2Selected =false;
+			if(energylv3Selected&&!sendEnergylv3)
+				energylv3Selected =false;
+			if(energylv4Selected &&!sendEnergylv4)
+				energylv4Selected =false;
+			if(chargeSelected &&!sendCharge )
+				chargeSelected =false;
+			if(drillSelected&&!sendDrill)
+				drillSelected =false;
+			if(barrierlv1Selected &&!sendBarrierlv1 )
+				barrierlv1Selected =false;
+			if(barrierlv2Selected &&!sendBarrierlv2 )
+				barrierlv2Selected =false;
+			if(barrierlv3Selected &&!sendBarrierlv3 )
+				barrierlv3Selected =false;
+			if(barrierlv4Selected &&!sendBarrierlv4 )
+				barrierlv4Selected =false;
         }
 		if (GUI.Button(new Rect(1920 / 3+100 , 1080 - 200+offset.y/guiScaleFactor , 400 , 150), "SKILLUP"))
         {
             PowerUp = false;
             SkillUp = true;
 			ButtonSound .Play();
+			currentword=null;
+			if(healthlv1Selected&&!sendHealthlv1)
+				healthlv1Selected =false;
+			if(healthlv2Selected&&!sendHealthlv2)
+				healthlv2Selected=false;
+			if(healthlv3Selected&&!sendHealthlv3 )
+				healthlv3Selected =false;
+			if(healthlv4Selected&&!sendHealthlv4 )
+				healthlv4Selected =false;
+			if(energylv1Selected&&!sendEnergylv1)
+				energylv1Selected =false;
+			if(energylv2Selected&&!sendEnergylv2 )
+				energylv2Selected =false;
+			if(energylv3Selected&&!sendEnergylv3)
+				energylv3Selected =false;
+			if(energylv4Selected &&!sendEnergylv4)
+				energylv4Selected =false;
+			if(chargeSelected &&!sendCharge )
+				chargeSelected =false;
+			if(drillSelected&&!sendDrill)
+				drillSelected =false;
+			if(barrierlv1Selected &&!sendBarrierlv1 )
+				barrierlv1Selected =false;
+			if(barrierlv2Selected &&!sendBarrierlv2 )
+				barrierlv2Selected =false;
+			if(barrierlv3Selected &&!sendBarrierlv3 )
+				barrierlv3Selected =false;
+			if(barrierlv4Selected &&!sendBarrierlv4 )
+				barrierlv4Selected =false;
         }
 		if (GUI.Button(new Rect(1920*2 / 3+100 , 1080 - 200+offset.y/guiScaleFactor,400 , 150), "CONTINUE"))
         {
@@ -385,6 +444,7 @@ public class Shop : MonoBehaviour
 
 		scorecolor.color = Color.red;
 		StopAllCoroutines ();
+		WarningSound.Play ();
 		StartCoroutine (TypeWritter("YOU DO NOT HAVE ENOUGH MEMORY CHIPS\n\r"));
 		InvokeRepeating ("ChangeColor", 0.1f,0.3f);
 
@@ -1089,7 +1149,8 @@ public class Shop : MonoBehaviour
 
 			if(Input.GetMouseButton(0) )
 			{
-				time=0.0001f;
+				currentword=text;
+				break;
 			}				
 			yield return new WaitForSeconds (time);
 		}
