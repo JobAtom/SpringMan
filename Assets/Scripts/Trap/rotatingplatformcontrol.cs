@@ -19,7 +19,7 @@ public class rotatingplatformcontrol : MonoBehaviour {
 		}
 
 		//rotatingplatform.GetComponent<platformrotating> ().enabled = false;
-		Debug.Log ("rotation disabled");
+		//Debug.Log ("rotation disabled");
 	}
 	
 	// Update is called once per frame

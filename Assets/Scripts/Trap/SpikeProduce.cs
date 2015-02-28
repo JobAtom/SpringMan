@@ -17,7 +17,7 @@ public class SpikeProduce : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (/*GameObject.Find ("spikeFaceleft(Clone)") == null*/spikeNum<1)
 		{
 

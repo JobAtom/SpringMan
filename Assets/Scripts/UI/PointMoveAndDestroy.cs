@@ -9,7 +9,7 @@ public class PointMoveAndDestroy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(this.gameObject!=null)
 			this.gameObject.transform.position=new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y+0.07f);
 
