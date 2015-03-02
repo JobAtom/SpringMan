@@ -79,15 +79,17 @@ public class VitalsScript
         return false;
     }
 
-    public void TakeDamage()
+    public bool TakeDamage()
     {
         if (Time.time > lastHitTime + 1.55)
         {
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController>().HurtSound .Play ();
             CurrentHealth--;
             HandleHealth();
             lastHitTime = Time.time;
+			return true;
         }
-
+		return false;
     }
 
     public void TakeDamage(float damage) //Method obsolete.
@@ -99,8 +101,9 @@ public class VitalsScript
 
     public void Heal()
     {
-        if (CurrentHealth < MaxHealth)
+        if (CurrentHealth < MaxHealth&&!HeroController .GameOver )
         {
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController>().HealSound .Play ();
             ++CurrentHealth;
             HandleHealth();
         }

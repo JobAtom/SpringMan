@@ -13,6 +13,8 @@ public class HeroController : MonoBehaviour
     private bool restarting = false;    //Checks if HandleDeath has been called.
     private int numberOfJumps = 0;
 	private float acceleratorNum=1f;
+	public AudioSource HurtSound;
+	public AudioSource HealSound;
 
     public bool facingRight = true;
     private bool letgo = true;
@@ -237,9 +239,9 @@ public class HeroController : MonoBehaviour
 			InWater=false;
 		}
 	}
-	/*void OnCollisionStay2D(Collision2D other)
+	void OnCollisionStay2D(Collision2D other)
 	{
-		if (this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge&&this.enabled) 
+		/*if (this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge&&this.enabled) 
 		{
 			if(facingRight )
 			{
@@ -247,8 +249,16 @@ public class HeroController : MonoBehaviour
 			}
 			else
 				rigidbody2D.velocity=new Vector2(-50f,rigidbody2D.velocity.y);
+		}*/
+		if ((other.collider.tag == ("Weapon") || other.collider.tag == ("Enemy")||other.collider.tag=="Boss")&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
+		{
+			if (Time.time > lastHitTime + .55)
+			{
+				TakeHit(other);
+				lastHitTime = Time.time;
+			}
 		}
-	}*/
+	}
 	/*void OnCollisionExit2D(Collision2D other)
 	{
 		if (other.collider.tag == "elevator") 
@@ -260,23 +270,28 @@ public class HeroController : MonoBehaviour
     {
 		if (other.gameObject.GetComponent<MoveProjectileScript> () != null)
 						Destroy (other.gameObject);
-        stunned = true;
-		anim.SetBool ("Hurt", true);
-        if (transform.position.x < other.transform.position.x)
-            rigidbody2D.velocity = new Vector2(-10f, rigidbody2D.velocity.y / 2 + 5f);
-        else
-            rigidbody2D.velocity = new Vector2(10f, rigidbody2D.velocity.y / 2);
-        Invoke("unstun", 0.25f);
-        var shield = transform.Find("SpikeShield").gameObject;
-        shield.GetComponent<SpikeShieldScript>().Drop();
-        particle.Emit(15);
-		StopCharge ();
-        Vitals.TakeDamage();
-        if (Vitals.Dead)
-        {
-            particle.Emit(10);
+       if (Vitals.TakeDamage ())
+		{
+			stunned = true;
+			anim.SetBool ("Hurt", true);
+			if (transform.position.x < other.transform.position.x)
+					rigidbody2D.velocity = new Vector2 (-10f, rigidbody2D.velocity.y / 2 + 5f);
+			else
+					rigidbody2D.velocity = new Vector2 (10f, rigidbody2D.velocity.y / 2);
+			Invoke ("unstun", 0.25f);
+			var shield = transform.Find ("SpikeShield").gameObject;
+			shield.GetComponent<SpikeShieldScript> ().Drop ();
+			particle.Emit (15);
 
-        }
+			StopCharge ();
+       
+
+			if (Vitals.Dead) 
+			{
+				particle.Emit (10);
+
+			}
+		}
         //Activate particle system or flash the character.
     }
 
@@ -318,6 +333,7 @@ public class HeroController : MonoBehaviour
             restarting = true;
 			this.gameObject.rigidbody2D.velocity=new Vector2(0,0);
             falling = true;
+
             Invoke("Restart", 2);
 
         }

@@ -286,6 +286,7 @@ public class MenuScript : MonoBehaviour {
 				IsOpen = true;
 			}
 		}
+
 	}
 
 	private void SettingsMenu()

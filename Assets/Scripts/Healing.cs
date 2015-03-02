@@ -9,6 +9,7 @@ public class Healing : MonoBehaviour
 	private float moveSpeed;
 
 
+
 	void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -16,7 +17,7 @@ public class Healing : MonoBehaviour
 
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		Direction = player.transform.position-this.gameObject.transform.position;
 
@@ -29,6 +30,7 @@ public class Healing : MonoBehaviour
 		{
 
 			player.GetComponent<HeroController>().Vitals.Heal();
+
 			Destroy (this.gameObject );
 		}
 	}
