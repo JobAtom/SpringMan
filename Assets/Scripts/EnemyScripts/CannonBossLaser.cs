@@ -20,20 +20,18 @@ public class CannonBossLaser : MonoBehaviour
 	//Bools
 	public bool playerInRange;
 	public bool laserOnCooldown;
-	public bool laserFullCharge;
-	public bool laserFiring;
 	public bool laserCharging;
-	public bool fireOnce;
 	//Values inside
 
-	public bool LaserFiring
-	{
-		get {	return laserFiring; 	}
-	}
-
+	//outside references
 	public bool PlayerInRange
 	{
 		get {	return playerInRange;	}
+	}
+
+	public int Step
+	{
+		get {	return step;			}
 	}
 
 	// Use this for initialization
@@ -46,7 +44,6 @@ public class CannonBossLaser : MonoBehaviour
 		bossLaser.SetActive(false);
 		laserOnCooldown = false;
 		playerInRange = false;
-		fireOnce = false;
 		step = 0;
 	}
 	
