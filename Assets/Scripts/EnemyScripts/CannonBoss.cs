@@ -60,9 +60,9 @@ public class CannonBoss : MonoBehaviour
 		if(!wallCheck)
 		{
 			if (facingRight)
-				transform.position = new Vector2 (transform.position.x + moveSpeed, transform.position.y);
+				transform.root.transform.position = new Vector2 (transform.position.x + moveSpeed, transform.position.y);
 			else if (!facingRight)
-				transform.position = new Vector2 (transform.position.x - moveSpeed, transform.position.y);
+				transform.root.position = new Vector2 (transform.position.x - moveSpeed, transform.position.y);
 		}
 
 		if(wallCheck)
