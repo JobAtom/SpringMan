@@ -26,7 +26,12 @@ public class CannonBossLaser : MonoBehaviour
 
 	public bool LaserFiring
 	{
-		get {	return laserFiring; }
+		get {	return laserFiring; 	}
+	}
+
+	public bool PlayerInRange
+	{
+		get {	return playerInRange;	}
 	}
 
 	// Use this for initialization
@@ -51,15 +56,15 @@ public class CannonBossLaser : MonoBehaviour
 		if(!fireOnce && playerInRange)
 			fireOnce = true;
 
-		if(fireOnce)
+		if(fireOnce && !laserOnCooldown)
+		{
 			fireLaser ();
-//		else
-//			Debug.Log("On Cooldown.");
+			bossLaser.SetActive(laserFiring);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-//		Debug.Log(other.tag);
 		if(other.tag.Equals("Player"))
 			playerInRange = true;
 	}
@@ -72,31 +77,24 @@ public class CannonBossLaser : MonoBehaviour
 
 	private void fireLaser()
 	{
-//		Debug.Log("in fire laser");
-//		Debug.Log("Laser not on cooldown");
-
 		if(!laserFullCharge && !laserFiring)
 		{
-//			Debug.Log("In !laserFullCharge Loop");
 			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/2);
 			StartCoroutine("laserCharge");
 		}
 
-		if(laserFullCharge)
+		if(laserFullCharge && !laserFiring)
 			StartCoroutine("laserFire");
 
-		if(laserFiring)
+		if(laserFiring && !laserFullCharge)
 		{
-//			Debug.Log("I'mma firrin mah lazor");
 			laserChargeBall.transform.localScale = new Vector3(0,0,0);
-			laserOnCooldown = true;
 			StartCoroutine("laserCooldown");
 		}
 	}
 
 	IEnumerator laserCharge()
 	{
-//		Debug.Log("in laser charge");
 		if(!laserFullCharge)
 		{
 			yield return new WaitForSeconds(laserChargeTime);
@@ -108,12 +106,7 @@ public class CannonBossLaser : MonoBehaviour
 	{
 		laserFiring = true;
 		laserFullCharge = false;
-		//problem may bein the laserfire
-		//Because IEnumerator
-		//To fix it is possible to change it to a boolean then put the laser activation in the update function when laser firing turns to false then it will stop.
-		bossLaser.SetActive(true);
 		yield return new WaitForSeconds(laserShootTime);
-		bossLaser.SetActive(false);
 		laserFiring = false;
 	}
 

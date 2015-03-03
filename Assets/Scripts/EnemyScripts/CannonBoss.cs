@@ -18,7 +18,6 @@ public class CannonBoss : MonoBehaviour
 	private GameObject playerBody;
 
 	private bool facingRight;
-	private bool playerInRange;
 	private Vector3 forwardDirection;
 
 	//Reference to the laser script
@@ -33,7 +32,6 @@ public class CannonBoss : MonoBehaviour
 		bossBody = transform.gameObject;
 		playerBody = GameObject.FindGameObjectWithTag("Player");
 		facingRight = true;
-		playerInRange = false;
 		laserRechargeTimer = 0;
 		laserOnCooldown = false;
 		forwardDirection = Vector3.right;
@@ -43,7 +41,7 @@ public class CannonBoss : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(!laserReference.LaserFiring)
+		if(!laserReference.LaserFiring && laserReference.PlayerInRange)
 		{
 			float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
