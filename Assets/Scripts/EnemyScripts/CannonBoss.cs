@@ -43,22 +43,11 @@ public class CannonBoss : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		//follow player
-
-		//players position locally = our position + their position?
-//		Debug.Log("Player Position: " + playerBody.transform.position);
-//		Debug.Log("Cannon Position: " + transform.position);
-
 		if(!laserReference.LaserFiring)
 		{
 			float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-//			Debug.Log("Tangent: " + angle);
 		}
-
-		
-//			Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,angle), Time.deltaTime);
-//			0,0, Mathf.Tan(transform.position.y/playerBody.transform.position.y));
 	}
 
 	void FixedUpdate()
@@ -91,61 +80,4 @@ public class CannonBoss : MonoBehaviour
 		else if(!facingRight)
 			forwardDirection = Vector3.left;
 	}
-
-
-
-//	private void fireLaser()
-//	{
-//		if(!laserOnCooldown)
-//		{
-//			Debug.Log("Fire the laser");
-//			Debug.Log("Aim");
-//			StartCoroutine("laserFireProcess");
-//			Debug.Log("Aim Complete");
-//		}
-//		else
-//			StartCoroutine("laserRecharge");
-//	}
-
-//	IEnumerable laserFireProcess()
-//	{
-//		if(!laserOnCooldown)
-//		{
-//			yield return StartCoroutine(laserAim);
-//		}
-//		else
-//			yield return WaitForSeconds(0);
-//	}
-//
-//	IEnumerable laserAim()
-//	{
-//		yield return WaitForSeconds(laserAimTime);
-//	}
-//
-//	IEnumerable laserRecharge()
-//	{
-//		if(laserOnCooldown)
-//		{
-//			yield return new WaitForSeconds(5);
-//			laserOnCooldown = false;
-//		}
-//		else
-//			laserOnCooldown = true;
-//	}
-
-//	IEnumerable laserRecharge()
-//	{
-//		if(laserOnCooldown)
-//		{
-//			if(laserRechargeTimer !=0)
-//			{
-//				laserRechargeTimer--;
-//				yield return new WaitForSeconds(1);
-//			}
-//			else
-//				laserOnCooldown = false;
-//		}
-//		else
-//			laserOnCooldown = true;
-//	}
 }
