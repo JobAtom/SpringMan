@@ -20,6 +20,13 @@ public class CannonBoss : MonoBehaviour
 	private bool facingRight;
 	private bool playerInRange;
 	private Vector3 forwardDirection;
+
+	//Reference to the laser script
+	private CannonBossLaser laserReference;
+
+	//Constants
+	float displacement = 90 * Mathf.Deg2Rad;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -30,6 +37,7 @@ public class CannonBoss : MonoBehaviour
 		laserRechargeTimer = 0;
 		laserOnCooldown = false;
 		forwardDirection = Vector3.right;
+		laserReference = transform.FindChild("Laser").GetComponent<CannonBossLaser>();
 	}
 	
 	// Update is called once per frame
@@ -38,12 +46,17 @@ public class CannonBoss : MonoBehaviour
 		//follow player
 
 		//players position locally = our position + their position?
-		Debug.Log("Player Position: " + playerBody.transform.position);
-		Debug.Log("Cannon Position: " + transform.position);
-		float displacement = 90 * Mathf.Deg2Rad;
-		float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
-		Debug.Log("Tangent: " + angle);
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+//		Debug.Log("Player Position: " + playerBody.transform.position);
+//		Debug.Log("Cannon Position: " + transform.position);
+
+		if(!laserReference.LaserFiring)
+		{
+			float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+//			Debug.Log("Tangent: " + angle);
+		}
+
+		
 //			Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,angle), Time.deltaTime);
 //			0,0, Mathf.Tan(transform.position.y/playerBody.transform.position.y));
 	}

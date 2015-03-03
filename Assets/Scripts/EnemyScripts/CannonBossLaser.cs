@@ -24,6 +24,11 @@ public class CannonBossLaser : MonoBehaviour
 	private bool fireOnce;
 	//Values inside
 
+	public bool LaserFiring
+	{
+		get {	return laserFiring; }
+	}
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -103,6 +108,9 @@ public class CannonBossLaser : MonoBehaviour
 	{
 		laserFiring = true;
 		laserFullCharge = false;
+		//problem may bein the laserfire
+		//Because IEnumerator
+		//To fix it is possible to change it to a boolean then put the laser activation in the update function when laser firing turns to false then it will stop.
 		bossLaser.SetActive(true);
 		yield return new WaitForSeconds(laserShootTime);
 		bossLaser.SetActive(false);
