@@ -61,5 +61,15 @@ public class MoveProjectileScript : MonoBehaviour {
 		else
 			return Mathf.Atan (y / x) * Mathf.Rad2Deg;
     }
+	void OnCollisionEnter2D(Collision2D other)
+	{
+	
+		if (other.collider.tag == "Wall" || other.collider.tag == "ground") 
+		{
+			Destroy (this.gameObject);
+
+		}
+	}
+
 
 }

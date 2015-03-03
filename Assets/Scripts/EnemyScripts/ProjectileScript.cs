@@ -14,6 +14,7 @@ public class ProjectileScript : MonoBehaviour {
 	private Transform cannon;
 	private float angle;
 	private bool inRange = false;
+	public bool faceright;
 	public float shotTime;
 
 	// Use this for initialization
@@ -81,7 +82,10 @@ public class ProjectileScript : MonoBehaviour {
     {
         if (lastProjectile != null)
             Destroy(lastProjectile);
-        lastProjectile=Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
+		if(faceright)
+        	lastProjectile=Instantiate(projectile, new Vector3(transform.position.x+2f, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
+		else
+			lastProjectile=Instantiate(projectile, new Vector3(transform.position.x-2f, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
         lastProjectile.transform.parent = this.transform; 
         fired = true;
         aimed = false;
