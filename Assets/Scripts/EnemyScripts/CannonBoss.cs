@@ -26,6 +26,9 @@ public class CannonBoss : MonoBehaviour
 	//Constants
 	float displacement = 90 * Mathf.Deg2Rad;
 
+	//Alive?
+	private bool living = true;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -77,5 +80,10 @@ public class CannonBoss : MonoBehaviour
 			forwardDirection = Vector3.right;
 		else if(!facingRight)
 			forwardDirection = Vector3.left;
+	}
+
+	public void setAlive(bool state)
+	{
+		Destroy(gameObject);
 	}
 }
