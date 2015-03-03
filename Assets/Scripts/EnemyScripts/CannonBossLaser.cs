@@ -9,6 +9,8 @@ public class CannonBossLaser : MonoBehaviour
 	public float laserShootTime;
 	public float laserChargeScaleSize;
 
+	public int step;
+
 	//Reference to needed game objects
 	private GameObject bossBody;
 	private GameObject playerBody;
@@ -16,12 +18,12 @@ public class CannonBossLaser : MonoBehaviour
 	private GameObject bossLaser;
 
 	//Bools
-	private bool playerInRange;
-	private bool laserOnCooldown;
-	private bool laserFullCharge;
-	private bool laserFiring;
-	private bool laserCharging;
-	private bool fireOnce;
+	public bool playerInRange;
+	public bool laserOnCooldown;
+	public bool laserFullCharge;
+	public bool laserFiring;
+	public bool laserCharging;
+	public bool fireOnce;
 	//Values inside
 
 	public bool LaserFiring
@@ -44,23 +46,37 @@ public class CannonBossLaser : MonoBehaviour
 		bossLaser.SetActive(false);
 		laserOnCooldown = false;
 		playerInRange = false;
-		laserFullCharge = false;
-		laserCharging = false;
-		laserFiring = false;
 		fireOnce = false;
+		step = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(!fireOnce && playerInRange)
-			fireOnce = true;
-
-		if(fireOnce && !laserOnCooldown)
+		if(step == 0 && playerInRange)
+			step = 1;
+		if(step == 1 && !laserOnCooldown)
 		{
-			fireLaser ();
-			bossLaser.SetActive(laserFiring);
+			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/2);
+			StartCoroutine("laserCharge");
 		}
+		if(step == 2)
+		{
+			StartCoroutine("laserFire");
+			step = 3;
+		}
+		if(step == 3)
+		{
+			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(0,0,0), Time.deltaTime/3);
+			bossLaser.SetActive(true);
+		}
+		if(step == 4)
+		{
+			laserChargeBall.transform.localScale = new Vector3(0,0,0);
+			bossLaser.SetActive(false);
+			StartCoroutine("laserCooldown");
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -75,46 +91,24 @@ public class CannonBossLaser : MonoBehaviour
 			playerInRange = false;
 	}
 
-	private void fireLaser()
-	{
-		if(!laserFullCharge && !laserFiring)
-		{
-			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/2);
-			StartCoroutine("laserCharge");
-		}
-
-		if(laserFullCharge && !laserFiring)
-			StartCoroutine("laserFire");
-
-		if(laserFiring && !laserFullCharge)
-		{
-			laserChargeBall.transform.localScale = new Vector3(0,0,0);
-			StartCoroutine("laserCooldown");
-		}
-	}
-
 	IEnumerator laserCharge()
 	{
-		if(!laserFullCharge)
-		{
-			yield return new WaitForSeconds(laserChargeTime);
-			laserFullCharge = true;
-		}
+		yield return new WaitForSeconds(laserChargeTime);
+		if(step == 1)
+			step = 2;
 	}
 
 	IEnumerator laserFire()
 	{
-		laserFiring = true;
-		laserFullCharge = false;
 		yield return new WaitForSeconds(laserShootTime);
-		laserFiring = false;
+		if(step == 3)
+			step = 4;
 	}
 
 	IEnumerator laserCooldown()
 	{
-		fireOnce = false;
-		laserOnCooldown = true;
 		yield return new WaitForSeconds(laserCooldownTime);
-		laserOnCooldown = false;
+		if(step == 4)
+			step = 0;
 	}
 }
