@@ -55,6 +55,7 @@ public class MoveLeftOrRight : MonoBehaviour {
 	}
 	void StartFlip()
 	{
+		CancelInvoke ();
 		Flip ();
 		if(faceright)
 			transform.position=new Vector2(transform.position.x+1f,transform.position.y);
