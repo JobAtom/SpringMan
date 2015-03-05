@@ -61,4 +61,13 @@ public class camerafollowing : MonoBehaviour
     {
 
     }
+
+	public void screenShake(float intensity, float decreaseBy)
+	{
+		if(intensity > 0)
+		{
+			transform.position = Random.insideUnitCircle * intensity;
+			intensity -= Time.deltaTime * decreaseBy;
+		}
+	}
 }
