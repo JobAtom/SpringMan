@@ -20,6 +20,7 @@ public class MoveProjectileScript : MonoBehaviour {
         CalculateVelocity();
 		if(xSpeed!=Mathf.Infinity&&ySpeed!=Mathf.Infinity)
         	rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
+		AlligntoTarget ();
         timeLeft = 2.5f;
     }
 
@@ -61,6 +62,18 @@ public class MoveProjectileScript : MonoBehaviour {
 		else
 			return Mathf.Atan (y / x) * Mathf.Rad2Deg;
     }
+
+	void AlligntoTarget()
+	{
+		Vector3 diff = player.transform.position - transform.position;
+		diff.Normalize();
+		
+		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler (0f, 0f, rot_z);
+		
+	}
+
+
 	void OnCollisionEnter2D(Collision2D other)
 	{
 	
