@@ -15,7 +15,7 @@ public class MoveProjectileScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
-        parent = transform.parent.gameObject;
+      //  parent = transform.parent.gameObject;
         maxspeed = 30;
         CalculateVelocity();
 		if(xSpeed!=Mathf.Infinity&&ySpeed!=Mathf.Infinity)
@@ -37,7 +37,7 @@ public class MoveProjectileScript : MonoBehaviour {
         angle = CalculateAngle();
 		var absAngle = Mathf.Abs (angle);
         if (parent != null)
-            maxspeed = 30 + Math.Abs((int) parent.rigidbody2D.velocity.x) + Math.Abs((int) parent.rigidbody2D.velocity.y);
+			maxspeed = 30; //+ Math.Abs((int) parent.rigidbody2D.velocity.x) + Math.Abs((int) parent.rigidbody2D.velocity.y);
         float div = 45 / (maxspeed / 2);
 		xSpeed = maxspeed - (float) Math.Round(absAngle / div);
         ySpeed = maxspeed - xSpeed;

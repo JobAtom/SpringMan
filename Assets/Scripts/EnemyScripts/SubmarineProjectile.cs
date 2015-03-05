@@ -79,10 +79,10 @@ public class SubmarineProjectile : MonoBehaviour {
 	
 	void Fire()
 	{
-		if (lastProjectile != null)
-			Destroy(lastProjectile);
-		lastProjectile=Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
-		lastProjectile.transform.parent = this.transform; 
+		/*if (lastProjectile != null)
+			Destroy(lastProjectile);*/
+		/*lastProjectile=*/Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));// as GameObject ;
+		//lastProjectile.transform.parent = this.transform; 
 		fired = true;
 		aimed = false;
 	}
