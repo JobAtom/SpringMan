@@ -8,6 +8,7 @@ public class CannonBossLaser : MonoBehaviour
 	public float laserChargeTime;
 	public float laserShootTime;
 	public float laserChargeScaleSize;
+	public float laserBeamScaleSize;
 
 	public int step;
 
@@ -21,6 +22,7 @@ public class CannonBossLaser : MonoBehaviour
 	public bool playerInRange;
 	public bool laserOnCooldown;
 	public bool laserCharging;
+
 	//Values inside
 
 	//outside references
@@ -41,7 +43,7 @@ public class CannonBossLaser : MonoBehaviour
 		playerBody = GameObject.FindGameObjectWithTag("Player");
 		laserChargeBall = transform.FindChild("Charge").gameObject;
 		bossLaser = transform.FindChild("Blast").gameObject;
-		bossLaser.SetActive(false);
+		bossLaser.transform.localScale = new Vector3(0, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z);
 		laserOnCooldown = false;
 		playerInRange = false;
 		step = 0;
@@ -54,7 +56,7 @@ public class CannonBossLaser : MonoBehaviour
 			step = 1;
 		if(step == 1 && !laserOnCooldown)
 		{
-			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/2);
+			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime);
 			StartCoroutine("laserCharge");
 		}
 		if(step == 2)
@@ -65,12 +67,14 @@ public class CannonBossLaser : MonoBehaviour
 		if(step == 3)
 		{
 			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(0,0,0), Time.deltaTime/3);
-			bossLaser.SetActive(true);
+			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(laserBeamScaleSize, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), Time.deltaTime*6);
+//			bossLaser.SetActive(true);
 		}
 		if(step == 4)
 		{
 			laserChargeBall.transform.localScale = new Vector3(0,0,0);
-			bossLaser.SetActive(false);
+			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(0, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), Time.deltaTime*10);
+//			bossLaser.SetActive(false);
 			StartCoroutine("laserCooldown");
 		}
 
