@@ -16,8 +16,8 @@ public class Score : MonoBehaviour
 
 	void Update()
 	{
-		guiText .fontSize = Mathf.Min(Mathf.FloorToInt(Screen.width * 64/1000), Mathf.FloorToInt(Screen.height * 64/1000));
-		guiText.text = "SCORE: " + Score.score +"    \r"+ "\nMEMORY: " + Score.memory + " MB";
+		/*guiText .fontSize = Mathf.Min(Mathf.FloorToInt(Screen.width * 64/1000), Mathf.FloorToInt(Screen.height * 64/1000));
+		guiText.text = "SCORE: " + Score.score +"    \r"+ "\nMEMORY: " + Score.memory + " MB";*/
 
 	}
 
