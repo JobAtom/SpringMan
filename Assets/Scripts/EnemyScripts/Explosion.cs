@@ -5,8 +5,9 @@ public class Explosion : MonoBehaviour {
 
 	// Use this for initialization
 	float lastingtime = 0.7f;
+	public AudioSource ExplosionSound;
 	void Start () {
-
+		ExplosionSound.Play ();
 		//Rigidbody2D body = GetComponent<Rigidbody2D>();
 		//body.AddForce(new Vector2(0, 20000f));
 		//body.AddTorque(Random.Range(-100000f, 100000f));
@@ -14,8 +15,8 @@ public class Explosion : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+			
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

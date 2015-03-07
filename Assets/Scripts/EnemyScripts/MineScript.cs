@@ -8,21 +8,27 @@ public class MineScript : MonoBehaviour {
 	//public GameObject ExplosionEffectTiming1;
 	//public GameObject ExplosionEffectTiming2;
 	public GameObject ExplosionEffect;
+	private Animator anmi;
 	public float delay;
+
 	private float angle;
-	public bool nottiming ;
+	private bool nottiming ;
 	// Use this for initialization
 	void Start () {
-	
+		nottiming = true;
+		anmi = this.gameObject.GetComponent<Animator> ();
+		if (anmi != null)
+						anmi.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (!nottiming&&anmi!=null)
+						anmi.enabled = true;
 	}
 
 
-	void OnCollisionEnter2D(Collision2D other)
+	/*void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.collider.tag == "Player" || other.collider.tag == "trap") 
 		{
@@ -40,13 +46,14 @@ public class MineScript : MonoBehaviour {
 			//Debug.Log("Explosion");
 			
 		}
-	}
+	}*/
 
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.tag == "Player" || other.tag == "trap") 
 		{
+			nottiming=false;
 			Invoke ("Explosion",delay);
 			Debug.Log("Explosion");
 			
