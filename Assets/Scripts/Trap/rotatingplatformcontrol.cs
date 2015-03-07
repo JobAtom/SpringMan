@@ -47,7 +47,7 @@ public class rotatingplatformcontrol : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Player" ) 
+		if (other.tag == "Player" &&Rotate ==false) 
 		{
 			FlipLever(false);
 			Rotate = true;
