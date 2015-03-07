@@ -6,6 +6,7 @@ public class Explosion : MonoBehaviour {
 	// Use this for initialization
 	float lastingtime = 0.7f;
 	void Start () {
+
 		//Rigidbody2D body = GetComponent<Rigidbody2D>();
 		//body.AddForce(new Vector2(0, 20000f));
 		//body.AddTorque(Random.Range(-100000f, 100000f));

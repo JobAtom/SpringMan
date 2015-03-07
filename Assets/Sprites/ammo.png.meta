@@ -5,6 +5,9 @@ TextureImporter:
     21300000: ammo
     21300002: ammo_0
     21300004: ammo_1
+    21300006: ammo_2
+    21300008: ammo_3
+    21300010: ammo_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,17 +57,47 @@ TextureImporter:
         width: 381
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ammo_1
       rect:
         serializedVersion: 2
         x: 852
         y: 3120
-        width: 342
-        height: 326
+        width: 344
+        height: 324
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3120
+        width: 340
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo_3
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 3120
+        width: 341
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo_4
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 3120
+        width: 340
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
