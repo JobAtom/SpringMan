@@ -205,6 +205,7 @@ public class MenuScript : MonoBehaviour {
 
 	private void GameMenu()
 	{
+		GUI.Label (new Rect (1920 - 600, 100, 600, 700), "SCORE: " + Score.score + "    \r" + "\nMEMORY: " + Score.memory + " MB");
 		if (IsOpen)
 		{
 			if(Application.loadedLevelName =="Level_Shop")
