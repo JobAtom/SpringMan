@@ -17,8 +17,17 @@ public class CannonBossLife : MonoBehaviour
 		if(bossLifeNodes <= 0)
 		{
 			Debug.Log("Boss Destroyed.");
-			Destroy(GameObject.FindGameObjectWithTag("Boss"));
+
+			//Play destruction of boss life nodes
 			Destroy(GameObject.FindGameObjectWithTag ("CannonBossLifeNodes").transform.root.gameObject);
+
+			//boss drops from the rail and explodes
+			Destroy(GameObject.FindGameObjectWithTag("Boss"));
 		}
+	}
+
+	IEnumerator WaitTimes(float time)
+	{
+		yield return WaitForSeconds(time);
 	}
 }

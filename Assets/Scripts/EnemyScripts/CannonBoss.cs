@@ -54,7 +54,7 @@ public class CannonBoss : MonoBehaviour
 	void FixedUpdate()
 	{
 		//Foward movement
-		RaycastHit2D wallCheck = Physics2D.Raycast(new Vector2(bossBody.transform.position.x, bossBody.transform.position.y), forwardDirection, 3, 1<<11);
+		RaycastHit2D wallCheck = Physics2D.Raycast(new Vector2(bossBody.transform.position.x, bossBody.transform.position.y), forwardDirection, 3, 1<<12);
 		Debug.DrawRay(transform.position, forwardDirection*3);
 
 		if(!wallCheck)
