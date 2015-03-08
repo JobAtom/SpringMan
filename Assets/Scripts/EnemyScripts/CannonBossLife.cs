@@ -14,9 +14,11 @@ public class CannonBossLife : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(object.ReferenceEquals(bossLink,null))
-			bossLink = GetComponent<CannonBoss>();
-		if(GameObject.FindGameObjectsWithTag("CannonBossLifeNodes").Length == 0)
-			bossLink.setAlive(false);
+		if(bossLifeNodes <= 0)
+		{
+			Debug.Log("Boss Destroyed.");
+			Destroy(GameObject.FindGameObjectWithTag("Boss"));
+			Destroy(GameObject.FindGameObjectWithTag ("CannonBossLifeNodes").transform.root.gameObject);
+		}
 	}
 }
