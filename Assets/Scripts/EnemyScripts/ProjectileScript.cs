@@ -25,8 +25,8 @@ public class ProjectileScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-       // if (player == null)
-       //     player = GameObject.FindGameObjectWithTag("Player");
+        /*if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");*/
 	}
 
 	void FixedUpdate(){
@@ -34,16 +34,17 @@ public class ProjectileScript : MonoBehaviour {
 		if (player.transform.position.y < transform.position.y)
 			angle *= -1;
 		//Debug.Log ("the angle is " + angle);
+
 		if (inRange) {			
 			Vector3 rotationVector = new Vector3 (0, 180, angle);
 			cannon.rotation = Quaternion.Euler (rotationVector);
-            if (lastProjectile == null)
-            {
+           // if (lastProjectile == null)
+            //{
                 if (aimed)
                     Fire();
                 else
                     Aim();
-            }
+            //}
 		} 		
 		else{
 			//anim.enabled = true;
@@ -71,23 +72,21 @@ public class ProjectileScript : MonoBehaviour {
             Aim();
     }
 
-    void OnTriggerLeave2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag != "Player")
             return;
 		inRange = false;
     }
-        
+       
     void Fire()
     {
         /*if (lastProjectile != null)
             Destroy(lastProjectile);*/
-						if (faceright)
-			/*lastProjectile=*/
-						Instantiate (projectile, new Vector3 (transform.position.x + 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0))); //as GameObject ;
-						else
-			/*lastProjectile=*/
-						Instantiate (projectile, new Vector3 (transform.position.x - 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0))); //as GameObject ;
+		if (faceright)
+			/*lastProjectile=	*/Instantiate (projectile, new Vector3 (transform.position.x + 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));// as GameObject ;
+		else
+			/*lastProjectile=	*/Instantiate (projectile, new Vector3 (transform.position.x - 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0))) ;//as GameObject ;
         //lastProjectile.transform.parent = this.transform; 
         fired = true;
         aimed = false;

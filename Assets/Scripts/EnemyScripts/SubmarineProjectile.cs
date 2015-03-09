@@ -36,13 +36,13 @@ public class SubmarineProjectile : MonoBehaviour {
 		if (inRange) {			
 			Vector3 rotationVector = new Vector3 (0, 180, angle);
 			cannon.rotation = Quaternion.Euler (rotationVector);
-			if (lastProjectile == null)
-			{
+			//if (lastProjectile == null)
+			//{
 				if (aimed)
 					Fire();
 				else
 					Aim();
-			}
+			//}
 		} 		
 		else{
 			//anim.enabled = true;
@@ -70,7 +70,7 @@ public class SubmarineProjectile : MonoBehaviour {
 			Aim();
 	}
 	
-	void OnTriggerLeave2D(Collider2D other)
+	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.tag != "Player")
 			return;
