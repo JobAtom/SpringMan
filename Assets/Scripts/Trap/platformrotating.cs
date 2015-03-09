@@ -10,7 +10,7 @@ public class platformrotating : MonoBehaviour {
 	void Start () {
 
 		this.gameObject.GetComponent<HingeJoint2D>().useMotor = true;
-		Debug.Log ("rotate");
+		//Debug.Log ("rotate");
 	}
 	
 	// Update is called once per frame
