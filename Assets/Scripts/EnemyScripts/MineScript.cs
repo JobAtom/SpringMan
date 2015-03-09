@@ -55,7 +55,7 @@ public class MineScript : MonoBehaviour {
 		{
 			nottiming=false;
 			Invoke ("Explosion",delay);
-			Debug.Log("Explosion");
+			//Debug.Log("Explosion");
 			
 		}
 	}

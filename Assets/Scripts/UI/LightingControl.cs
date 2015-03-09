@@ -21,7 +21,7 @@ public class LightingControl : MonoBehaviour {
 		CancelInvoke ();
 		increaseNum++;
 		this.gameObject.light.intensity += 0.01f;
-		if (increaseNum < 30)
+		if (increaseNum < 40)
 						Invoke ("lightingIncrease", 0.01f);
 				else
 						Invoke ("lightingDecrease", 0.5f);

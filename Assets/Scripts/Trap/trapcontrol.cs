@@ -26,7 +26,10 @@ public class trapcontrol : MonoBehaviour {
 			{
 				if(l.tag=="trap")
 				{
-					l.GetComponent<platformMove>().enabled=true;
+					if(l.GetComponent<platformMove>()!=null)
+						l.GetComponent<platformMove>().enabled=true;
+					if(l.GetComponent<LaserMove>()!=null)
+						l.GetComponent<LaserMove>().enabled=true;
 				}
 				else 
 					l.SetActive (false);
