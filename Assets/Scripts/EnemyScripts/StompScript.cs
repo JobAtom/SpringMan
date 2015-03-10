@@ -8,7 +8,18 @@ public class StompScript : MonoBehaviour {
 	void Start () {
 		parent = transform.parent.gameObject;
 	}
-	
+	void FixedUpdate()
+	{
+		if (this.gameObject.GetComponentInParent<SubMarineBoss >() != null)
+		{
+			if(!this.gameObject.GetComponentInParent<SubMarineBoss>().ShotPhase )
+			{
+				this.gameObject.SetActive (false);
+
+			}
+
+		}
+	}
 	void OnTriggerEnter2D(Collider2D other)
 	{
         var player = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>();

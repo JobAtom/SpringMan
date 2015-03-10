@@ -38,8 +38,9 @@ public class MoveProjectileScript : MonoBehaviour {
         angle = CalculateAngle();
 		var absAngle = Mathf.Abs (angle);
         //if (parent != null)
-		if (this.gameObject.name == "Torpedo")
+		if (this.gameObject.name == "Torpedo(Clone)") {
 			maxspeed = 30;
+				}
 		else
 			maxspeed = 30+ /*Math.Abs((int) player.rigidbody2D.velocity.x)*/ Math.Abs((int) player.rigidbody2D.velocity.y);
         float div = 45 / (maxspeed / 2);
@@ -80,7 +81,7 @@ public class MoveProjectileScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 	
-		if (other.collider.tag == "Wall" || other.collider.tag == "ground") 
+		if (other.collider.tag == "Wall" || other.collider.tag == "ground"||other.collider.tag=="SuperBarrier") 
 		{
 			Destroy (this.gameObject);
 

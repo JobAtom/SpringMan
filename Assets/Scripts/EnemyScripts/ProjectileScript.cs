@@ -83,10 +83,12 @@ public class ProjectileScript : MonoBehaviour {
     {
         /*if (lastProjectile != null)
             Destroy(lastProjectile);*/
-		if (faceright)
+		if (faceright&&this.gameObject.name!="BossCannon")
 			/*lastProjectile=	*/Instantiate (projectile, new Vector3 (transform.position.x + 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));// as GameObject ;
-		else
+		if(!faceright&&this.gameObject.name!="BossCannon")
 			/*lastProjectile=	*/Instantiate (projectile, new Vector3 (transform.position.x - 2f, transform.position.y, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0))) ;//as GameObject ;
+		if(this.gameObject.name=="BossCannon")
+			Instantiate (projectile, new Vector3 (transform.position.x , transform.position.y+2f, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0))) ;
         //lastProjectile.transform.parent = this.transform; 
         fired = true;
         aimed = false;

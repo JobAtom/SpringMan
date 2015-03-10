@@ -24,14 +24,25 @@ public class EnemyScript : MonoBehaviour
         }
         set
         {
-			if(this.gameObject.name=="Boss")
+			if(this.gameObject.tag=="Boss")
 			{
 				AudioSource.PlayClipAtPoint(Springkill, transform.position);
-				if(this.gameObject.GetComponent<ChargeBoss>().stun)
+				if(this.gameObject.GetComponent<ChargeBoss>()!=null)
 				{
+					if(this.gameObject.GetComponent<ChargeBoss>().stun)
+					{
 					BossHealth--;
 					player.Vitals.AbsorbEnergy(1);
 					this.gameObject.GetComponent<ChargeBoss>().startNormal ();
+					}
+				}
+				if(this.gameObject.GetComponent<SubMarineBoss>()!=null)
+				{
+					if(this.gameObject.GetComponent<SubMarineBoss>().ShotPhase)
+					{
+						this.gameObject.GetComponent<SubMarineBoss>().ShotPhase=false;
+						BossHealth--;
+					}
 				}
 				if(BossHealth<=0)
 				{
@@ -39,7 +50,7 @@ public class EnemyScript : MonoBehaviour
 				}
 			}
             stomped = true;
-			if(this.gameObject.name!="Boss")
+			if(this.gameObject.tag!="Boss")
 			{
             	Death();
             	dead = true;
@@ -73,7 +84,7 @@ public class EnemyScript : MonoBehaviour
         }
 		if (stomped)
 		{
-			if(this.gameObject.name == "Boss")playerObj.rigidbody2D.velocity = new Vector2(playerObj.rigidbody2D.velocity.x, (-playerObj.rigidbody2D.velocity.y<25f)?18f:22f);
+			if(this.gameObject.tag == "Boss")playerObj.rigidbody2D.velocity = new Vector2(playerObj.rigidbody2D.velocity.x, (-playerObj.rigidbody2D.velocity.y<25f)?18f:22f);
 			if (Input.GetAxis("Jump") >0)
 			{
 
