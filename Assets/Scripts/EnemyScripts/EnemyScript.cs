@@ -41,6 +41,7 @@ public class EnemyScript : MonoBehaviour
 					if(this.gameObject.GetComponent<SubMarineBoss>().ShotPhase)
 					{
 						this.gameObject.GetComponent<SubMarineBoss>().ShotPhase=false;
+						this.gameObject.GetComponent<SubMarineBoss>().ChargePhase=true;
 						BossHealth--;
 					}
 				}
