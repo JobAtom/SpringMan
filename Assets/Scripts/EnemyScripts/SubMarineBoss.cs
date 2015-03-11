@@ -4,12 +4,12 @@ using System.Collections;
 public class SubMarineBoss : MonoBehaviour {
 	public bool ShotPhase;
 	public GameObject[] BossCannon;
+	public GameObject[] SummonPoint;
 	public GameObject StompZone;
 	public bool ChargePhase;
 	public bool SummonPhase;
 	private bool BeginFight;
-	public bool FaceRight;
-	private int ChargeNum;
+
 	private camerafollowing camera;
 
 	// Use this for initialization
@@ -34,44 +34,44 @@ public class SubMarineBoss : MonoBehaviour {
 			Charge();
 		if (SummonPhase&&!ShotPhase&&!ChargePhase)
 			Summon ();
-		if (BeginFight&&!ShotPhase&&!ChargePhase&&!SummonPhase)
-						ShotPhase = true;
-	
+		if (BeginFight && !ShotPhase && !ChargePhase && !SummonPhase) 
+		{
+
+			ShotPhase = true;
+		}
 	}
-	void Shot()
+	public void Shot()
 	{
 		foreach(GameObject l in BossCannon)
 		{
 			l.SetActive (true);
 		}
 		StompZone .SetActive (true);
-
+		ShotPhase = true;
 		ChargePhase = false;
 		SummonPhase = false;
 		Invoke ("Charge", 15f);
 	}
-	void Charge()
+	public void Charge()
 	{
 		CancelInvoke ();
 		ShotPhase = false;
 		ChargePhase = true;
 		SummonPhase = false;
-
+	
 		//Invoke ("Summon", 3f);
 	}
-	void Summon()
+	public void Summon()
 	{
+		foreach (GameObject l in SummonPoint)
+		{
+			l.SetActive (true);
+		}
 
 		ChargePhase = false;
 		ShotPhase = false;
 		SummonPhase = true;
 		//Invoke ("Shot", 3f);
 	}
-	void Flip()
-	{
-		FaceRight=!FaceRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+
 }
