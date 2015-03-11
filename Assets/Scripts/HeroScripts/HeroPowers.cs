@@ -11,7 +11,12 @@ public class HeroPowers : MonoBehaviour
     private HeroController heroController;
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
+<<<<<<< HEAD
 	public static bool ChargeSkill =true;
+=======
+	public static bool BarrierSkill =true;
+	public static bool ChargeSkill =false;
+>>>>>>> origin/master
 	public static bool DrillSkill=false;
 	float lastTime;
 	public float ArrowLeftCount;
@@ -42,7 +47,8 @@ public class HeroPowers : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
 		if(Input.GetButtonDown("Barrier") && !HeroController.GameOver)
         {
-            SummonBarrier();
+			if(BarrierSkill)
+            	SummonBarrier();
         }	
 
 		if (Input.GetButtonDown("Drill") && !HeroController.GameOver)
