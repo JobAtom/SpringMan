@@ -5,10 +5,13 @@ public class SubMarineBoss : MonoBehaviour {
 	public bool ShotPhase;
 	public GameObject[] BossCannon;
 	public GameObject[] SummonPoint;
+	public GameObject HeroChargePoint;
 	public GameObject StompZone;
 	public bool ChargePhase;
 	public bool SummonPhase;
 	private bool BeginFight;
+	private bool StartShot=false;
+
 
 	private camerafollowing camera;
 
@@ -28,7 +31,7 @@ public class SubMarineBoss : MonoBehaviour {
 	{
 		if (!camera.trackX && !camera.trackY)
 						BeginFight = true;
-		if (ShotPhase&&!ChargePhase&&!SummonPhase)
+		if (ShotPhase&&!ChargePhase&&!SummonPhase&&!StartShot)
 			Shot ();
 		if(ChargePhase&&!ShotPhase&&!SummonPhase)
 			Charge();
@@ -41,20 +44,19 @@ public class SubMarineBoss : MonoBehaviour {
 		}
 	}
 	public void Shot()
-	{
-		foreach(GameObject l in BossCannon)
-		{
-			l.SetActive (true);
-		}
-		StompZone .SetActive (true);
+	{	
+
+		StartShot = true;
+		HeroChargePoint .SetActive (false);
+		StartCoroutine(DoAnimation ());
 		ShotPhase = true;
 		ChargePhase = false;
 		SummonPhase = false;
-		Invoke ("Charge", 15f);
 	}
 	public void Charge()
 	{
 		CancelInvoke ();
+		StartShot = false;
 		ShotPhase = false;
 		ChargePhase = true;
 		SummonPhase = false;
@@ -63,15 +65,28 @@ public class SubMarineBoss : MonoBehaviour {
 	}
 	public void Summon()
 	{
+		HeroChargePoint.SetActive (false);
 		foreach (GameObject l in SummonPoint)
 		{
 			l.SetActive (true);
 		}
-
+		StartShot = false;
 		ChargePhase = false;
 		ShotPhase = false;
 		SummonPhase = true;
 		//Invoke ("Shot", 3f);
 	}
+	IEnumerator DoAnimation()
+	{
 
+		yield return new WaitForSeconds (3f);
+		foreach(GameObject l in BossCannon)
+		{
+			l.SetActive (true);
+		}
+		StompZone .SetActive (true);
+
+		Invoke ("Charge", 15f);
+
+	}
 }
