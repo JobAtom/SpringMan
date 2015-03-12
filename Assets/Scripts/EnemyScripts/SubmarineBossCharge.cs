@@ -85,7 +85,7 @@ public class SubmarineBossCharge : MonoBehaviour {
 		anim.SetBool ("startcharging", true);
 		Debug.Log ("charging");
 		anim.SetBool ("startsummoning", false);
-
+		//anim.SetBool ("startshooting", true);
 
 		PerpareToCharge = true;
 		
