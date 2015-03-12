@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Shop : MonoBehaviour
 {
-    
+
 	private string currentword;
     public List<Color> primaryColors;
     public List<Color> secondaryColors;
@@ -20,38 +20,38 @@ public class Shop : MonoBehaviour
 	private GUIText scorecolor;
 	private int ColorRepeat;
 	//public static bool barrierSelected=false ;
-	private static bool healthlv1Selected=false ;
-	private static bool energylv1Selected=false ;
-	private static bool healthlv2Selected = false;
-	private static bool energylv2Selected = false;
-	private static bool healthlv3Selected=false;
-	private static bool energylv3Selected = false;
-	private static bool healthlv4Selected = false;
-	private static bool energylv4Selected = false;
-	private static bool barrierlv1Selected = false;
-	private static bool barrierlv2Selected = false;
-	private static bool barrierlv3Selected = false;
-	private static bool barrierlv4Selected = false;
-	private static bool chargeSelected = false;
-	private static bool drillSelected=false;
+	public static bool healthlv1Selected=false ;
+	public static bool energylv1Selected=false ;
+	public static bool healthlv2Selected = false;
+	public static bool energylv2Selected = false;
+	public static bool healthlv3Selected=false;
+	public static bool energylv3Selected = false;
+	public static bool healthlv4Selected = false;
+	public static bool energylv4Selected = false;
+	public static bool barrierlv1Selected = false;
+	public static bool barrierlv2Selected = false;
+	public static bool barrierlv3Selected = false;
+	public static bool barrierlv4Selected = false;
+	public static bool chargeSelected = false;
+	public static bool drillSelected=false;
 	private int buttonHeight=40;
 
 
-	private static  bool sendHealthlv1=false;
-	private static bool sendEnergylv1=false;
-	private static bool sendHealthlv2 = false;
-	private static bool sendEnergylv2 = false;
-	private static bool sendHealthlv3 = false;
-	private static bool sendEnergylv3 = false;
-	private static bool sendHealthlv4 = false;
-	private static bool sendEnergylv4 = false; 
+	public static  bool sendHealthlv1=false;
+	public static bool sendEnergylv1=false;
+	public static bool sendHealthlv2=false ;
+	public static bool sendEnergylv2 = false;
+	public static bool sendHealthlv3 = false;
+	public static bool sendEnergylv3 = false;
+	public static bool sendHealthlv4 = false;
+	public static bool sendEnergylv4 = false; 
 	//public static bool sendBarrier=false;
-	private static bool sendBarrierlv1 = false;
-	private static bool sendBarrierlv2=false;
-	private static bool sendBarrierlv3 = false; 
-	private static bool sendBarrierlv4 = false;
-	private static bool sendCharge = false;
-	private static bool sendDrill = false;
+	public static bool sendBarrierlv1 = false;
+	public static bool sendBarrierlv2=false;
+	public static bool sendBarrierlv3 = false; 
+	public static bool sendBarrierlv4 = false;
+	public static bool sendCharge = false;
+	public static bool sendDrill = false;
 	private int scoreCost=0;
 	private bool sendSuccess=false;
 	private string word;
@@ -70,7 +70,7 @@ public class Shop : MonoBehaviour
     {
 
         //Speed.SetActive (true);
-		//Score.memory = 110;
+		Score.memory = 110;
 		//Score.score = 10;
 		ColorRepeat = 3;
         PowerUp = true;
@@ -89,6 +89,7 @@ public class Shop : MonoBehaviour
 
     void OnGUI()
     {
+
 		BeginUIResizing();
 
         if (!hasUpdatedGui)
@@ -153,6 +154,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendCharge=true;
+							HeroPowers.ChargeSkill =true;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -162,6 +164,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendDrill=true;
+							HeroPowers.DrillSkill=true;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -514,7 +517,7 @@ public class Shop : MonoBehaviour
 				GUI.enabled=true;
 			}
 
-			if (!chargeSelected )
+			if (!chargeSelected &&!sendCharge)
 			{	
 				if (GUI.Button (new Rect (10, 60, 580, 75), "CHARGE") ) 
 				{
@@ -566,7 +569,7 @@ public class Shop : MonoBehaviour
 				GUI.Button (new Rect(10,140,580,75),"DRILL");
 				GUI.enabled=true;
 			}
-			if(!drillSelected)
+			if(!drillSelected&&!sendDrill)
 			{
 				if(GUI.Button (new Rect(10,140,580,75),"DRILL"))
 				{
@@ -698,7 +701,7 @@ public class Shop : MonoBehaviour
 			}
 
 
-			if(!healthlv1Selected )
+			if(!healthlv1Selected &&!sendHealthlv1 )
 			{   
 				if (GUI.Button (new Rect (10, 60, 580, 75), "HEALTH lv1"))
 				{
@@ -737,7 +740,7 @@ public class Shop : MonoBehaviour
 				}
 
 			}	
-			if(!energylv1Selected  )
+			if(!energylv1Selected &&!sendEnergylv1  )
 			{
 				if(GUI.Button (new Rect(10, 140,580, 75),"ENERGY lv1"))
 				{
@@ -775,7 +778,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!healthlv2Selected &&sendHealthlv1 )
+			if(!healthlv2Selected &&sendHealthlv1&&!sendHealthlv2  )
 			{
 				if(GUI.Button (new Rect(10,60,580,75),"HEALTH lv2"))
 				{
@@ -814,7 +817,7 @@ public class Shop : MonoBehaviour
 				}
 
 			}
-			if(!energylv2Selected&&sendEnergylv1)
+			if(!energylv2Selected&&sendEnergylv1&&!sendEnergylv2 )
 			{
 				if(GUI.Button (new Rect(10,140,580,75),"ENERGY lv2"))
 				{
@@ -852,7 +855,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!healthlv3Selected &&sendHealthlv2)
+			if(!healthlv3Selected &&sendHealthlv2&&!sendHealthlv3 )
 			{
 				if(GUI.Button (new Rect(10,60,580,75),"HEALTH lv3"))
 				{
@@ -890,7 +893,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!energylv3Selected &&sendEnergylv2)
+			if(!energylv3Selected &&sendEnergylv2&&!sendEnergylv3 )
 			{
 				if(GUI.Button (new Rect(10,140,580,75),"ENERGY lv3"))
 				{
@@ -928,7 +931,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!healthlv4Selected&&sendHealthlv3)
+			if(!healthlv4Selected&&sendHealthlv3&&!sendHealthlv4 )
 			{
 				if(GUI.Button (new Rect(10,60,580,75),"HEALTH lv4"))
 				{
@@ -966,7 +969,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!energylv4Selected  &&sendEnergylv3)
+			if(!energylv4Selected  &&sendEnergylv3&&!sendEnergylv4 )
 			{
 
 				if(GUI.Button (new Rect(10,140,580,75),"ENERGY lv4"))
@@ -1005,7 +1008,7 @@ public class Shop : MonoBehaviour
 					ButtonSound .Play();
 				}
 			}
-			if(!barrierlv1Selected )
+			if(!barrierlv1Selected &&!sendBarrierlv1 )
 			{
 				if(GUI.Button (new Rect(10, 220,580,75),"BARRIER lv1"))
 				{
@@ -1044,7 +1047,7 @@ public class Shop : MonoBehaviour
 
 				}
 			}
-			if(!barrierlv2Selected &&sendBarrierlv1)
+			if(!barrierlv2Selected &&sendBarrierlv1&&!sendBarrierlv2 )
 			{
 				if(GUI.Button (new Rect(10, 220,580,75),"BARRIER lv2"))
 				{
@@ -1083,7 +1086,7 @@ public class Shop : MonoBehaviour
 					
 				}
 			}
-			if(!barrierlv3Selected &&sendBarrierlv2)
+			if(!barrierlv3Selected &&sendBarrierlv2&&!sendBarrierlv3 )
 			{
 				if(GUI.Button (new Rect(10, 220,580,75),"BARRIER lv3"))
 				{
@@ -1122,7 +1125,7 @@ public class Shop : MonoBehaviour
 					
 				}
 			}
-			if(!barrierlv4Selected &&sendBarrierlv3)
+			if(!barrierlv4Selected &&sendBarrierlv3&&!sendBarrierlv4 )
 			{
 				if(GUI.Button (new Rect(10, 220,580,75),"BARRIER lv4"))
 				{

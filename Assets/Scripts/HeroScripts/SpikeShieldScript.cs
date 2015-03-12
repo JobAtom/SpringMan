@@ -20,6 +20,7 @@ public class SpikeShieldScript : MonoBehaviour {
 	{
 		if (other.tag == "Enemy" || other.tag == "Weapon")
 		{
+
 			if (other.GetComponent<EnemyScript>() != null)
 				other.GetComponent<EnemyScript>().Kill();
 		}

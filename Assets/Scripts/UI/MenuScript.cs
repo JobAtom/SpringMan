@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class MenuScript : MonoBehaviour {
 
@@ -22,7 +23,7 @@ public class MenuScript : MonoBehaviour {
 	private bool hasUpdatedGui = false;
 	private int currentColor;
 
-    bool chapterSelect = false;
+   // bool chapterSelect = false;
 	bool settings = false;
 	bool confirmQuit = false;
     float native_width = 1920;
@@ -141,6 +142,40 @@ public class MenuScript : MonoBehaviour {
 			{
 				ButtonSound.Play();
 				System.Threading .Thread.Sleep (300);
+				Shop.healthlv1Selected =false;
+				Shop.healthlv2Selected =false;
+				Shop.healthlv3Selected =false;
+				Shop.healthlv4Selected =false;
+				Shop.sendHealthlv1 =false;
+				Shop.sendHealthlv2 =false;
+				Shop.sendHealthlv3 =false;
+				Shop.sendHealthlv4 =false;
+				Shop.energylv1Selected =false;
+				Shop.energylv2Selected =false;
+				Shop.energylv3Selected =false;
+				Shop.energylv4Selected =false;
+				Shop.sendEnergylv1 =false;
+				Shop.sendEnergylv2 =false;
+				Shop.sendEnergylv3 =false;
+				Shop.sendEnergylv4 =false;
+				Shop.barrierlv1Selected =false;
+				Shop.barrierlv2Selected =false;
+				Shop.barrierlv3Selected =false;
+				Shop.barrierlv4Selected =false;
+				Shop.sendBarrierlv1 =false;
+				Shop.sendBarrierlv2 =false;
+				Shop.sendBarrierlv3 =false;
+				Shop.sendBarrierlv4 =false;
+				Shop.drillSelected =false;
+				Shop.sendDrill =false;
+				Shop.chargeSelected =false;
+				Shop.sendCharge =false;
+				HeroPowers.ChargeSkill =false;
+				HeroPowers.DrillSkill =false;
+				Score.score =0;
+				Score.memory =0;
+				VitalsScript .MaxEnergy =3;
+				VitalsScript .MaxHealth =3;
 				Application.Quit();
 			}
 			if (GUI.Button(new Rect(500, boxHeight - 100, 250, 90), "NO"))
@@ -153,10 +188,10 @@ public class MenuScript : MonoBehaviour {
 		{
 
 			GUI.Label(new Rect(25, 25, 600, 200), "Spring Man: \nA Robot's Life");
-			boxHeight = 400;
+			boxHeight = 600;
 			GUI.BeginGroup (new Rect (1920 / 2 - 500, 1080 / 2 - 150, 1000, boxHeight));
 			GUI.Box (new Rect (0,0,1000,boxHeight), "");
-			if (GUI.Button(new Rect(100, 30, 800, 90), "PLAY"))
+			if (GUI.Button(new Rect(100, 55, 800, 90), "NEW GAME"))
 			{
 
 				ButtonSound.Play();
@@ -171,17 +206,37 @@ public class MenuScript : MonoBehaviour {
 				IsLevel=true;
 				IsOpen=false;
 			}
-			/*if (GUI.Button(new Rect(100, 180, 800, 90), "CHAPTER SELECT"))
+			if (GUI.Button(new Rect(100, 188, 800, 90), "LOAD"))
 			{
 				ButtonSound.Play();
-				chapterSelect = true;
-			}*/
-			if (GUI.Button(new Rect(100, 160,800, 90), "SETTINGS"))
+
+				Score.score =PlayerPrefs.GetInt ("Score");
+				Score.memory=PlayerPrefs.GetInt ("MemoryChips");
+				VitalsScript .MaxHealth=PlayerPrefs.GetInt ("MaxHealth");
+				VitalsScript.MaxEnergy=PlayerPrefs.GetInt ("MaxEnergy");
+				Shop.sendCharge=Convert.ToBoolean (PlayerPrefs.GetInt ("ChargeSkillSend"));
+				Shop.sendDrill=Convert.ToBoolean (PlayerPrefs.GetInt ("DrillSkillSend"));
+				Shop.sendHealthlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv1Send"));
+				Shop.sendHealthlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv2Send"));
+				Shop.sendHealthlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv3Send"));
+				Shop.sendHealthlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv4Send"));
+				Shop.sendEnergylv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv1Send"));
+				Shop.sendEnergylv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv2Send"));
+				Shop.sendEnergylv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv3Send"));
+				Shop.sendEnergylv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv4Send"));
+				Shop.sendBarrierlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv1Send"));
+				Shop.sendBarrierlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv2Send"));
+				Shop.sendBarrierlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv3Send"));
+				Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send"));
+				Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel"));
+
+			}
+			if (GUI.Button(new Rect(100,321 ,800, 90), "SETTINGS"))
 			{
 				ButtonSound.Play();
 				settings = true;
 			}
-			if (GUI.Button(new Rect(100, 290, 800, 90), "QUIT GAME"))
+			if (GUI.Button(new Rect(100, 455, 800, 90), "QUIT GAME"))
 			{
 				ButtonSound.Play();
 			
@@ -238,7 +293,40 @@ public class MenuScript : MonoBehaviour {
 				{
 					ButtonSound.Play();
 					System.Threading .Thread.Sleep (300);
-
+					Shop.healthlv1Selected =false;
+					Shop.healthlv2Selected =false;
+					Shop.healthlv3Selected =false;
+					Shop.healthlv4Selected =false;
+					Shop.sendHealthlv1 =false;
+					Shop.sendHealthlv2 =false;
+					Shop.sendHealthlv3 =false;
+					Shop.sendHealthlv4 =false;
+					Shop.energylv1Selected =false;
+					Shop.energylv2Selected =false;
+					Shop.energylv3Selected =false;
+					Shop.energylv4Selected =false;
+					Shop.sendEnergylv1 =false;
+					Shop.sendEnergylv2 =false;
+					Shop.sendEnergylv3 =false;
+					Shop.sendEnergylv4 =false;
+					Shop.barrierlv1Selected =false;
+					Shop.barrierlv2Selected =false;
+					Shop.barrierlv3Selected =false;
+					Shop.barrierlv4Selected =false;
+					Shop.sendBarrierlv1 =false;
+					Shop.sendBarrierlv2 =false;
+					Shop.sendBarrierlv3 =false;
+					Shop.sendBarrierlv4 =false;
+					Shop.drillSelected =false;
+					Shop.sendDrill =false;
+					Shop.chargeSelected =false;
+					Shop.sendCharge =false;
+					HeroPowers.ChargeSkill =false;
+					HeroPowers.DrillSkill =false;
+					Score.score =0;
+					Score.memory =0;
+					VitalsScript .MaxEnergy =3;
+					VitalsScript .MaxHealth =3;
 					Application.LoadLevel(0);
 				}
 				if (GUI.Button(new Rect(500, boxHeight - 100, 250, 90), "NO"))
@@ -265,7 +353,46 @@ public class MenuScript : MonoBehaviour {
 						//s.SkillUp =true;
 					}
 				}
-				if (GUI.Button(new Rect(100, 255, 800,90), "SETTINGS"))
+				if(Application.loadedLevelName!="Level_Shop")
+				{
+					if(GUI.Button(new Rect(100,188,800,90),"SAVE"))
+			    	{
+						ButtonSound.Play ();
+						PlayerPrefs.SetInt ("CurrentLevel",Application.loadedLevel );
+						PlayerPrefs.SetInt ("Score",Score.score );
+						PlayerPrefs.SetInt ("MemoryChips",Score.memory );
+						PlayerPrefs.SetInt ("MaxHealth",VitalsScript .MaxHealth);
+						PlayerPrefs.SetInt ("MaxEnergy",VitalsScript .MaxEnergy);
+						PlayerPrefs.SetInt ("ChargeSkillSend",Convert.ToInt32(Shop.sendCharge));
+						PlayerPrefs.SetInt ("DrillSkillSend",Convert.ToInt32 (Shop.sendDrill));
+						PlayerPrefs.SetInt ("HealthLv1Send",Convert.ToInt32 (Shop.sendHealthlv1 ));
+						PlayerPrefs.SetInt ("HealthLv2Send",Convert.ToInt32 (Shop.sendHealthlv2 ));
+						PlayerPrefs.SetInt ("HealthLv3Send",Convert.ToInt32 (Shop.sendHealthlv3 ));
+						PlayerPrefs.SetInt ("HealthLv4Send",Convert.ToInt32 (Shop.sendHealthlv4 ));
+						PlayerPrefs.SetInt ("EnergyLv1Send",Convert.ToInt32 (Shop.sendEnergylv1 ));
+						PlayerPrefs.SetInt ("EnergyLv2Send",Convert.ToInt32 (Shop.sendEnergylv2 ));
+						PlayerPrefs.SetInt ("EnergyLv3Send",Convert.ToInt32 (Shop.sendEnergylv3 ));
+						PlayerPrefs.SetInt ("EnergyLv4Send",Convert.ToInt32 (Shop.sendEnergylv4 ));
+						PlayerPrefs.SetInt ("BarrierLv1Send",Convert.ToInt32 (Shop.sendBarrierlv1 ));
+						PlayerPrefs.SetInt ("BarrierLv2Send",Convert.ToInt32 (Shop.sendBarrierlv2 ));
+						PlayerPrefs.SetInt ("BarrierLv3Send",Convert.ToInt32 (Shop.sendBarrierlv3 ));
+						PlayerPrefs.SetInt ("BarrierLv4Send",Convert.ToInt32 (Shop.sendBarrierlv4 ));
+
+
+
+
+
+					}
+				}
+				if(Application.loadedLevelName =="Level_Shop")
+				{
+
+						GUI.enabled=false;
+						GUI.Button (new Rect(100,188,800,90),"SAVE");
+						GUI.enabled=true;
+
+				}
+				if (GUI.Button(new Rect(100, 321, 800,90), "SETTINGS"))
 				{
 					ButtonSound.Play();
 					settings = true;

@@ -12,7 +12,7 @@ public class StartingPowers : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		VitalsScript.CurrentEnergy += 1;
 	}
 }
