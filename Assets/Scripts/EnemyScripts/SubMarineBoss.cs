@@ -94,7 +94,7 @@ public class SubMarineBoss : MonoBehaviour {
 		JointMotor2D motor = hingeJoint2D.motor;
 		motor.motorSpeed = -60;
 		hingeJoint2D.motor = motor;
-		anim.SetBool ("startcharging", true);
+		anim.SetBool ("startcharging", false);
 		anim.SetBool ("startshooting", false);
 		anim.SetBool ("startsummoning", false);
 		CancelInvoke ();

@@ -82,17 +82,18 @@ public class SubmarineBossCharge : MonoBehaviour {
 	void PerpareCharge()
 	{
 		anim.SetBool ("preparecharging", true);
-		//anim.SetBool ("startcharging", true);
+		anim.SetBool ("startcharging", false);
 		//Debug.Log ("charging");
 		//anim.SetBool ("startsummoning", false);
 		//anim.SetBool ("startshooting", true);
 
 		PerpareToCharge = true;
-		
-		if (Mathf.Abs(OriginalPositionY - this.gameObject.transform.position.y)<=0.001) 
+		Debug.Log (OriginalPositionY);
+		Debug.Log (this.gameObject.transform.position.y);
+		if (Mathf.Abs(OriginalPositionY - this.gameObject.transform.position.y)<=0.01) 
 		{
 			Boss.HeroChargePoint .SetActive (true);
-
+			//Debug.Log ("can be charged");
 		}
 
 
@@ -101,9 +102,9 @@ public class SubmarineBossCharge : MonoBehaviour {
 	}
 	void BeginCharge()
 	{
-		anim.SetBool ("preparecharging", false);
-		//anim.SetBool ("startcharging", false);
 		CancelInvoke ();
+		anim.SetBool ("preparecharging", false);
+		anim.SetBool ("startcharging", true);
 		PerpareToCharge = false;
 		StartCharge = true;
 	}
