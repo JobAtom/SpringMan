@@ -3,12 +3,13 @@ using System.Collections;
 
 public class SubmarineBossCharge : MonoBehaviour {
 	private SubMarineBoss Boss;
-	private bool FaceRight = true;
+	public bool FaceRight = true;
 	private bool StartCharge;
 	private float ChargeSpeed=1f;
 	private float OriginalPositionX;
 	private float OriginalPositionY;
 	private GameObject player;
+	private bool PerpareToCharge = false;
 	private int ChargeNum=0;
 	private Animator anim;
 
@@ -25,10 +26,18 @@ public class SubmarineBossCharge : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Boss.ChargePhase&&!StartCharge )
-			PerpareCharge ();
-		if (StartCharge&&ChargeNum<3) 
+		if (Boss.ChargePhase && !StartCharge && !PerpareToCharge) 
 		{
+			CancelInvoke ();
+			PerpareCharge ();
+
+
+		}
+		if (!PerpareToCharge)
+						Boss.HeroChargePoint .SetActive (false);
+		if (Boss.ChargePhase&&StartCharge&&ChargeNum<3) 
+		{
+
 
 			if(FaceRight )
 				this.gameObject.transform.position=new Vector2(this.gameObject.transform.position.x+ChargeSpeed ,this.gameObject.transform.position.y);
@@ -39,7 +48,7 @@ public class SubmarineBossCharge : MonoBehaviour {
 			if(this.gameObject.transform.position.x<-50f)
 				Flip ();
 		}
-		if (ChargeNum >= 3)
+		if (Boss.ChargePhase&&ChargeNum >= 3)
 		{
 			//Boss.ChargePhase=false;
 
@@ -60,14 +69,33 @@ public class SubmarineBossCharge : MonoBehaviour {
 				ChargeNum=0;
 			}
 		}
-		if (!Boss.ChargePhase)
-						StartCharge = false;
+
+	}
+	void Update()
+	{
+		if (!Boss.ChargePhase) 
+		{
+			StartCharge = false;
+			PerpareToCharge =false;
+		}
 	}
 	void PerpareCharge()
 	{
+
 		anim.SetBool ("startcharging", true);
 		Debug.Log ("charging");
 		anim.SetBool ("startsummoning", false);
+
+
+		PerpareToCharge = true;
+		
+		if (Mathf.Abs(OriginalPositionY - this.gameObject.transform.position.y)<=0.001) 
+		{
+			Boss.HeroChargePoint .SetActive (true);
+
+		}
+
+
 		Invoke ("BeginCharge", 4f);
 
 	}
@@ -75,6 +103,7 @@ public class SubmarineBossCharge : MonoBehaviour {
 	{
 		anim.SetBool ("startcharging", false);
 		CancelInvoke ();
+		PerpareToCharge = false;
 		StartCharge = true;
 	}
 	void Flip()
