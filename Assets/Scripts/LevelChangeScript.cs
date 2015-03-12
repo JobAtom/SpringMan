@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LevelChangeScript : MonoBehaviour {
 
-    private static int currentLevel;
+    public static int currentLevel;
 	public static List<string> levels;
 	// Use this for initialization
 	void Start () 
