@@ -9,6 +9,8 @@ public class SubMarineBoss : MonoBehaviour {
 	public bool ChargePhase;
 	public bool SummonPhase;
 	private bool BeginFight;
+	private Animator anim;
+	private HingeJoint2D hingeJoint2D;
 
 	private camerafollowing camera;
 
@@ -19,6 +21,8 @@ public class SubMarineBoss : MonoBehaviour {
 		ChargePhase = false;
 		SummonPhase = false;
 		BeginFight = false;
+		anim = GetComponent<Animator>();
+		hingeJoint2D = GetComponentInChildren<HingeJoint2D>();
 
 	
 	}
@@ -42,6 +46,12 @@ public class SubMarineBoss : MonoBehaviour {
 	}
 	public void Shot()
 	{
+		anim.SetBool ("startshooting", true);
+		anim.SetBool ("startcharging", false);
+		anim.SetBool ("startsummoning", false);
+		JointMotor2D motor = hingeJoint2D.motor;
+		motor.motorSpeed = 20;
+		hingeJoint2D.motor = motor;
 		foreach(GameObject l in BossCannon)
 		{
 			l.SetActive (true);
@@ -51,18 +61,31 @@ public class SubMarineBoss : MonoBehaviour {
 		ChargePhase = false;
 		SummonPhase = false;
 		Invoke ("Charge", 15f);
+
+
 	}
 	public void Charge()
 	{
+		JointMotor2D motor = hingeJoint2D.motor;
+		motor.motorSpeed = -20;
+		hingeJoint2D.motor = motor;
+		anim.SetBool ("startcharging", true);
+		anim.SetBool ("startshooting", false);
+		anim.SetBool ("startsummoning", false);
 		CancelInvoke ();
 		ShotPhase = false;
 		ChargePhase = true;
 		SummonPhase = false;
+
+	
 	
 		//Invoke ("Summon", 3f);
 	}
 	public void Summon()
 	{
+		anim.SetBool ("startsummoning", true);
+		anim.SetBool ("startshooting", false);
+		anim.SetBool ("startcharging", false);
 		foreach (GameObject l in SummonPoint)
 		{
 			l.SetActive (true);
@@ -71,6 +94,7 @@ public class SubMarineBoss : MonoBehaviour {
 		ChargePhase = false;
 		ShotPhase = false;
 		SummonPhase = true;
+
 		//Invoke ("Shot", 3f);
 	}
 

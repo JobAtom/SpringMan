@@ -10,6 +10,8 @@ public class SubmarineBossCharge : MonoBehaviour {
 	private float OriginalPositionY;
 	private GameObject player;
 	private int ChargeNum=0;
+	private Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		Boss = this.gameObject.GetComponent<SubMarineBoss> ();
@@ -17,6 +19,7 @@ public class SubmarineBossCharge : MonoBehaviour {
 		OriginalPositionX = this.gameObject.transform.position.x;
 		OriginalPositionY = this.gameObject.transform.position.y;
 		StartCharge = false;
+		anim = GetComponent<Animator>();	
 	
 	}
 	
@@ -62,12 +65,15 @@ public class SubmarineBossCharge : MonoBehaviour {
 	}
 	void PerpareCharge()
 	{
-
+		anim.SetBool ("startcharging", true);
+		Debug.Log ("charging");
+		anim.SetBool ("startsummoning", false);
 		Invoke ("BeginCharge", 4f);
 
 	}
 	void BeginCharge()
 	{
+		anim.SetBool ("startcharging", false);
 		CancelInvoke ();
 		StartCharge = true;
 	}

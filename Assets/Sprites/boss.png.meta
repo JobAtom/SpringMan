@@ -12,6 +12,8 @@ TextureImporter:
     21300014: boss_10
     21300016: boss_11
     21300018: boss_18
+    21300020: boss_9
+    21300022: boss_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,7 +63,7 @@ TextureImporter:
         width: 167
         height: 214
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_5
       rect:
@@ -71,7 +73,7 @@ TextureImporter:
         width: 779
         height: 361
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_6
       rect:
@@ -81,7 +83,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_7
       rect:
@@ -91,7 +93,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_8
       rect:
@@ -101,7 +103,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_9
       rect:
@@ -111,7 +113,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_10
       rect:
@@ -121,7 +123,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_11
       rect:
@@ -131,7 +133,7 @@ TextureImporter:
         width: 312
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_18
       rect:
@@ -140,6 +142,26 @@ TextureImporter:
         y: 974
         width: 2958
         height: 1028
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boss_9
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 2098
+        width: 311
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boss_10
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 2092
+        width: 321
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
