@@ -81,10 +81,10 @@ public class SubmarineBossCharge : MonoBehaviour {
 	}
 	void PerpareCharge()
 	{
-
-		anim.SetBool ("startcharging", true);
-		Debug.Log ("charging");
-		anim.SetBool ("startsummoning", false);
+		anim.SetBool ("preparecharging", true);
+		//anim.SetBool ("startcharging", true);
+		//Debug.Log ("charging");
+		//anim.SetBool ("startsummoning", false);
 		//anim.SetBool ("startshooting", true);
 
 		PerpareToCharge = true;
@@ -101,7 +101,8 @@ public class SubmarineBossCharge : MonoBehaviour {
 	}
 	void BeginCharge()
 	{
-		anim.SetBool ("startcharging", false);
+		anim.SetBool ("preparecharging", false);
+		//anim.SetBool ("startcharging", false);
 		CancelInvoke ();
 		PerpareToCharge = false;
 		StartCharge = true;
