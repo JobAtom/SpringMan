@@ -48,6 +48,7 @@ public class EnemyScript : MonoBehaviour
 				}
 				if(BossHealth<=0)
 				{
+					HeroPowers.BarrierSkill = true;
 					Death ();
 				}
 			}
