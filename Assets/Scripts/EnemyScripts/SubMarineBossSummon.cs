@@ -4,7 +4,7 @@ using System.Collections;
 public class SubMarineBossSummon : MonoBehaviour {
 	public float spawnTime ;		// The amount of time between each spawn.
 	public float spawnDelay ;		// The amount of time before spawning starts.
-	public GameObject Enemy;		// Array of enemy prefabs.
+	public GameObject[] Enemy;		// Array of enemy prefabs.
 	private bool StartSummon;
 	private SubMarineBoss Boss;
 	private float RepeatNum;
@@ -31,7 +31,8 @@ public class SubMarineBossSummon : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Spawn () {
-		Instantiate(Enemy, this.gameObject.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+		int EnemyIndex = Random.Range (0, Enemy.Length);
+		Instantiate(Enemy[EnemyIndex], this.gameObject.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
 		RepeatNum++;
 	}
 	void PerpareSummon()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class HeroController : MonoBehaviour
@@ -194,12 +194,23 @@ public class HeroController : MonoBehaviour
         }
 		if(other.collider.tag=="Boss"&&this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
 		{
+			if(other.collider.GetComponent<ChargeBoss>()!=null)
+				other.collider.GetComponent <ChargeBoss>().Stuned ();
 
-			other.collider.GetComponent <ChargeBoss>().Stuned ();
+		}
+		if(other.collider.tag=="ChargePoint"&&this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge)
+		{
+
+			if(other.collider.GetComponentInParent<SubMarineBoss >()!=null)
+			{
+				other.collider.GetComponentInParent<SubMarineBoss>().Shot ();
+				iTween.ShakePosition (other.collider.GetComponentInParent<SubMarineBoss>().gameObject  ,new Vector3(0.6f,0.6f,0),1f);
+				
+			}
 		}
 		if ((other.collider.tag == ("Weapon") || other.collider.tag == ("Enemy")) && this.gameObject.GetComponentInChildren<HeroPowers> ().HeroStartCharge)
 		{
-			if (other.collider.GetComponent<EnemyScript>() != null||other.collider.name!="Boss")
+			if (other.collider.GetComponent<EnemyScript>() != null&&other.collider.tag!="Boss")
 				other.collider.GetComponent<EnemyScript>().Kill();
 
 			if(facingRight )
