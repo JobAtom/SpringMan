@@ -5,6 +5,7 @@ public class HeroController : MonoBehaviour
 {
 
     public Animator anim;
+	private Animator helmetanim;
     public ParticleSystem particle;
     public bool grounded = false;
     private float groundRadius = 0.01f;
@@ -31,6 +32,7 @@ public class HeroController : MonoBehaviour
 
     public static bool GameOver = false;
 	private bool OnElevator;
+
 
 	public bool GetFall()
 	{
@@ -137,8 +139,14 @@ public class HeroController : MonoBehaviour
             Flip();
 		if (InWater) 
 		{
+			helmetanim = GameObject.FindGameObjectWithTag("Helmet").GetComponent<Animator>();
 			if(Input.GetAxis ("Jump") == 1)
+			{
 				acceleratorNum =1.6f;
+				helmetanim.SetBool("accelerating",true);
+			}
+			if(Input.GetAxis ("Jump") == 0)
+				helmetanim.SetBool("accelerating",false);
 				//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
 			Swim(UpOrDown*acceleratorNum ,rigidbody2D.velocity.x);
 

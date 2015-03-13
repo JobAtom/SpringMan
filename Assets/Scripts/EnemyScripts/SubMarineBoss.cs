@@ -72,7 +72,7 @@ public class SubMarineBoss : MonoBehaviour {
 */
 	public void Shot()
 	{	
-
+		anim.SetBool ("preparecharging", false);
 		anim.SetBool ("startshooting", true);
 		anim.SetBool ("startcharging", false);
 		anim.SetBool ("startsummoning", false);
@@ -94,7 +94,7 @@ public class SubMarineBoss : MonoBehaviour {
 		JointMotor2D motor = hingeJoint2D.motor;
 		motor.motorSpeed = -60;
 		hingeJoint2D.motor = motor;
-		anim.SetBool ("startcharging", false);
+		//anim.SetBool ("startcharging", true);
 		anim.SetBool ("startshooting", false);
 		anim.SetBool ("startsummoning", false);
 		CancelInvoke ();
