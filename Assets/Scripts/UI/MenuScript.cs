@@ -229,6 +229,7 @@ public class MenuScript : MonoBehaviour {
 					Shop.sendBarrierlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv2Send"));
 					Shop.sendBarrierlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv3Send"));
 					Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send"));
+					Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend"));
 					Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel"));
 				}
 			}
@@ -378,6 +379,7 @@ public class MenuScript : MonoBehaviour {
 						PlayerPrefs.SetInt ("BarrierLv2Send",Convert.ToInt32 (Shop.sendBarrierlv2 ));
 						PlayerPrefs.SetInt ("BarrierLv3Send",Convert.ToInt32 (Shop.sendBarrierlv3 ));
 						PlayerPrefs.SetInt ("BarrierLv4Send",Convert.ToInt32 (Shop.sendBarrierlv4 ));
+						PlayerPrefs.SetInt ("BarrierSend",Convert.ToInt32 (Shop.sendBarrier));
 						PlayerPrefs.SetString ("saved", "AllReadySaved");
 					}
 				}

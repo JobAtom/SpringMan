@@ -19,7 +19,7 @@ public class Shop : MonoBehaviour
     private int maxEN = 7;
 	private GUIText scorecolor;
 	private int ColorRepeat;
-	//public static bool barrierSelected=false ;
+	public static bool barrierSelected=false ;
 	public static bool healthlv1Selected=false ;
 	public static bool energylv1Selected=false ;
 	public static bool healthlv2Selected = false;
@@ -45,7 +45,7 @@ public class Shop : MonoBehaviour
 	public static bool sendEnergylv3 = false;
 	public static bool sendHealthlv4 = false;
 	public static bool sendEnergylv4 = false; 
-	//public static bool sendBarrier=false;
+	public static bool sendBarrier=false;
 	public static bool sendBarrierlv1 = false;
 	public static bool sendBarrierlv2=false;
 	public static bool sendBarrierlv3 = false; 
@@ -148,6 +148,16 @@ public class Shop : MonoBehaviour
 						}
 						
 						
+					}
+					if(barrierSelected &&!sendBarrier)
+					{
+						if(sendSuccess)
+						{
+							sendBarrier=true;
+							HeroPowers.ChargeSkill =true;
+							UpgradeSound.Stop ();
+							UpgradeSound.Play ();
+						}
 					}
 					if(chargeSelected &&!sendCharge)
 					{
@@ -440,9 +450,20 @@ public class Shop : MonoBehaviour
 				barrierlv3Selected =false;
 			if(barrierlv4Selected &&!sendBarrierlv4 )
 				barrierlv4Selected =false;
-			System.Threading .Thread.Sleep (300);
+			if(barrierSelected&&!sendBarrier)
+				barrierSelected=false;
+
+			if(!sendBarrier)
+			{
+				StopAllCoroutines ();
+				WarningSound.Play ();
+				StartCoroutine (TypeWritter("PLEASE BUY BARRIER SKILL FIRST IN SKILLUP\n\r"));
+				return;
+			}
+			
 			VitalsScript .CurrentHealth =VitalsScript .MaxHealth ;
 			VitalsScript.CurrentEnergy =0;
+			System.Threading .Thread.Sleep (300);
             LevelChangeScript.NextLevel();
 
         }
@@ -548,10 +569,12 @@ public class Shop : MonoBehaviour
 						barrierlv3Selected =false;
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:10MB ENERGY COST:1\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:30MB ENERGY COST:1\n\r"));
 					chargeSelected = true;
-					scoreCost = 10;
+					scoreCost = 30;
 					ButtonSound .Play();
 				}
 						
@@ -600,12 +623,69 @@ public class Shop : MonoBehaviour
 						barrierlv3Selected =false;
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					StopAllCoroutines ();
 					StartCoroutine (TypeWritter ("PRESS [SHIFT] TO DRILL COST:50MB ENERGY COST:4\n\r"));
 					drillSelected=true;
 					scoreCost=50;
 					ButtonSound.Play ();
 				}
+			}
+			if (sendBarrier) 
+			{
+				GUI.enabled = false;
+				GUI.Button (new Rect (10, 220, 580, 75), "BARRIER(LEARNED)");
+				HeroPowers.BarrierSkill=true;
+				GUI.enabled = true;
+			}
+			if(barrierSelected &&!sendBarrier)
+			{
+				GUI.enabled=false;
+				GUI.Button (new Rect(10,220,580,75),"BARRIER");
+				GUI.enabled=true;
+			}
+			
+			if (!barrierSelected &&!sendBarrier)
+			{	
+				if (GUI.Button (new Rect (10, 220, 580, 75), "BARRIER") ) 
+				{
+					currentword=null;
+					if(healthlv1Selected&&!sendHealthlv1)
+						healthlv1Selected =false;
+					if(healthlv2Selected&&!sendHealthlv2)
+						healthlv2Selected=false;
+					if(healthlv3Selected&&!sendHealthlv3 )
+						healthlv3Selected =false;
+					if(healthlv4Selected&&!sendHealthlv4 )
+						healthlv4Selected =false;
+					if(energylv1Selected&&!sendEnergylv1)
+						energylv1Selected =false;
+					if(energylv2Selected&&!sendEnergylv2 )
+						energylv2Selected =false;
+					if(energylv3Selected&&!sendEnergylv3)
+						energylv3Selected =false;
+					if(energylv4Selected &&!sendEnergylv4)
+						energylv4Selected =false;
+					if(drillSelected&&!sendDrill)
+						drillSelected =false;
+					if(barrierlv1Selected &&!sendBarrierlv1 )
+						barrierlv1Selected =false;
+					if(barrierlv2Selected &&!sendBarrierlv2 )
+						barrierlv2Selected =false;
+					if(barrierlv3Selected &&!sendBarrierlv3 )
+						barrierlv3Selected =false;
+					if(barrierlv4Selected &&!sendBarrierlv4 )
+						barrierlv4Selected =false;
+					if(chargeSelected &&!sendCharge)
+						chargeSelected =false;
+					StopAllCoroutines ();
+					StartCoroutine (TypeWritter ("PRESS [CTRL] USE BARRIER COST:14MB ENERGY COST:3\n\r"));
+					barrierSelected = true;
+					scoreCost = 14;
+					ButtonSound .Play();
+				}
+				
 			}
 		}
 		if (windowID == 1) 
@@ -724,6 +804,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -733,9 +815,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv1\nMAXIMUM HEALTH+1 COST:10MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv1\nMAXIMUM HEALTH+1 COST:20MB\n\r"));
 					healthlv1Selected=true;
-					scoreCost=10;
+					scoreCost=20;
 					ButtonSound .Play();
 				}
 
@@ -763,6 +845,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -772,9 +856,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv1\nMAXIMUM ENERGY+1 COST:10MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv1\nMAXIMUM ENERGY+1 COST:20MB\n\r"));
 					energylv1Selected =true;
-					scoreCost=10;
+					scoreCost=20;
 					ButtonSound .Play();
 				}
 			}
@@ -801,6 +885,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -810,9 +896,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv2\nMAXIMUM HEALTH+1 COST:20MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv2\nMAXIMUM HEALTH+1 COST:40MB\n\r"));
 					healthlv2Selected=true;
-					scoreCost=20;
+					scoreCost=40;
 					ButtonSound .Play();
 				}
 
@@ -840,6 +926,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -849,9 +937,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv2\nMAXIMUM ENERGY+1 COST:20MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv2\nMAXIMUM ENERGY+1 COST:40MB\n\r"));
 					energylv2Selected=true;
-					scoreCost=20;
+					scoreCost=40;
 					ButtonSound .Play();
 				}
 			}
@@ -878,6 +966,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -887,9 +977,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv3\nMAXIMUM HEALTH+1 COST:30MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv3\nMAXIMUM HEALTH+1 COST:80MB\n\r"));
 					healthlv3Selected =true;
-					scoreCost=30;
+					scoreCost=80;
 					ButtonSound .Play();
 				}
 			}
@@ -916,6 +1006,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -925,9 +1017,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv3\nMAXIMUM ENERGY+1 COST:30MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv3\nMAXIMUM ENERGY+1 COST:80MB\n\r"));
 					energylv3Selected =true;
-					scoreCost=30;
+					scoreCost=80;
 					ButtonSound .Play();
 				}
 			}
@@ -954,6 +1046,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -963,9 +1057,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("HEALTH lv4\nMAXIMUM HEALTH+1 COST:40MB\n\r"));
+					StartCoroutine (TypeWritter("HEALTH lv4\nMAXIMUM HEALTH+1 COST:160MB\n\r"));
 					healthlv4Selected =true;
-					scoreCost=40;
+					scoreCost=160;
 					ButtonSound .Play();
 				}
 			}
@@ -993,6 +1087,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -1002,13 +1098,13 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("ENERGY lv4\nMAXIMUM ENERGY+1 COST:40MB\n\r"));
+					StartCoroutine (TypeWritter("ENERGY lv4\nMAXIMUM ENERGY+1 COST:160MB\n\r"));
 					energylv4Selected =true;
-					scoreCost=40;
+					scoreCost=160;
 					ButtonSound .Play();
 				}
 			}
-			if(!barrierlv1Selected &&!sendBarrierlv1 )
+			if(!barrierlv1Selected &&!sendBarrierlv1&&sendBarrier )
 			{
 				if(GUI.Button (new Rect(10, 220,580,75),"BARRIER lv1"))
 				{
@@ -1033,6 +1129,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
 						barrierlv2Selected =false;
 					if(barrierlv3Selected &&!sendBarrierlv3 )
@@ -1040,9 +1138,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv1\nBARRLER HOLD TIME+2s COST:10MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv1\nBARRLER HOLD TIME+2s COST:20MB\n\r"));
 					barrierlv1Selected =true;
-					scoreCost=10;
+					scoreCost=20;
 					ButtonSound .Play ();
 
 				}
@@ -1072,6 +1170,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv3Selected &&!sendBarrierlv3 )
@@ -1079,9 +1179,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv2\nBARRLER HOLD TIME+2s COST:20MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv2\nBARRLER HOLD TIME+2s COST:40MB\n\r"));
 					barrierlv2Selected =true;
-					scoreCost=20;
+					scoreCost=40;
 					ButtonSound .Play ();
 					
 				}
@@ -1111,6 +1211,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -1118,9 +1220,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv3\nBARRLER HOLD TIME+2s COST:30MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv3\nBARRLER HOLD TIME+2s COST:80MB\n\r"));
 					barrierlv3Selected =true;
-					scoreCost=30;
+					scoreCost=80;
 					ButtonSound .Play ();
 					
 				}
@@ -1150,6 +1252,8 @@ public class Shop : MonoBehaviour
 						chargeSelected =false;
 					if(drillSelected&&!sendDrill)
 						drillSelected =false;
+					if(barrierSelected&&!sendBarrier)
+						barrierSelected=false;
 					if(barrierlv1Selected &&!sendBarrierlv1 )
 						barrierlv1Selected =false;
 					if(barrierlv2Selected &&!sendBarrierlv2 )
@@ -1157,9 +1261,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv3Selected &&!sendBarrierlv3 )
 						barrierlv3Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv4\nBARRLER HOLD TIME+2s COST:40MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv4\nBARRLER HOLD TIME+2s COST:160MB\n\r"));
 					barrierlv4Selected =true;
-					scoreCost=40;
+					scoreCost=160;
 					ButtonSound .Play ();
 					
 				}
