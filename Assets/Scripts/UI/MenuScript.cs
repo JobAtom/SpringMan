@@ -209,27 +209,28 @@ public class MenuScript : MonoBehaviour {
 			if (GUI.Button(new Rect(100, 188, 800, 90), "LOAD"))
 			{
 				ButtonSound.Play();
-
-				Score.score =PlayerPrefs.GetInt ("Score");
-				Score.memory=PlayerPrefs.GetInt ("MemoryChips");
-				VitalsScript .MaxHealth=PlayerPrefs.GetInt ("MaxHealth");
-				VitalsScript.MaxEnergy=PlayerPrefs.GetInt ("MaxEnergy");
-				Shop.sendCharge=Convert.ToBoolean (PlayerPrefs.GetInt ("ChargeSkillSend"));
-				Shop.sendDrill=Convert.ToBoolean (PlayerPrefs.GetInt ("DrillSkillSend"));
-				Shop.sendHealthlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv1Send"));
-				Shop.sendHealthlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv2Send"));
-				Shop.sendHealthlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv3Send"));
-				Shop.sendHealthlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv4Send"));
-				Shop.sendEnergylv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv1Send"));
-				Shop.sendEnergylv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv2Send"));
-				Shop.sendEnergylv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv3Send"));
-				Shop.sendEnergylv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv4Send"));
-				Shop.sendBarrierlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv1Send"));
-				Shop.sendBarrierlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv2Send"));
-				Shop.sendBarrierlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv3Send"));
-				Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send"));
-				Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel"));
-
+				if(PlayerPrefs.GetString("saved")!=null)
+				{
+					Score.score =PlayerPrefs.GetInt ("Score");
+					Score.memory=PlayerPrefs.GetInt ("MemoryChips");
+					VitalsScript .MaxHealth=PlayerPrefs.GetInt ("MaxHealth");
+					VitalsScript.MaxEnergy=PlayerPrefs.GetInt ("MaxEnergy");
+					Shop.sendCharge=Convert.ToBoolean (PlayerPrefs.GetInt ("ChargeSkillSend"));
+					Shop.sendDrill=Convert.ToBoolean (PlayerPrefs.GetInt ("DrillSkillSend"));
+					Shop.sendHealthlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv1Send"));
+					Shop.sendHealthlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv2Send"));
+					Shop.sendHealthlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv3Send"));
+					Shop.sendHealthlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("HealthLv4Send"));
+					Shop.sendEnergylv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv1Send"));
+					Shop.sendEnergylv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv2Send"));
+					Shop.sendEnergylv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv3Send"));
+					Shop.sendEnergylv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("EnergyLv4Send"));
+					Shop.sendBarrierlv1 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv1Send"));
+					Shop.sendBarrierlv2 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv2Send"));
+					Shop.sendBarrierlv3 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv3Send"));
+					Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send"));
+					Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel"));
+				}
 			}
 			if (GUI.Button(new Rect(100,321 ,800, 90), "SETTINGS"))
 			{
@@ -377,11 +378,7 @@ public class MenuScript : MonoBehaviour {
 						PlayerPrefs.SetInt ("BarrierLv2Send",Convert.ToInt32 (Shop.sendBarrierlv2 ));
 						PlayerPrefs.SetInt ("BarrierLv3Send",Convert.ToInt32 (Shop.sendBarrierlv3 ));
 						PlayerPrefs.SetInt ("BarrierLv4Send",Convert.ToInt32 (Shop.sendBarrierlv4 ));
-
-
-
-
-
+						PlayerPrefs.SetString ("saved", "AllReadySaved");
 					}
 				}
 				if(Application.loadedLevelName =="Level_Shop")
