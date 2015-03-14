@@ -262,6 +262,11 @@ public class HeroController : MonoBehaviour
 			InWater=true;
 		}
 	}
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.tag == "Water")
+						InWater = true;
+	}
 	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.tag == "Water") 
