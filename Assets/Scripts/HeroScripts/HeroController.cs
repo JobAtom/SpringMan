@@ -29,6 +29,7 @@ public class HeroController : MonoBehaviour
     public float maxFallSpeed = -50f;
     public float jumpForce = 700f;
     public VitalsScript Vitals;
+	public GameObject Helmet;
 
     public static bool GameOver = false;
 	private bool OnElevator;
@@ -61,6 +62,7 @@ public class HeroController : MonoBehaviour
         restarting = false;
         falling = true;
         jumping = false;
+
         CheckPoint.Check();
     }
 
@@ -139,17 +141,26 @@ public class HeroController : MonoBehaviour
             Flip();
 		if (InWater) 
 		{
-			helmetanim = GameObject.FindGameObjectWithTag("Helmet").GetComponent<Animator>();
-			if(Input.GetAxis ("Jump") == 1)
+			//Helmet.GetComponent<SpriteRenderer> ().enabled = true;
+			//Helmet.GetComponent<Collider2D> ().enabled = true;
+			Helmet.SetActive (true);
+			helmetanim = GameObject.FindGameObjectWithTag ("Helmet").GetComponent<Animator> ();
+			if (Input.GetAxis ("Jump") == 1)
 			{
-				acceleratorNum =1.6f;
-				helmetanim.SetBool("accelerating",true);
+				acceleratorNum = 1.6f;
+				helmetanim.SetBool ("accelerating", true);
 			}
-			if(Input.GetAxis ("Jump") == 0)
-				helmetanim.SetBool("accelerating",false);
-				//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
-			Swim(UpOrDown*acceleratorNum ,rigidbody2D.velocity.x);
+			if (Input.GetAxis ("Jump") == 0)
+				helmetanim.SetBool ("accelerating", false);
+						//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
+			Swim (UpOrDown * acceleratorNum, rigidbody2D.velocity.x);
 
+		} 
+		else 
+		{
+			//Helmet.GetComponent<SpriteRenderer>().enabled=false;
+			//Helmet.GetComponent<Collider2D>().enabled=false;
+			Helmet.SetActive (false);
 		}
 		Walk (move*acceleratorNum  , rigidbody2D.velocity.y);
 		acceleratorNum = 1f;
