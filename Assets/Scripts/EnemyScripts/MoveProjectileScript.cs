@@ -38,7 +38,7 @@ public class MoveProjectileScript : MonoBehaviour {
         angle = CalculateAngle();
 		var absAngle = Mathf.Abs (angle);
         //if (parent != null)
-		if (this.gameObject.name == "Torpedo(Clone)"||this.gameObject.name=="Projectile(Clone)") {
+		if (this.gameObject.name == "Torpedo(Clone)") {
 			maxspeed = 30;
 				}
 		else
