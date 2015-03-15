@@ -12,10 +12,10 @@ public class LightingControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		Invoke ("lightingIncrease", 1.5f);
-	
-	}
+//	void FixedUpdate () {
+//		Invoke ("lightingIncrease", 1.5f);
+//	
+//	}
 	void lightingIncrease()
 	{
 		CancelInvoke ();
