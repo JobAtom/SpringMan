@@ -6,7 +6,7 @@ public class BossDoor : MonoBehaviour {
 	private EnemyScript boss;
 	// Use this for initialization
 	void Start () {
-		boss = GameObject.Find ("Boss").GetComponent<EnemyScript>();
+		boss = GameObject.FindGameObjectWithTag  ("Boss").GetComponent<EnemyScript>();
 	}
 	
 	// Update is called once per frame
