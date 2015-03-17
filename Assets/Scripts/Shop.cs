@@ -453,7 +453,7 @@ public class Shop : MonoBehaviour
 			if(barrierSelected&&!sendBarrier)
 				barrierSelected=false;
 
-			if(!sendBarrier)
+			if(!sendBarrier&&!HeroPowers.BarrierSkill)
 			{
 				StopAllCoroutines ();
 				WarningSound.Play ();
