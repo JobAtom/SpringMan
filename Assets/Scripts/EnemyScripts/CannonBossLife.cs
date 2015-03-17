@@ -5,6 +5,8 @@ public class CannonBossLife : MonoBehaviour
 {
 	public int bossLifeNodes;
 	public int step;
+	//public bool CannonBossDead=false;
+	private GameObject player;
 
 	private bool stepLock;
 	// Use this for initialization
@@ -12,6 +14,7 @@ public class CannonBossLife : MonoBehaviour
 	{
 		step = 0;
 		stepLock = false;
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
@@ -19,8 +22,8 @@ public class CannonBossLife : MonoBehaviour
 	{
 		if(bossLifeNodes <= 0)
 		{
-			Debug.Log("Boss Destroyed.");
-
+			//Debug.Log("Boss Destroyed.");
+			this.gameObject.GetComponentInChildren<CannonBossLaser>().enabled=false;
 //			if(step == 0)
 //			{
 //				Debug.Log ("Play node explosion.");
@@ -43,9 +46,10 @@ public class CannonBossLife : MonoBehaviour
 //			{
 //				Destroy(GameObject.FindGameObjectWithTag("Boss").gameObject);
 //			}
-
-			Destroy(GameObject.FindGameObjectWithTag ("CannonBossLifeNodes").transform.root.gameObject);
+			if(GameObject.FindGameObjectWithTag ("CannonBossRail")!=null)
+				Destroy(GameObject.FindGameObjectWithTag ("CannonBossRail").gameObject);
 			GameObject.FindGameObjectWithTag("Boss").rigidbody2D.isKinematic = false;
+			BossDead();
 		}
 	}
 
@@ -58,5 +62,11 @@ public class CannonBossLife : MonoBehaviour
 	{
 		yield return new WaitForSeconds(time);
 		step++;
+	}
+	 void  BossDead()
+	{
+		if(player.transform.position.y-this.gameObject.transform.position.y>100f)
+			Destroy (GameObject.FindGameObjectWithTag ("Boss").gameObject);
+
 	}
 }

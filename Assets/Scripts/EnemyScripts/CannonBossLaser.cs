@@ -23,7 +23,7 @@ public class CannonBossLaser : MonoBehaviour
 	private GameObject playerBody;
 	private GameObject laserChargeBall;
 	private GameObject bossLaser;
-
+	private CannonBossLife BossLife;
 	//Reference to needed scripts
 	private camerafollowing mainCameraScript;
 
@@ -60,6 +60,7 @@ public class CannonBossLaser : MonoBehaviour
 		bossLaser.transform.localScale = new Vector3(0, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z);
 		laserOnCooldown = false;
 		playerInRange = false;
+		BossLife = this.gameObject.GetComponentInParent <CannonBossLife> ();
 		step = 0;
 		mainCameraScript = GameObject.FindGameObjectWithTag("MainCamera").transform.parent.GetComponent<camerafollowing>();
 
@@ -87,7 +88,7 @@ public class CannonBossLaser : MonoBehaviour
 		{
 			StartCoroutine("laserPrefire");
 		}
-		else if(step == 2)
+		else if(step == 2 )
 		{
 			if(time2 < 1)
 			{
@@ -144,7 +145,7 @@ public class CannonBossLaser : MonoBehaviour
 	
 	IEnumerator laserFire()
 	{
-		Debug.Log("Doom");
+		//Debug.Log("Doom");
 		yield return new WaitForSeconds(laserShootTime);
 		if(step == 2f)
 			step = 3f;

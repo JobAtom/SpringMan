@@ -20,7 +20,13 @@ public class CannonBossLifeNode : MonoBehaviour
 		if(other.gameObject.tag == "Player")
 		{
 			nodeLife--;
+			iTween.ShakePosition(this.gameObject,new Vector3(0.3f,0.3f,0),0.5f);
 			other.gameObject.rigidbody2D.velocity = new Vector2(other.gameObject.rigidbody2D.velocity.x, (-other.gameObject.rigidbody2D.velocity.y<25f)?18f:22f);
+			if (Input.GetAxis("Jump") >0)
+			{
+				other.gameObject.rigidbody2D.velocity=new Vector2(other.gameObject.rigidbody2D.velocity.x,35f); 
+
+			}
 		}
 
 	}
