@@ -16,8 +16,8 @@ public class Meteor : MonoBehaviour {
 	private bool started = false;
 	private GameObject barrier;
 	private float distance;
-	public float count;
-	public static int barrierTime=1;
+	public float count=0;
+	public static float  barrierTime=2f;
 
 
 	// Use this for initialization
@@ -95,16 +95,16 @@ public class Meteor : MonoBehaviour {
 		}
 		else if (other.tag == "Barrier"&&started)
 		{
-			count=count+barrierTime;;
+			count=count+barrierTime;
 			started = false;
 			
 			barrier=other.gameObject;
 			
-			Invoke ("HitBarrier",2f*count);
+			Invoke ("HitBarrier",count);
 		}
 		else if(other.tag == "SuperBarrier"&&started)
 		{
-			count=count+barrierTime;;
+			count=count+barrierTime;
 			started = false;
 			barrier=other.gameObject;
 			Invoke("HitBarrier",60f);
@@ -112,7 +112,7 @@ public class Meteor : MonoBehaviour {
 		}
 		else if(other.tag == "PowerfulBarrier"&&started)
 		{
-			count=count+barrierTime;;
+			count=count+barrierTime;
 			started = false;
 			barrier=other.gameObject;
 			Invoke("HitBarrier",20f);

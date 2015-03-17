@@ -256,7 +256,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendBarrierlv1=true;
-							Meteor.barrierTime++;
+							Meteor.barrierTime+=0.5f;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -266,7 +266,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendBarrierlv2=true;
-							Meteor.barrierTime++;
+							Meteor.barrierTime+=0.5f;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -276,7 +276,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendBarrierlv3=true;
-							Meteor.barrierTime++;
+							Meteor.barrierTime+=0.5f;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -286,7 +286,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendBarrierlv4=true;
-							Meteor.barrierTime++;
+							Meteor.barrierTime+=0.5f;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -572,9 +572,9 @@ public class Shop : MonoBehaviour
 					if(barrierSelected&&!sendBarrier)
 						barrierSelected=false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:30MB ENERGY COST:1\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [ALT] TO CHARGE COST:200MB ENERGY COST:1\n\r"));
 					chargeSelected = true;
-					scoreCost = 30;
+					scoreCost = 200;
 					ButtonSound .Play();
 				}
 						
@@ -626,9 +626,9 @@ public class Shop : MonoBehaviour
 					if(barrierSelected&&!sendBarrier)
 						barrierSelected=false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("PRESS [SHIFT] TO DRILL COST:50MB ENERGY COST:4\n\r"));
+					StartCoroutine (TypeWritter ("PRESS [SHIFT] TO DRILL COST:250MB ENERGY COST:4\n\r"));
 					drillSelected=true;
-					scoreCost=50;
+					scoreCost=250;
 					ButtonSound.Play ();
 				}
 			}
@@ -815,9 +815,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv1\nMAXIMUM HEALTH+1 COST:20MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv1\nMAXIMUM HEALTH+1 COST:80MB\n\r"));
 					healthlv1Selected=true;
-					scoreCost=20;
+					scoreCost=80;
 					ButtonSound .Play();
 				}
 
@@ -856,9 +856,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv1\nMAXIMUM ENERGY+1 COST:20MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv1\nMAXIMUM ENERGY+1 COST:80MB\n\r"));
 					energylv1Selected =true;
-					scoreCost=20;
+					scoreCost=80;
 					ButtonSound .Play();
 				}
 			}
@@ -896,9 +896,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv2\nMAXIMUM HEALTH+1 COST:40MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv2\nMAXIMUM HEALTH+1 COST:120MB\n\r"));
 					healthlv2Selected=true;
-					scoreCost=40;
+					scoreCost=120;
 					ButtonSound .Play();
 				}
 
@@ -937,9 +937,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv2\nMAXIMUM ENERGY+1 COST:40MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv2\nMAXIMUM ENERGY+1 COST:120MB\n\r"));
 					energylv2Selected=true;
-					scoreCost=40;
+					scoreCost=120;
 					ButtonSound .Play();
 				}
 			}
@@ -977,9 +977,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("HEALTH lv3\nMAXIMUM HEALTH+1 COST:80MB\n\r"));
+					StartCoroutine (TypeWritter ("HEALTH lv3\nMAXIMUM HEALTH+1 COST:160MB\n\r"));
 					healthlv3Selected =true;
-					scoreCost=80;
+					scoreCost=160;
 					ButtonSound .Play();
 				}
 			}
@@ -1017,9 +1017,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter ("ENERGY lv3\nMAXIMUM ENERGY+1 COST:80MB\n\r"));
+					StartCoroutine (TypeWritter ("ENERGY lv3\nMAXIMUM ENERGY+1 COST:160MB\n\r"));
 					energylv3Selected =true;
-					scoreCost=80;
+					scoreCost=160;
 					ButtonSound .Play();
 				}
 			}
@@ -1057,9 +1057,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("HEALTH lv4\nMAXIMUM HEALTH+1 COST:160MB\n\r"));
+					StartCoroutine (TypeWritter("HEALTH lv4\nMAXIMUM HEALTH+1 COST:200MB\n\r"));
 					healthlv4Selected =true;
-					scoreCost=160;
+					scoreCost=200;
 					ButtonSound .Play();
 				}
 			}
@@ -1098,9 +1098,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("ENERGY lv4\nMAXIMUM ENERGY+1 COST:160MB\n\r"));
+					StartCoroutine (TypeWritter("ENERGY lv4\nMAXIMUM ENERGY+1 COST:200MB\n\r"));
 					energylv4Selected =true;
-					scoreCost=160;
+					scoreCost=200;
 					ButtonSound .Play();
 				}
 			}
@@ -1138,9 +1138,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv1\nBARRLER HOLD TIME+2s COST:20MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv1\nBARRLER HOLD TIME+0.5s COST:100MB\n\r"));
 					barrierlv1Selected =true;
-					scoreCost=20;
+					scoreCost=100;
 					ButtonSound .Play ();
 
 				}
@@ -1179,9 +1179,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv2\nBARRLER HOLD TIME+2s COST:40MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv2\nBARRLER HOLD TIME+0.5s COST:140MB\n\r"));
 					barrierlv2Selected =true;
-					scoreCost=40;
+					scoreCost=140;
 					ButtonSound .Play ();
 					
 				}
@@ -1220,9 +1220,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv4Selected &&!sendBarrierlv4 )
 						barrierlv4Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv3\nBARRLER HOLD TIME+2s COST:80MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv3\nBARRLER HOLD TIME+0.5s COST:180MB\n\r"));
 					barrierlv3Selected =true;
-					scoreCost=80;
+					scoreCost=180;
 					ButtonSound .Play ();
 					
 				}
@@ -1261,9 +1261,9 @@ public class Shop : MonoBehaviour
 					if(barrierlv3Selected &&!sendBarrierlv3 )
 						barrierlv3Selected =false;
 					StopAllCoroutines ();
-					StartCoroutine (TypeWritter("BARRIER lv4\nBARRLER HOLD TIME+2s COST:160MB\n\r"));
+					StartCoroutine (TypeWritter("BARRIER lv4\nBARRLER HOLD TIME+0.5s COST:220MB\n\r"));
 					barrierlv4Selected =true;
-					scoreCost=160;
+					scoreCost=220;
 					ButtonSound .Play ();
 					
 				}
