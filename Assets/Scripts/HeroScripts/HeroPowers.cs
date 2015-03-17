@@ -37,6 +37,7 @@ public class HeroPowers : MonoBehaviour
 		HeroStartCharge=false;
 		success = false;
 		anim.SetBool ("Charge", false);
+		anim.SetBool ("Drill", false);
     }
 	
     // Update is called once per frame
@@ -91,8 +92,14 @@ public class HeroPowers : MonoBehaviour
 		if (success) 
 		{
 			//Destroy(Physics2d.overlapcircle(transform.root.find("groundCHeck").transform.position, 1f, 1 << 11).gameObject);
+			anim.SetBool("Drill", true);
+			Invoke("StopDrill", 1.1f);
 			Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
 		}
+	}
+	void StopDrill(){
+		CancelInvoke ();
+		anim.SetBool ("Drill", false);
 	}
 
 	public void HeroCharge()
