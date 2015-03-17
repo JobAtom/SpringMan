@@ -85,12 +85,13 @@ public class HeroPowers : MonoBehaviour
 
 	public void UseDrill()
 	{
-		bool success = heroController.Vitals.UseEnergy (4);
+		bool success = false;
+		if(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11)!=null)
+			success = heroController.Vitals.UseEnergy (4);
 		if (success) 
 		{
 			//Destroy(Physics2d.overlapcircle(transform.root.find("groundCHeck").transform.position, 1f, 1 << 11).gameObject);
-			if(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11)!=null)
-				Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
+			Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
 		}
 	}
 
