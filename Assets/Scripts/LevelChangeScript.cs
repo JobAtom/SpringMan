@@ -14,9 +14,10 @@ public class LevelChangeScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-		if (Application.loadedLevelName == "MainMenu") 
+		if (Application.loadedLevelName=="MainMenu") 
 		{
 			Application.LoadLevel (1);
+			//Debug.Log (Application.loadedLevelName);
 			return;
 		}
         if (other.collider.tag == ("Player") && !HeroController.GameOver)
@@ -32,7 +33,10 @@ public class LevelChangeScript : MonoBehaviour {
            //Instantiate();
 			if (Application.loadedLevelName != "MainMenu") 
             	 GameObject.Find("Camera").GetComponent<camerafollowing>().StopTrack();
+	
+
 		}
+
 	}
 
 	public static void RestartLevel()
