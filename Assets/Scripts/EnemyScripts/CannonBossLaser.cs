@@ -6,11 +6,17 @@ public class CannonBossLaser : MonoBehaviour
 	//Based on wanted selection
 	public float laserCooldownTime;
 	public float laserChargeTime;
+	public float laserPrefireTime;
 	public float laserShootTime;
+	public float laserUnfireTime;
 	public float laserChargeScaleSize;
 	public float laserBeamScaleSize;
 
-	public int step;
+	public float time1 = 0;
+	public float time2 = 0;
+	public float time3 = 0;
+
+	public float step;
 
 	//Reference to needed game objects
 	private GameObject bossBody;
@@ -34,7 +40,7 @@ public class CannonBossLaser : MonoBehaviour
 		get {	return playerInRange;	}
 	}
 
-	public int Step
+	public float Step
 	{
 		get {	return step;			}
 	}
@@ -50,7 +56,7 @@ public class CannonBossLaser : MonoBehaviour
 		laserOnCooldown = false;
 		playerInRange = false;
 		step = 0;
-		mainCameraScript = GameObject.FindGameObjectWithTag("Main Camera").GetComponent<camerafollowing>();
+		mainCameraScript = GameObject.FindGameObjectWithTag("MainCamera").transform.parent.GetComponent<camerafollowing>();
 	}
 	
 	// Update is called once per frame
@@ -60,26 +66,41 @@ public class CannonBossLaser : MonoBehaviour
 			step = 1;
 		if(step == 1 && !laserOnCooldown)
 		{
-			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), Time.deltaTime/3);
+			if(time1 < 1)
+			{
+				time1 += Time.deltaTime / laserChargeTime;
+			}
+			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(laserChargeScaleSize,laserChargeScaleSize,laserChargeScaleSize), time1);
 			StartCoroutine("laserCharge");
 		}
-		if(step == 2)
+		else if(step == 1.5)
 		{
+			StartCoroutine("laserPrefire");
+		}
+		else if(step == 2)
+		{
+			if(time2 < 1)
+			{
+				time2 += Time.deltaTime / laserShootTime;
+			}
+			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(0,0,0), time2);
+
+			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(laserBeamScaleSize, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), time2);
+			mainCameraScript.screenShake(4f,laserShootTime);
 			StartCoroutine("laserFire");
-			step = 3;
 		}
-		if(step == 3)
+		else if(step == 3)
 		{
-			laserChargeBall.transform.localScale = Vector3.Lerp(laserChargeBall.transform.localScale, new Vector3(0,0,0), Time.deltaTime);
-			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(laserBeamScaleSize, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), Time.deltaTime*30);
-			mainCameraScript.screenShake(10f,.1f);
-//			bossLaser.SetActive(true);
-		}
-		if(step == 4)
-		{
+			if(time3 < 1)
+			{
+				time3 += Time.deltaTime / laserUnfireTime;
+			}
 			laserChargeBall.transform.localScale = new Vector3(0,0,0);
-			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(0, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), Time.deltaTime*10);
-//			bossLaser.SetActive(false);
+			bossLaser.transform.localScale = Vector3.Lerp(bossLaser.transform.localScale, new Vector3(0, bossLaser.transform.localScale.y, bossLaser.transform.localScale.z), time3);
+			StartCoroutine("laserUnfire");
+		}
+		else if(step == 4)
+		{
 			StartCoroutine("laserCooldown");
 		}
 
@@ -100,21 +121,39 @@ public class CannonBossLaser : MonoBehaviour
 	IEnumerator laserCharge()
 	{
 		yield return new WaitForSeconds(laserChargeTime);
-		if(step == 1)
-			step = 2;
+		if(step == 1f)
+			step = 1.5f;
 	}
 
+	IEnumerator laserPrefire()
+	{
+		yield return new WaitForSeconds(laserPrefireTime);
+		if(step == 1.5f)
+			step = 2f;
+	}
+	
 	IEnumerator laserFire()
 	{
+		Debug.Log("Doom");
 		yield return new WaitForSeconds(laserShootTime);
-		if(step == 3)
-			step = 4;
+		if(step == 2f)
+			step = 3f;
+	}
+
+	IEnumerator laserUnfire()
+	{
+		yield return new WaitForSeconds(1);
+		if(step == 3f)
+			step = 4f;
 	}
 
 	IEnumerator laserCooldown()
 	{
 		yield return new WaitForSeconds(laserCooldownTime);
-		if(step == 4)
-			step = 0;
+		if(step == 4f)
+			step = 0f;
+		time1 = 0;
+		time2 = 0;
+		time3 = 0;
 	}
 }

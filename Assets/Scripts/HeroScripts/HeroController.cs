@@ -174,7 +174,7 @@ public class HeroController : MonoBehaviour
     void TakeHit(Collision2D other)
     {
 		if (other.gameObject.GetComponent<MoveProjectileScript> () != null)
-						Destroy (other.gameObject);
+			Destroy (other.gameObject);
         stunned = true;
         if (transform.position.x < other.transform.position.x)
             rigidbody2D.velocity = new Vector2(-10f, rigidbody2D.velocity.y / 2 + 5f);

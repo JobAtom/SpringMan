@@ -44,7 +44,7 @@ public class CannonBoss : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(!laserReference.Step.Equals(3) && laserReference.PlayerInRange)
+		if((laserReference.Step < 1.5 || laserReference.Step > 3) && laserReference.PlayerInRange)
 		{
 			float angle = (Mathf.Atan2 ((playerBody.transform.position.y - transform.position.y), (playerBody.transform.position.x - transform.position.x)) - displacement) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

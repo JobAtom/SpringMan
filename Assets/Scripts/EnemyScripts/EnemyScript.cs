@@ -74,7 +74,6 @@ public class EnemyScript : MonoBehaviour
 			if(this.gameObject.name == "Boss")playerObj.rigidbody2D.velocity = new Vector2(playerObj.rigidbody2D.velocity.x, (-playerObj.rigidbody2D.velocity.y<25f)?18f:22f);
 			if (Input.GetAxis("Jump") >0)
 			{
-
 				playerObj.rigidbody2D.velocity=new Vector2(playerObj.rigidbody2D.velocity.x,28f); 
 				stomped=false;
 			}
