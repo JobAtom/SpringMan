@@ -12,7 +12,7 @@ public class HeroPowers : MonoBehaviour
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
 
-	public static bool ChargeSkill =true;
+	public static bool ChargeSkill =false;
 
 	public static bool BarrierSkill =true;
 	public static bool DrillSkill=false;
