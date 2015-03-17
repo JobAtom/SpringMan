@@ -97,7 +97,7 @@ public class CannonBossLaser : MonoBehaviour
 			laserChargeBall.transform.localScale = Vector3.Lerp(chargeFinalScale, chargeStartingScale, time2);
 
 			bossLaser.transform.localScale = Vector3.Lerp(laserStartingScale, laserFinalScale, time2);
-			mainCameraScript.screenShake(4f,laserShootTime);
+			//mainCameraScript.screenShake(4f,laserShootTime);
 			StartCoroutine("laserFire");
 		}
 		else if(step == 3)
