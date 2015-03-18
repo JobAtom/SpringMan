@@ -65,6 +65,7 @@ public class HeroController : MonoBehaviour
 		originalHelmetPositionX = Helmet.transform.position.x;
         jumping = false;
 
+		saveMemory ();
 
         CheckPoint.Check();
     }
@@ -472,7 +473,7 @@ public class HeroController : MonoBehaviour
 		this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge =false;
 	}
 
-	public void saveMemory()
+	 void saveMemory()
 	{
 		localMemory = Score.memory;
 	}

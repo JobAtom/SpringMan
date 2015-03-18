@@ -462,7 +462,7 @@ public class Shop : MonoBehaviour
 				return;
 			}
 
-			GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>().saveMemory();
+			//GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>().saveMemory();
 
 			VitalsScript .CurrentHealth =VitalsScript .MaxHealth ;
 			VitalsScript.CurrentEnergy =0;
