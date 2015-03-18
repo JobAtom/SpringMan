@@ -8,11 +8,13 @@ public class HeroPowers : MonoBehaviour
     private GameObject player;
 	private GameObject upperFlare;
 	private GameObject lowerFlare;
+	private GameObject drill;
     private HeroController heroController;
 	private SpriteRenderer upperFlareRender;
 	private SpriteRenderer lowerFlareRender;
+	private SpriteRenderer drillRender;
 
-	public static bool ChargeSkill =true;
+	public static bool ChargeSkill =false;
 
 	public static bool BarrierSkill =true;
 	public static bool DrillSkill=false;
@@ -29,14 +31,17 @@ public class HeroPowers : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 		upperFlare = GameObject.Find ("Upper Flare");
 		lowerFlare = GameObject.Find ("Lower Flare");
+		drill = GameObject.Find ("Drill");
         heroController = player.GetComponent<HeroController>();
 		upperFlareRender = upperFlare.GetComponent<SpriteRenderer> ();
 		lowerFlareRender = lowerFlare.GetComponent<SpriteRenderer> ();
+		drillRender = drill.GetComponent<SpriteRenderer> ();
 		ArrowLeftCount = 0;
 		ArrowRightCount = 0;
 		HeroStartCharge=false;
 		success = false;
 		anim.SetBool ("Charge", false);
+		anim.SetBool ("Drill", false);
     }
 	
     // Update is called once per frame
@@ -85,13 +90,22 @@ public class HeroPowers : MonoBehaviour
 
 	public void UseDrill()
 	{
-		bool success = heroController.Vitals.UseEnergy (4);
+		bool success = false;
+		if(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11)!=null)
+			success = heroController.Vitals.UseEnergy (4);
 		if (success) 
 		{
 			//Destroy(Physics2d.overlapcircle(transform.root.find("groundCHeck").transform.position, 1f, 1 << 11).gameObject);
-			if(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11)!=null)
-				Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
+			anim.SetBool("Drill", true);
+			Invoke("StopDrill", .8f);
+			drillRender.enabled = true;
+			Destroy(Physics2D.OverlapCircle(transform.root.Find("groundCheck").transform.position, 1f, 1<<11).gameObject);
 		}
+	}
+	void StopDrill(){
+		CancelInvoke ();
+		anim.SetBool ("Drill", false);
+		drillRender.enabled = false;
 	}
 
 	public void HeroCharge()

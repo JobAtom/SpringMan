@@ -15,4 +15,13 @@ public class StartingPowers : MonoBehaviour {
 	void FixedUpdate () {
 		VitalsScript.CurrentEnergy += 1;
 	}
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == ("Player")) 
+		{
+
+			HeroPowers.ChargeSkill=false;
+			HeroPowers.DrillSkill=false;
+		}
+	}
 }

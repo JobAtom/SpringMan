@@ -11,6 +11,8 @@ public class BossDoor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (boss == null)
+						return;
 		if (boss.dead && boss != null) openBarrier ();
 	}
 
