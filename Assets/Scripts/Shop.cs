@@ -78,6 +78,7 @@ public class Shop : MonoBehaviour
 		scorecolor = GameObject.Find ("Score").GetComponent<GUIText> ();
 
 
+
        
         //GameObject.Find ("Speed").GetComponent<Transform> ().position = (new Vector2 ((Screen.width / 2 - 100)/100, (Screen.height / 3 - 30)/100));
 	
@@ -120,7 +121,7 @@ public class Shop : MonoBehaviour
 			if(currentword.IndexOf ("\r")==currentword.Length-1)
 			{
 
-				if(GUI.Button (new Rect(130,240,220,75),"SEND"))
+				if(GUI.Button (new Rect(370,240,220,75),"SEND"))
 				{
 					ButtonSound .Play();
 
@@ -154,7 +155,7 @@ public class Shop : MonoBehaviour
 						if(sendSuccess)
 						{
 							sendBarrier=true;
-							HeroPowers.ChargeSkill =true;
+							HeroPowers.BarrierSkill =true;
 							UpgradeSound.Stop ();
 							UpgradeSound.Play ();
 						}
@@ -464,6 +465,7 @@ public class Shop : MonoBehaviour
 			VitalsScript .CurrentHealth =VitalsScript .MaxHealth ;
 			VitalsScript.CurrentEnergy =0;
 			System.Threading .Thread.Sleep (300);
+			//Debug.Log (HeroPowers.ChargeSkill );
             LevelChangeScript.NextLevel();
 
         }
@@ -528,7 +530,7 @@ public class Shop : MonoBehaviour
 			{
 				GUI.enabled = false;
 				GUI.Button (new Rect (10, 60, 580, 75), "CHARGE(LEARNED)");
-				HeroPowers.ChargeSkill=true;
+				//HeroPowers.ChargeSkill=true;
 				GUI.enabled = true;
 			}
 			if(chargeSelected&&!sendCharge)
@@ -583,7 +585,7 @@ public class Shop : MonoBehaviour
 			{
 				GUI.enabled = false;
 				GUI.Button (new Rect (10, 140, 580, 75), "DRILL(LEARNED)");
-				HeroPowers.DrillSkill=true;
+				//HeroPowers.DrillSkill=true;
 				GUI.enabled = true;
 			}
 			if(drillSelected&&!sendDrill)
@@ -636,7 +638,7 @@ public class Shop : MonoBehaviour
 			{
 				GUI.enabled = false;
 				GUI.Button (new Rect (10, 220, 580, 75), "BARRIER(LEARNED)");
-				HeroPowers.BarrierSkill=true;
+				//HeroPowers.BarrierSkill=true;
 				GUI.enabled = true;
 			}
 			if(barrierSelected &&!sendBarrier)
@@ -1307,7 +1309,7 @@ public class Shop : MonoBehaviour
 		offset = Vector3.zero;
 		if(aspect < (nativeSize.x/nativeSize.y)) 
 		{ 
-			//screen is taller
+			//screen is tallerCONTINUE
 			guiScaleFactor = (Screen.width/nativeSize.x);
 			offset.y += (Screen.height-(nativeSize.y*guiScaleFactor))*0.5f;
 		} 

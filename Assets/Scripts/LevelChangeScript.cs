@@ -31,6 +31,7 @@ public class LevelChangeScript : MonoBehaviour {
 		if (other.tag == "Player" && !HeroController.GameOver)
 		{
            //Instantiate();
+			//Score.score=100;
 			if (Application.loadedLevelName != "MainMenu") 
             	 GameObject.Find("Camera").GetComponent<camerafollowing>().StopTrack();
 	
