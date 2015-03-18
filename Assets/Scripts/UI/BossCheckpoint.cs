@@ -7,7 +7,7 @@ public class BossCheckpoint : MonoBehaviour {
 	public GameObject Barrier;
 	// Use this for initialization
 	void Start () {
-
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform.parent.GetComponent<camerafollowing> ();
 	}
 	
 	// Update is called once per frame

@@ -62,12 +62,14 @@ public class camerafollowing : MonoBehaviour
 
     }
 
-	public void screenShake(float intensity, float decreaseBy)
+	public void screenShake(float intensity, float duration)
 	{
-		if(intensity > 0)
-		{
-			transform.position = Random.insideUnitCircle * intensity;
-			intensity -= Time.deltaTime * decreaseBy;
-		}
+//		if(intensity > 0)
+//		{
+//			Vector3 position = transform.position;
+//			transform.localPosition = Random.insideUnitCircle * intensity;
+//			intensity -= Time.deltaTime * decreaseBy;
+//		}
+		iTween.ShakePosition(gameObject,new Vector3(intensity,intensity,0),duration);
 	}
 }
