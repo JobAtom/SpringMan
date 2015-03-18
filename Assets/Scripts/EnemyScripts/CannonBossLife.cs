@@ -5,8 +5,10 @@ public class CannonBossLife : MonoBehaviour
 {
 	public int bossLifeNodes;
 	public int step;
-	//public bool CannonBossDead=false;
+	public int scoreRelease;
+	private bool CannonBossDead=false;
 	private GameObject player;
+	public GameObject point;
 
 	private bool stepLock;
 	// Use this for initialization
@@ -20,7 +22,7 @@ public class CannonBossLife : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(bossLifeNodes <= 0)
+		if(bossLifeNodes <= 0&&!CannonBossDead)
 		{
 			//Debug.Log("Boss Destroyed.");
 			this.gameObject.GetComponentInChildren<CannonBossLaser>().enabled=false;
@@ -65,8 +67,11 @@ public class CannonBossLife : MonoBehaviour
 	}
 	 void  BossDead()
 	{
+		CannonBossDead = true;
 		if(player.transform.position.y-this.gameObject.transform.position.y>100f)
 			Destroy (GameObject.FindGameObjectWithTag ("Boss").gameObject);
+		Score.score += scoreRelease;
+		Instantiate (point,new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
 
 	}
 }

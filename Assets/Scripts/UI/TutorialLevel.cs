@@ -65,10 +65,11 @@ public class TutorialLevel : MonoBehaviour {
 	}
 	void OnGUI()
 	{
+		Shop.BeginUIResizing ();
 		if (ShowKillEnemyInfo) 
 		{
 			GUI.skin.label .fontSize = 32;
-			GUI.BeginGroup (new Rect (1920 / 2 - 700, 1080 / 2-500 , 500, 200));
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			
 			GUI.Label(new Rect(50, 50, 400, 150), "JUMP ON ENEMY'S HEAD TO KILL IT");
@@ -77,7 +78,7 @@ public class TutorialLevel : MonoBehaviour {
 		if (ShowChargeSkillInfo) 
 		{
 			GUI.skin.label .fontSize = 32;
-			GUI.BeginGroup (new Rect (1920 / 2 - 700, 1080 / 2-500 , 500, 200));
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'ALT' TO USE CHARGE SKILL TO KILL ENEMY");
 			GUI.EndGroup ();
@@ -86,7 +87,7 @@ public class TutorialLevel : MonoBehaviour {
 		{
 
 			GUI.skin.label .fontSize = 32;
-			GUI.BeginGroup (new Rect (1920 / 2 - 700, 1080 / 2-500 , 500, 200));
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'SHIFT' TO USE DRILL SKILL TO DRILL THROUGH PLATFORMS");
 			GUI.EndGroup ();
@@ -94,11 +95,11 @@ public class TutorialLevel : MonoBehaviour {
 		if (ShowChipsInfo) 
 		{
 			GUI.skin.label .fontSize = 32;
-			GUI.BeginGroup (new Rect (1920 / 2 - 700, 1080 / 2-500 , 500, 200));
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "EAT EACH MEMORY CHIP WILL GAIN 1MB EAT THEM ALL U WILL GET BONUS");
 			GUI.EndGroup ();
 		}
-
+		Shop.EndUIResizing ();
 	}
 }

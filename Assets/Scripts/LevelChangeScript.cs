@@ -9,7 +9,7 @@ public class LevelChangeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		levels = new List<string>(){"Level_1-1", "Level_1-2", "Level_1-3", "Level_1-4","Level_1-5","Level_1-6","Level_1-7","Level_3-1","Level_3-2","Level_3-3"};
+		levels = new List<string>(){"Level_0-1","Level_1-1", "Level_1-2", "Level_1-3", "Level_1-4","Level_1-5","Level_1-6","Level_1-7","Level_1Boss","Level_2-1","Level_2-2","Level_2-3","Level_2-4","Level_2-5","Level_2-6","Level_2Boss","Level_3-1","Level_3-2","Level_3-3","Level_3-4","Level_3-5","Level_3-6","Level_3Boss"};
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -31,6 +31,7 @@ public class LevelChangeScript : MonoBehaviour {
 		if (other.tag == "Player" && !HeroController.GameOver)
 		{
            //Instantiate();
+			//Score.score=100;
 			if (Application.loadedLevelName != "MainMenu") 
             	 GameObject.Find("Camera").GetComponent<camerafollowing>().StopTrack();
 	

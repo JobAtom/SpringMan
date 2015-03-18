@@ -19,7 +19,7 @@ public class StartingPowers : MonoBehaviour {
 	{
 		if (other.tag == ("Player")) 
 		{
-			Score.score=100;
+
 			HeroPowers.ChargeSkill=false;
 			HeroPowers.DrillSkill=false;
 		}

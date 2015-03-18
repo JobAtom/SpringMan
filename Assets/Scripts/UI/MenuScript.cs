@@ -166,6 +166,8 @@ public class MenuScript : MonoBehaviour {
 				Shop.sendBarrierlv2 =false;
 				Shop.sendBarrierlv3 =false;
 				Shop.sendBarrierlv4 =false;
+				Shop.barrierSelected =false;
+				Shop.sendBarrier =false;
 				Shop.drillSelected =false;
 				Shop.sendDrill =false;
 				Shop.chargeSelected =false;
@@ -195,6 +197,7 @@ public class MenuScript : MonoBehaviour {
 			{
 
 				ButtonSound.Play();
+				PlayerPrefs .DeleteAll ();
 				//System.Threading .Thread.Sleep (300);
 				CheckPoint.CheckPointOne =false;
 				CheckPoint.triggered =false;
