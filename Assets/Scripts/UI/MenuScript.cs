@@ -32,6 +32,7 @@ public class MenuScript : MonoBehaviour {
 	private float t=0;
 
 	void Start () {
+		//Debug.Log (Application.loadedLevelName);
 		if(Application.loadedLevelName!="Level_Shop")
 			player = GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController> ();
 		cameracontrol = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent <camerafollowing > ();
@@ -209,11 +210,20 @@ public class MenuScript : MonoBehaviour {
 				IsLevel=true;
 				IsOpen=false;
 			}
-			if (GUI.Button(new Rect(100, 188, 800, 90), "LOAD"))
+			if(!Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend")))
 			{
-				ButtonSound.Play();
-				if(PlayerPrefs.GetString("saved")!=null)
+				GUI.enabled=false;
+				GUI.Button (new Rect(100,188,800,90),"LOAD");
+				GUI.enabled=true;
+			}
+			if(Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend")))
+			{
+				if (GUI.Button(new Rect(100, 188, 800, 90), "LOAD"))
 				{
+
+					ButtonSound.Play();
+				//if(PlayerPrefs.GetString("saved")!=null)
+				//{
 					Score.score =PlayerPrefs.GetInt ("Score");
 					Score.memory=PlayerPrefs.GetInt ("MemoryChips");
 					VitalsScript .MaxHealth=PlayerPrefs.GetInt ("MaxHealth");
@@ -234,6 +244,7 @@ public class MenuScript : MonoBehaviour {
 					Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send"));
 					Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend"));
 					Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel"));
+				//}
 				}
 			}
 			if (GUI.Button(new Rect(100,321 ,800, 90), "SETTINGS"))
@@ -322,6 +333,8 @@ public class MenuScript : MonoBehaviour {
 					Shop.sendBarrierlv2 =false;
 					Shop.sendBarrierlv3 =false;
 					Shop.sendBarrierlv4 =false;
+					Shop.sendBarrier =false;
+					Shop.barrierSelected =false;
 					Shop.drillSelected =false;
 					Shop.sendDrill =false;
 					Shop.chargeSelected =false;
@@ -358,7 +371,7 @@ public class MenuScript : MonoBehaviour {
 						//s.SkillUp =true;
 					}
 				}
-				if(Application.loadedLevelName!="Level_Shop")
+				if(Application.loadedLevelName!="Level_Shop"&&Application.loadedLevelName!="Level_0-1")
 				{
 					if(GUI.Button(new Rect(100,188,800,90),"SAVE"))
 			    	{
@@ -386,7 +399,7 @@ public class MenuScript : MonoBehaviour {
 						PlayerPrefs.SetString ("saved", "AllReadySaved");
 					}
 				}
-				if(Application.loadedLevelName =="Level_Shop")
+				if(Application.loadedLevelName =="Level_Shop"||Application.loadedLevelName=="Level_0-1")
 				{
 
 						GUI.enabled=false;
