@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class HeroController : MonoBehaviour
 {
-
+	private float originalHelmetPositionX;
     public Animator anim;
 	private Animator helmetanim;
     public ParticleSystem particle;
@@ -61,7 +61,9 @@ public class HeroController : MonoBehaviour
         HeroController.GameOver = false;
         restarting = false;
         falling = true;
+		originalHelmetPositionX = Helmet.transform.position.x;
         jumping = false;
+
 
         CheckPoint.Check();
     }
@@ -143,13 +145,35 @@ public class HeroController : MonoBehaviour
 		{
 			//Helmet.GetComponent<SpriteRenderer> ().enabled = true;
 			//Helmet.GetComponent<Collider2D> ().enabled = true;
+
+			if(!grounded&&facingRight )
+				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x-0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
+			if(!grounded&&!facingRight )
+				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x+0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
 			Helmet.SetActive (true);
 			helmetanim = GameObject.FindGameObjectWithTag ("Helmet").GetComponent<Animator> ();
+			if(grounded&&Input.GetAxis ("Horizontal")>0)
+			{
+				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x+0.03f,Helmet.transform.position.y,Helmet.transform.position.z);
+			}
+			if(grounded&&Input.GetAxis ("Horizontal")<0)
+			{
+				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x-0.03f,Helmet.transform.position.y,Helmet.transform.position.z);
+			}
+			else if(grounded&&Input.GetAxis ("Horizontal")==0)
+			{
+				if(facingRight )
+					Helmet.transform.position=new Vector3(this.gameObject.transform.position.x -0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
+				else
+					Helmet.transform.position=new Vector3(this.gameObject.transform.position.x +0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
+			}
+				
 			if (Input.GetAxis ("Jump") == 1)
 			{
 				acceleratorNum = 1.6f;
 				helmetanim.SetBool ("accelerating", true);
 			}
+
 			if (Input.GetAxis ("Jump") == 0)
 				helmetanim.SetBool ("accelerating", false);
 						//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
