@@ -16,6 +16,7 @@ public class HeroController : MonoBehaviour
 	private float acceleratorNum=1f;
 	public AudioSource HurtSound;
 	public AudioSource HealSound;
+	private int localMemory = 0;
 
     public bool facingRight = true;
     private bool letgo = true;
@@ -366,7 +367,7 @@ public class HeroController : MonoBehaviour
         VitalsScript .CurrentEnergy = 0;
         VitalsScript .CurrentHealth = VitalsScript.MaxHealth ;
         Score.score = 0;
-		Score.memory = 0;
+		Score.memory = localMemory;
 
         /*Shop.speedlevel = 0;
         Shop.energylevel = 0;
@@ -469,5 +470,10 @@ public class HeroController : MonoBehaviour
 	{
 
 		this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge =false;
+	}
+
+	public void saveMemory()
+	{
+		localMemory = Score.memory;
 	}
 }

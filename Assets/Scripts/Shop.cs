@@ -461,7 +461,9 @@ public class Shop : MonoBehaviour
 				StartCoroutine (TypeWritter("PLEASE BUY BARRIER SKILL FIRST IN SKILLUP\n\r"));
 				return;
 			}
-			
+
+			GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>().saveMemory();
+
 			VitalsScript .CurrentHealth =VitalsScript .MaxHealth ;
 			VitalsScript.CurrentEnergy =0;
 			System.Threading .Thread.Sleep (300);
@@ -1330,7 +1332,6 @@ public class Shop : MonoBehaviour
 		stack.RemoveAt (stack.Count - 1);
 		_didResizeUI = false;
 	}
-
 
 
 }
