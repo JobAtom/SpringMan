@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 9f748b72608b7b446a98652882ee6ea6
+guid: 0ea235146f4828944bd0e1746cb7c656
 TextureImporter:
   fileIDToRecycleName:
     21300000: shop background ver 2.0
-    21300002: shop background ver 1.0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
