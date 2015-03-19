@@ -40,7 +40,7 @@ public class SelfDestroy : MonoBehaviour {
 			if (other.collider.tag == "ground") 
 			{
 				destroyparachute = true;
-				Debug.Log("ParachteDestroyed");	
+			//	Debug.Log("ParachteDestroyed");	
 				//Destroy(this.gameObject);
 			}		
 		}

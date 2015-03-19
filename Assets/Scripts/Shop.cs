@@ -104,7 +104,7 @@ public class Shop : MonoBehaviour
 		GUI.skin.button.fontSize=64;
 		GUI.depth = 10;
 		GUI.DrawTexture (new Rect (-50, 0, 2100, 1500), shopBackground);
-		GUI.Label (new Rect (1920 - 600, 100, 600, 700), "SCORE: " + Score.score + "    \r" + "\nMEMORY: " + Score.memory + " MB");
+		//GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
 			
 
 		//GUI.enabled = false;

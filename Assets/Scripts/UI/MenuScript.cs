@@ -224,7 +224,7 @@ public class MenuScript : MonoBehaviour {
 					ButtonSound.Play();
 				//if(PlayerPrefs.GetString("saved")!=null)
 				//{
-					Score.score =PlayerPrefs.GetInt ("Score");
+					Score.score =0;
 					Score.memory=PlayerPrefs.GetInt ("MemoryChips");
 					VitalsScript .MaxHealth=PlayerPrefs.GetInt ("MaxHealth");
 					VitalsScript.MaxEnergy=PlayerPrefs.GetInt ("MaxEnergy");
@@ -276,7 +276,7 @@ public class MenuScript : MonoBehaviour {
 
 	private void GameMenu()
 	{
-		GUI.Label (new Rect (1920 - 600, 100, 600, 700), "SCORE: " + Score.score + "    \r" + "\nMEMORY: " + Score.memory + " MB");
+		GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
 		if (IsOpen)
 		{
 			if(Application.loadedLevelName =="Level_Shop")
@@ -377,7 +377,7 @@ public class MenuScript : MonoBehaviour {
 			    	{
 						ButtonSound.Play ();
 						PlayerPrefs.SetInt ("CurrentLevel",Application.loadedLevel );
-						PlayerPrefs.SetInt ("Score",Score.score );
+						//PlayerPrefs.SetInt ("Score",Score.score );
 						PlayerPrefs.SetInt ("MemoryChips",player.GetLocalMemory ());
 						PlayerPrefs.SetInt ("MaxHealth",VitalsScript .MaxHealth);
 						PlayerPrefs.SetInt ("MaxEnergy",VitalsScript .MaxEnergy);

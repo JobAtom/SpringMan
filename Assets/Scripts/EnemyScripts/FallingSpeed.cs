@@ -13,7 +13,7 @@ public class FallingSpeed : MonoBehaviour {
 	void Start () {
 		this.gameObject.rigidbody2D.velocity =new Vector2(0, FallSpeed);
 
-		Debug.Log ("fallspeed");
+//		Debug.Log ("fallspeed");
 		anim = GetComponent<Animator>();
 		anim.enabled = true; 
 
