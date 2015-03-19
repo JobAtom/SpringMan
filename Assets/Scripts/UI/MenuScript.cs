@@ -378,7 +378,7 @@ public class MenuScript : MonoBehaviour {
 						ButtonSound.Play ();
 						PlayerPrefs.SetInt ("CurrentLevel",Application.loadedLevel );
 						PlayerPrefs.SetInt ("Score",Score.score );
-						PlayerPrefs.SetInt ("MemoryChips",Score.memory );
+						PlayerPrefs.SetInt ("MemoryChips",player.GetLocalMemory ());
 						PlayerPrefs.SetInt ("MaxHealth",VitalsScript .MaxHealth);
 						PlayerPrefs.SetInt ("MaxEnergy",VitalsScript .MaxEnergy);
 						PlayerPrefs.SetInt ("ChargeSkillSend",Convert.ToInt32(Shop.sendCharge));

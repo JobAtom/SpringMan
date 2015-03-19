@@ -477,4 +477,8 @@ public class HeroController : MonoBehaviour
 	{
 		localMemory = Score.memory;
 	}
+	public int GetLocalMemory()
+	{
+		return localMemory;
+	}
 }
