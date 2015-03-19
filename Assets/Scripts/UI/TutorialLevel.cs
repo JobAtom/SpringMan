@@ -7,14 +7,29 @@ public class TutorialLevel : MonoBehaviour {
 	private bool ShowBarrierSkillInfo=false;
 	private bool ShowKillEnemyInfo=false;
 	private bool ShowChipsInfo=false;
+	private GameObject meteor;
+	private bool barriercalled;
+	public GameObject wall;
 
 	// Use this for initialization
 	void Start () {
-	
+		meteor = GameObject.FindGameObjectWithTag ("Meteor");
+		barriercalled=false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		if (meteor.transform.position.y < -25f&&barriercalled) 
+		{
+			meteor.GetComponent<Meteor >().enabled=false;
+			Destroy (wall);
+			//HeroPowers .BarrierSkill =false;
+		}
+		if (GameObject.FindGameObjectWithTag ("Barrier"))
+						barriercalled = true;
+
+		if (barriercalled)
+						HeroPowers.BarrierSkill = false;
 	
 	}
 	void OnTriggerEnter2D(Collider2D other)
@@ -34,6 +49,8 @@ public class TutorialLevel : MonoBehaviour {
 		if (other.name == "BarrierSkill") 
 		{
 			ShowBarrierSkillInfo =true;
+			meteor.GetComponent<Meteor >().enabled=true;
+			HeroPowers .BarrierSkill =true;
 		}
 		if (other.name == "EatChips") 
 		{
@@ -57,6 +74,7 @@ public class TutorialLevel : MonoBehaviour {
 		if (other.name == "BarrierSkill") 
 		{
 			ShowBarrierSkillInfo =false ;
+			HeroPowers.BarrierSkill =false;
 		}
 		if (other.name == "EatChips") 
 		{
@@ -98,6 +116,14 @@ public class TutorialLevel : MonoBehaviour {
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "EAT EACH MEMORY CHIP WILL GAIN 1MB EAT THEM ALL U WILL GET BONUS");
+			GUI.EndGroup ();
+		}
+		if (ShowBarrierSkillInfo)
+		{
+			GUI.skin.label .fontSize = 32;
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
+			GUI.Box (new Rect (0,0,500,200), "");
+			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'CTRL' USE BARRIER WHICH CAN STOP METEOR FOR A WHILE");
 			GUI.EndGroup ();
 		}
 		Shop.EndUIResizing ();
