@@ -61,12 +61,12 @@ public class Meteor : MonoBehaviour {
 		}
 		else if (other.tag == "Barrier"&&started)
 		{
-			count=count+barrierTime;;
+			count=count+barrierTime;
 			started = false;
 
 			barrier=other.gameObject;
 
-			Invoke ("HitBarrier",2f*count);
+			Invoke ("HitBarrier",count);
 		}
 		else if(other.tag == "SuperBarrier"&&started)
 		{
