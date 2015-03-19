@@ -73,7 +73,7 @@ public class Meteor : MonoBehaviour {
 			count=count+barrierTime;
 			started = false;
 			barrier=other.gameObject;
-			Invoke("HitBarrier",60f);
+			Invoke("HitBarrier",180f);
 			//Destroy (other.gameObject);
 		}
 		else if(other.tag == "PowerfulBarrier"&&started)
@@ -107,7 +107,7 @@ public class Meteor : MonoBehaviour {
 			count=count+barrierTime;
 			started = false;
 			barrier=other.gameObject;
-			Invoke("HitBarrier",60f);
+			Invoke("HitBarrier",180f);
 			//Destroy (other.gameObject);
 		}
 		else if(other.tag == "PowerfulBarrier"&&started)
