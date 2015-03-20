@@ -7,6 +7,7 @@ public class TutorialLevel : MonoBehaviour {
 	private bool ShowBarrierSkillInfo=false;
 	private bool ShowKillEnemyInfo=false;
 	private bool ShowChipsInfo=false;
+	private bool HelloWords=true;
 	private GameObject meteor;
 	private bool barriercalled;
 	public GameObject wall;
@@ -15,6 +16,8 @@ public class TutorialLevel : MonoBehaviour {
 	void Start () {
 		meteor = GameObject.FindGameObjectWithTag ("Meteor");
 		barriercalled=false;
+		Invoke ("DisableHelloWords", 1f);
+
 	}
 	
 	// Update is called once per frame
@@ -34,11 +37,12 @@ public class TutorialLevel : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.name == "EnemyKill") 
+		if (other.name == "EnemyKill") 
 		{
 			ShowKillEnemyInfo =true;
+			HelloWords =false;
 		}
-		if (other.gameObject.name == "ChargeSkill") 
+		if (other.name == "ChargeSkill") 
 		{
 			ShowChargeSkillInfo =true;
 		}
@@ -84,48 +88,68 @@ public class TutorialLevel : MonoBehaviour {
 	void OnGUI()
 	{
 		Shop.BeginUIResizing ();
+		GUI.skin.label.fontSize = 32;
+		if (HelloWords)
+		{
+			GUI.BeginGroup (new Rect (1920 / 2 - 200, 1080 / 2 - 300, 500, 200));
+			GUI.Box (new Rect (0, 0, 500, 200), "");
+		
+			GUI.Label (new Rect (50, 50, 400, 150), "WELCOME TO SPRINGMAN'S WORLD");
+			GUI.EndGroup ();
+		}
+		//Invoke ("DisableHelloWords", 1f);
+		ShowInfo ();
+		Shop.EndUIResizing ();
+	}
+	void ShowInfo()
+	{
 		if (ShowKillEnemyInfo) 
 		{
-			GUI.skin.label .fontSize = 32;
+			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			
 			GUI.Label(new Rect(50, 50, 400, 150), "JUMP ON ENEMY'S HEAD TO KILL IT");
 			GUI.EndGroup ();
 		}
-		if (ShowChargeSkillInfo) 
+		else if (ShowChargeSkillInfo) 
 		{
-			GUI.skin.label .fontSize = 32;
+			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'ALT' TO USE CHARGE SKILL TO KILL ENEMY");
 			GUI.EndGroup ();
 		}
-		if (ShowDrillSkillInfo) 
+		else if (ShowDrillSkillInfo) 
 		{
-
-			GUI.skin.label .fontSize = 32;
+			
+			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'SHIFT' TO USE DRILL SKILL TO DRILL THROUGH PLATFORMS");
 			GUI.EndGroup ();
 		}
-		if (ShowChipsInfo) 
+		else if (ShowChipsInfo) 
 		{
-			GUI.skin.label .fontSize = 32;
+			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "EAT EACH MEMORY CHIP WILL GAIN 1MB EAT THEM ALL U WILL GET BONUS");
 			GUI.EndGroup ();
 		}
-		if (ShowBarrierSkillInfo)
+		else if (ShowBarrierSkillInfo)
 		{
-			GUI.skin.label .fontSize = 32;
+			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'CTRL' USE BARRIER WHICH CAN STOP METEOR FOR A WHILE");
 			GUI.EndGroup ();
 		}
-		Shop.EndUIResizing ();
 	}
+	void DisableHelloWords()
+	{
+		CancelInvoke ();
+		HelloWords = false;
+	}
+
 }
