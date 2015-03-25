@@ -38,11 +38,11 @@ public class MoveProjectileScript : MonoBehaviour {
         angle = CalculateAngle();
 		var absAngle = Mathf.Abs (angle);
         //if (parent != null)
-		if (this.gameObject.name == "Torpedo(Clone)"||this.gameObject.name=="Projectile(Clone)") {
+		//if (this.gameObject.name == "Torpedo(Clone)"||this.gameObject.name=="Projectile(Clone)") {
 			maxspeed = 30;
-				}
-		else
-			maxspeed = 30+ /*Math.Abs((int) player.rigidbody2D.velocity.x)*/ Math.Abs((int) player.rigidbody2D.velocity.y);
+				//}
+		//else
+			//maxspeed = 30+ /*Math.Abs((int) player.rigidbody2D.velocity.x)*/ Math.Abs((int) player.rigidbody2D.velocity.y);
         float div = 45 / (maxspeed / 2);
 		xSpeed = maxspeed - (float) Math.Round(absAngle / div);
         ySpeed = maxspeed - xSpeed;
