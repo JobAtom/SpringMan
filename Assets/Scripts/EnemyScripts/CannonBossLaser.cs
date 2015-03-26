@@ -94,7 +94,7 @@ public class CannonBossLaser : MonoBehaviour
 			{
 				time2 += Time.deltaTime / laserShootTime;
 			}
-			laserChargeBall.transform.localScale = Vector3.Lerp(chargeFinalScale, chargeStartingScale, time2);
+			//laserChargeBall.transform.localScale = Vector3.Lerp(chargeFinalScale, chargeStartingScale, time2);
 
 			bossLaser.transform.localScale = Vector3.Lerp(laserStartingScale, laserFinalScale, time2);
 			mainCameraScript.screenShake(2f,laserShootTime);
@@ -108,6 +108,7 @@ public class CannonBossLaser : MonoBehaviour
 			}
 			laserChargeBall.transform.localScale = chargeStartingScale;
 			bossLaser.transform.localScale = Vector3.Lerp(laserFinalScale, laserStartingScale, time3);
+			laserChargeBall.transform.localScale = Vector3.Lerp(chargeFinalScale, chargeStartingScale, time3);
 			StartCoroutine("laserUnfire");
 		}
 		else if(step == 4)
