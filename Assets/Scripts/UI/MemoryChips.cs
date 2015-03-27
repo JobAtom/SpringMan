@@ -65,17 +65,18 @@ public class MemoryChips : MonoBehaviour {
 		{
 			chipfinish .Play ();
 
-			for(int i=0;i<Chips.Length;i++)
-			{
-				Destroy(Chips[i]);
 
-			}
 			if(Chips.Length >1)
 			{
 				Instantiate (Points,new Vector3(Chips[lastchip].transform.position.x,Chips[lastchip].transform.position.y+2f,Chips[lastchip].transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
 
 
 				Score.memory +=5;
+			}
+			for(int i=0;i<Chips.Length;i++)
+			{
+				Destroy(Chips[i]);
+				
 			}
 			Chips=null;
 
