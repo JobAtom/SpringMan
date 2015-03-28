@@ -298,7 +298,7 @@ public class MenuScript : MonoBehaviour {
 			GUI.Label (new Rect(100,20,600,120),"TYPE NAME: ");
 			if(select1 )
 			{
-				str[0]=GUI.TextField (new Rect(100,150,800,100),str[0],15);
+				str[0]=GUI.TextField (new Rect(100,150,800,100),str[0],10);
 				if(GUI.Button(new Rect(600,260,250,90),"BACK"))
 				{
 					ButtonSound .Play ();
@@ -316,7 +316,7 @@ public class MenuScript : MonoBehaviour {
 			}
 			else if(select2)
 			{
-				str[1]=GUI.TextField (new Rect(100,150,800,100),str[1],15);
+				str[1]=GUI.TextField (new Rect(100,150,800,100),str[1],10);
 				if(GUI.Button(new Rect(600,260,250,90),"BACK"))
 				{
 					ButtonSound .Play ();
@@ -336,7 +336,7 @@ public class MenuScript : MonoBehaviour {
 			}
 			else if(select3)
 			{
-				str[2]=GUI.TextField (new Rect(100,150,800,100),str[2],15);
+				str[2]=GUI.TextField (new Rect(100,150,800,100),str[2],10);
 				if(GUI.Button(new Rect(600,260,250,90),"BACK"))
 				{
 					ButtonSound .Play ();
@@ -356,7 +356,7 @@ public class MenuScript : MonoBehaviour {
 			}
 			else if(select4)
 			{
-				str[3]=GUI.TextField (new Rect(100,150,800,100),str[3],15);
+				str[3]=GUI.TextField (new Rect(100,150,800,100),str[3],10);
 				if(GUI.Button(new Rect(600,260,250,90),"BACK"))
 				{
 					ButtonSound .Play ();
@@ -403,7 +403,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 
-				if(GUI.Button(new Rect(100, 55, 540, 90), str[0]))
+				if(GUI.Button(new Rect(100, 55, 540, 90), str[0]+"   "+PlayerPrefs.GetInt ("CurrentLevel1")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (1);
@@ -436,7 +436,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 
-				if(GUI.Button(new Rect(100, 188, 540, 90), str[1]))
+				if(GUI.Button(new Rect(100, 188, 540, 90), str[1]+"   "+PlayerPrefs.GetInt ("CurrentLevel2")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (2);
@@ -470,7 +470,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 				
-				if(GUI.Button(new Rect(100, 321, 540, 90), str[2]))
+				if(GUI.Button(new Rect(100, 321, 540, 90), str[2]+"   "+PlayerPrefs.GetInt ("CurrentLevel3")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (3);
@@ -504,7 +504,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 				
-				if(GUI.Button(new Rect(100, 455, 540, 90), str[3]))
+				if(GUI.Button(new Rect(100, 455, 540, 90), str[3]+"   "+PlayerPrefs.GetInt ("CurrentLevel4")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (4);
