@@ -16,7 +16,7 @@ public class HeroPowers : MonoBehaviour
 
 	public static bool ChargeSkill =false;
 
-	public static bool BarrierSkill =true;
+	public static bool BarrierSkill =false;
 	public static bool DrillSkill=false;
 	float lastTime;
 	public float ArrowLeftCount;
@@ -93,7 +93,9 @@ public class HeroPowers : MonoBehaviour
 
 	public void chargeHeatResistantSuit()
 	{
-		GameObject.FindGameObjectWithTag("HeatResistantSuit").GetComponent<HeatResistantSuit>().changeTime(HRSTimeBoost);
+		bool success = heroController.Vitals.UseEnergy (3);
+		if(success)
+			GameObject.FindGameObjectWithTag("HeatResistantSuit").GetComponent<HeatResistantSuit>().changeTime(HRSTimeBoost);
 	}
 
 	public void UseDrill()
