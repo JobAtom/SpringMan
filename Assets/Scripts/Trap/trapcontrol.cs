@@ -30,6 +30,11 @@ public class trapcontrol : MonoBehaviour {
 						l.GetComponent<platformMove>().enabled=true;
 					if(l.GetComponent<LaserMove>()!=null)
 						l.GetComponent<LaserMove>().enabled=true;
+					if(l.name.CompareTo("magnet") == 0)
+					{
+						l.GetComponent<magnet>().enabled = true;
+						l.transform.FindChild("MagneticWaves").GetComponent<SpriteRenderer>().enabled = true;
+					}
 				}
 				else 
 					l.SetActive (false);

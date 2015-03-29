@@ -22,6 +22,7 @@ public class HeroPowers : MonoBehaviour
 	public float ArrowLeftCount;
 	public float ArrowRightCount;
 	public bool HeroStartCharge;
+	public float HRSTimeBoost = Meteor.barrierTime;
 	bool success;
 
     // Use this for initialization
@@ -52,6 +53,8 @@ public class HeroPowers : MonoBehaviour
         {
 			if(BarrierSkill)
             	SummonBarrier();
+			else
+				chargeHeatResistantSuit();
         }	
 
 		if (Input.GetButtonDown("Drill") && !HeroController.GameOver)
@@ -87,6 +90,11 @@ public class HeroPowers : MonoBehaviour
 
         }
     }
+
+	public void chargeHeatResistantSuit()
+	{
+		GameObject.FindGameObjectWithTag("HeatResistantSuit").GetComponent<HeatResistantSuit>().changeTime(HRSTimeBoost);
+	}
 
 	public void UseDrill()
 	{
