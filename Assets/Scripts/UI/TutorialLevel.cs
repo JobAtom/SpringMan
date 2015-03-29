@@ -7,6 +7,7 @@ public class TutorialLevel : MonoBehaviour {
 	private bool ShowBarrierSkillInfo=false;
 	private bool ShowKillEnemyInfo=false;
 	private bool ShowChipsInfo=false;
+	private bool ShowLostPowersInfo = false;
 	private bool HelloWords=true;
 	private GameObject meteor;
 	private bool barriercalled;
@@ -60,6 +61,10 @@ public class TutorialLevel : MonoBehaviour {
 		{
 			ShowChipsInfo=true;
 		}
+		if (other.name == "EndPowers") 
+		{
+			ShowLostPowersInfo = true;
+		}
 	}
 	void OnTriggerExit2D(Collider2D other)
 	{
@@ -83,6 +88,10 @@ public class TutorialLevel : MonoBehaviour {
 		if (other.name == "EatChips") 
 		{
 			ShowChipsInfo=false;
+		}
+		if (other.name == "EndPowers") 
+		{
+			ShowLostPowersInfo = true;
 		}
 	}
 	void OnGUI()
@@ -109,7 +118,7 @@ public class TutorialLevel : MonoBehaviour {
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
 			
-			GUI.Label(new Rect(50, 50, 400, 150), "JUMP ON ENEMY'S HEAD TO KILL IT");
+			GUI.Label(new Rect(50, 50, 400, 150), "JUMP ON AN ENEMY'S HEAD TO KILL IT");
 			GUI.EndGroup ();
 		}
 		else if (ShowChargeSkillInfo) 
@@ -117,7 +126,7 @@ public class TutorialLevel : MonoBehaviour {
 			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
-			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'ALT' TO USE CHARGE SKILL TO KILL ENEMY");
+			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'ALT' TO USE THE CHARGE SKILL TO KILL ENEMIES");
 			GUI.EndGroup ();
 		}
 		else if (ShowDrillSkillInfo) 
@@ -126,7 +135,7 @@ public class TutorialLevel : MonoBehaviour {
 			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
-			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'SHIFT' TO USE DRILL SKILL TO DRILL THROUGH PLATFORMS");
+			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'SHIFT' TO DRILL THROUGH PLATFORMS");
 			GUI.EndGroup ();
 		}
 		else if (ShowChipsInfo) 
@@ -134,7 +143,7 @@ public class TutorialLevel : MonoBehaviour {
 			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
-			GUI.Label(new Rect(20, 20, 400, 150), "EAT EACH MEMORY CHIP WILL GAIN 1MB EAT THEM ALL U WILL GET BONUS");
+			GUI.Label(new Rect(20, 20, 400, 150), "EACH MEMORY CHIP WILL GIVE YOU 1MB. GRAB THEM ALL FOR A BONUS");
 			GUI.EndGroup ();
 		}
 		else if (ShowBarrierSkillInfo)
@@ -142,7 +151,15 @@ public class TutorialLevel : MonoBehaviour {
 			//GUI.skin.label .fontSize = 32;
 			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
 			GUI.Box (new Rect (0,0,500,200), "");
-			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'CTRL' USE BARRIER WHICH CAN STOP METEOR FOR A WHILE");
+			GUI.Label(new Rect(20, 20, 400, 150), "PRESS 'CTRL' TO USE THE BARRIER WHICH CAN STOP THE METEOR FOR A WHILE");
+			GUI.EndGroup ();
+		}
+		else if (ShowLostPowersInfo)
+		{
+			//GUI.skin.label .fontSize = 32;
+			GUI.BeginGroup (new Rect (1920 / 2 -200, 1080 / 2-300 , 500, 200));
+			GUI.Box (new Rect (0,0,500,200), "");
+			GUI.Label(new Rect(20, 20, 400, 150), "ERROR: ALL SKILLS HAVE BEEN LOST!");
 			GUI.EndGroup ();
 		}
 	}
