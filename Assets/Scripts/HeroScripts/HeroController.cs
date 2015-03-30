@@ -31,6 +31,7 @@ public class HeroController : MonoBehaviour
     public float jumpForce = 700f;
     public VitalsScript Vitals;
 	public GameObject Helmet;
+	public bool suitOn;
 
     public static bool GameOver = false;
 	private bool OnElevator;

@@ -403,7 +403,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 
-				if(GUI.Button(new Rect(100, 55, 540, 90), str[0]+"   "+PlayerPrefs.GetInt ("CurrentLevel1")*100/(LevelChangeScript.levels.Count-1)+"%"))
+				if(GUI.Button(new Rect(100, 55, 540, 90), str[0]+" - "+PlayerPrefs.GetInt ("CurrentLevel1")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (1);
@@ -436,7 +436,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 
-				if(GUI.Button(new Rect(100, 188, 540, 90), str[1]+"   "+PlayerPrefs.GetInt ("CurrentLevel2")*100/(LevelChangeScript.levels.Count-1)+"%"))
+				if(GUI.Button(new Rect(100, 188, 540, 90), str[1]+" - "+PlayerPrefs.GetInt ("CurrentLevel2")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (2);
@@ -470,7 +470,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 				
-				if(GUI.Button(new Rect(100, 321, 540, 90), str[2]+"   "+PlayerPrefs.GetInt ("CurrentLevel3")*100/(LevelChangeScript.levels.Count-1)+"%"))
+				if(GUI.Button(new Rect(100, 321, 540, 90), str[2]+" - "+PlayerPrefs.GetInt ("CurrentLevel3")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (3);
@@ -504,7 +504,7 @@ public class MenuScript : MonoBehaviour {
 			else
 			{
 				
-				if(GUI.Button(new Rect(100, 455, 540, 90), str[3]+"   "+PlayerPrefs.GetInt ("CurrentLevel4")*100/(LevelChangeScript.levels.Count-1)+"%"))
+				if(GUI.Button(new Rect(100, 455, 540, 90), str[3]+" - "+PlayerPrefs.GetInt ("CurrentLevel4")*100/(LevelChangeScript.levels.Count-1)+"%"))
 				{
 					ButtonSound.Play();
 					Load (4);
@@ -727,7 +727,12 @@ public class MenuScript : MonoBehaviour {
 
 	private void GameMenu()
 	{
-		GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
+		if (Application.loadedLevelName != "Level_Shop"&&Application.loadedLevelName!="Level_0-1") 
+		{
+			GUI.Label (new Rect (1920 - 600, 50, 600, 700),Application.loadedLevelName+"\r"+ "\nENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
+		}
+		else 
+			GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
 		if (IsOpen)
 		{
 			if(Application.loadedLevelName =="Level_Shop")
@@ -818,7 +823,8 @@ public class MenuScript : MonoBehaviour {
 				boxHeight = 600;
 				GUI.BeginGroup (new Rect (1920 / 2 - 500,1080/ 2 - 299, 1000, boxHeight));
 				GUI.Box (new Rect (0,0,1000,boxHeight), "");
-				if (GUI.Button(new Rect(100, 55, 800, 90), "RESUME"))
+				GUI.Label (new Rect(100, 55, 800, 90),"COMPLETION"+"-"+Application.loadedLevel*100/(LevelChangeScript.levels.Count-1)+"%");
+				if (GUI.Button(new Rect(100, 188, 800, 90), "RESUME"))
 				{
 					ButtonSound.Play();
 					IsOpen = false;
@@ -866,7 +872,7 @@ public class MenuScript : MonoBehaviour {
 						GUI.enabled=true;
 
 				}*/
-				if (GUI.Button(new Rect(100, 254, 800,90), "SETTINGS"))
+				if (GUI.Button(new Rect(100, 321, 800,90), "SETTINGS"))
 				{
 					ButtonSound.Play();
 					settings = true;
@@ -1034,6 +1040,9 @@ public class MenuScript : MonoBehaviour {
 			Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send1"));
 			Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend1"));
 			str[0]=PlayerPrefs.GetString ("UserName1");
+			HeroPowers .BarrierSkill =Shop.sendBarrier ;
+			HeroPowers.ChargeSkill =Shop.sendCharge ;
+			HeroPowers.DrillSkill =Shop.sendDrill ;
 			//Application.LoadLevel (PlayerPrefs.GetInt ("CurrentLevel1"));
 		}
 		if (count == 2) 
@@ -1058,6 +1067,9 @@ public class MenuScript : MonoBehaviour {
 			Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send2"));
 			Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend2"));
 			str[1]=PlayerPrefs.GetString ("UserName2");
+			HeroPowers .BarrierSkill =Shop.sendBarrier ;
+			HeroPowers.ChargeSkill =Shop.sendCharge ;
+			HeroPowers.DrillSkill =Shop.sendDrill ;
 		}
 		if (count == 3) 
 		{
@@ -1081,6 +1093,9 @@ public class MenuScript : MonoBehaviour {
 			Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send3"));
 			Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend3"));
 			str[2]=PlayerPrefs.GetString ("UserName3");
+			HeroPowers .BarrierSkill =Shop.sendBarrier ;
+			HeroPowers.ChargeSkill =Shop.sendCharge ;
+			HeroPowers.DrillSkill =Shop.sendDrill ;
 		}
 		if (count == 4) 
 		{
@@ -1104,6 +1119,9 @@ public class MenuScript : MonoBehaviour {
 			Shop.sendBarrierlv4 =Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierLv4Send4"));
 			Shop.sendBarrier=Convert.ToBoolean (PlayerPrefs.GetInt ("BarrierSend4"));
 			str[3]=PlayerPrefs.GetString ("UserName4");
+			HeroPowers .BarrierSkill =Shop.sendBarrier ;
+			HeroPowers.ChargeSkill =Shop.sendCharge ;
+			HeroPowers.DrillSkill =Shop.sendDrill ;
 		}
 	}
 	void SetToBegin()
@@ -1140,6 +1158,7 @@ public class MenuScript : MonoBehaviour {
 		Shop.sendCharge =false;
 		HeroPowers.ChargeSkill =false;
 		HeroPowers.DrillSkill =false;
+		HeroPowers.BarrierSkill = false;
 		Score.score =0;
 		Score.memory =0;
 		VitalsScript .MaxEnergy =3;

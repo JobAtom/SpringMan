@@ -51,9 +51,9 @@ public class HeroPowers : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
 		if(Input.GetButtonDown("Barrier") && !HeroController.GameOver)
         {
-			if(BarrierSkill)
+			if(BarrierSkill&&!heroController .suitOn)
             	SummonBarrier();
-			else
+			else if(heroController .suitOn)
 				chargeHeatResistantSuit();
         }	
 
