@@ -477,6 +477,7 @@ public class Shop : MonoBehaviour
 		if (Score.score != 0) 
 		{
 			StartCoroutine(ScoreToMemory());
+
 		}
     }
 	IEnumerator  ScoreToMemory()

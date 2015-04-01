@@ -69,6 +69,18 @@ public class MenuScript : MonoBehaviour {
 		MenuScript.Volume = AudioListener.volume;
 		if (!IsLevel)
 			IsOpen = true;
+		if (IsLevel) 
+		{
+			if(Application.loadedLevelName!="Level_Shop"&&select1)
+				Save (1);
+			else if(Application.loadedLevelName!="Level_Shop"&&select2)
+				Save (2);
+			else if(Application.loadedLevelName!="Level_Shop"&&select3)
+				Save (3);
+			else if(Application.loadedLevelName!="Level_Shop"&&select4)
+				Save (4);
+
+		}
         Time.timeScale = gameSpeed;
 	}
     void OnGUI(){
@@ -727,17 +739,34 @@ public class MenuScript : MonoBehaviour {
 
 	private void GameMenu()
 	{
+			if(Application.loadedLevelName =="Level_Shop")
+			{
+				if(select1)
+				{
+					Save (1);
+					PlayerPrefs.SetInt ("CurrentLevel1",LevelChangeScript.currentLevel +1);
+				}
+				if(select2)
+				{
+					Save (2);
+					PlayerPrefs.SetInt ("CurrentLevel2",LevelChangeScript.currentLevel +1);
+				}
+				if(select3)
+				{
+					Save (3);
+					PlayerPrefs.SetInt ("CurrentLevel3",LevelChangeScript.currentLevel +1);
+				}
+				if(select4)
+				{
+					Save (4);
+					PlayerPrefs.SetInt ("CurrentLevel4",LevelChangeScript.currentLevel +1);
+				}
+				
+			}
+
 		if (Application.loadedLevelName != "Level_Shop"&&Application.loadedLevelName!="Level_0-1") 
 		{
 			GUI.Label (new Rect (1920 - 600, 50, 600, 700),Application.loadedLevelName+"\r"+ "\nENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
-			if(Application.loadedLevelName!="Level_Shop"&&select1)
-				Save (1);
-			else if(Application.loadedLevelName!="Level_Shop"&&select2)
-				Save (2);
-			else if(Application.loadedLevelName!="Level_Shop"&&select3)
-				Save (3);
-			else if(Application.loadedLevelName!="Level_Shop"&&select4)
-				Save (4);
 		}
 		else 
 			GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
@@ -822,6 +851,7 @@ public class MenuScript : MonoBehaviour {
 						if(select1)
 						{
 							Save (1);
+
 							PlayerPrefs.SetInt ("CurrentLevel1",LevelChangeScript.currentLevel +1);
 						}
 						if(select2)
@@ -857,6 +887,8 @@ public class MenuScript : MonoBehaviour {
 				GUI.Box (new Rect (0,0,1000,boxHeight), "");
 				if(Application.loadedLevelName !="Level_Shop")
 					GUI.Label (new Rect(100, 55, 800, 90),"COMPLETION"+"-"+Application.loadedLevel*100/(LevelChangeScript.levels.Count-1)+"%");
+				if(Application.loadedLevelName=="Level_Shop")
+					GUI.Label (new Rect(100, 55, 800, 90),"COMPLETION"+"-"+(LevelChangeScript.currentLevel+1)*100/(LevelChangeScript.levels.Count-1)+"%");
 				if (GUI.Button(new Rect(100, 188, 800, 90), "RESUME"))
 				{
 					ButtonSound.Play();
