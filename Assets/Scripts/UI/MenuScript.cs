@@ -154,7 +154,7 @@ public class MenuScript : MonoBehaviour {
 			boxHeight = 600;
 			GUI.BeginGroup (new Rect (1920 / 2 - 500, 1080 / 2 - 299, 1000, boxHeight));
 			GUI.Box (new Rect (0,0,1000,boxHeight), "");
-			GUI.Label (new Rect(100,20,600,120)," ");
+			GUI.Label (new Rect(100,20,600,600),"PROGRAMMER-AOBO\r\nPROGRAMMER-YIJU\r\nARTIST-JINGKAI\r\nARTIST-ORLANDO");
 			if(GUI.Button(new Rect(500,450,250,90),"BACK"))
 			{
 				ButtonSound .Play ();
@@ -730,6 +730,14 @@ public class MenuScript : MonoBehaviour {
 		if (Application.loadedLevelName != "Level_Shop"&&Application.loadedLevelName!="Level_0-1") 
 		{
 			GUI.Label (new Rect (1920 - 600, 50, 600, 700),Application.loadedLevelName+"\r"+ "\nENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
+			if(Application.loadedLevelName!="Level_Shop"&&select1)
+				Save (1);
+			else if(Application.loadedLevelName!="Level_Shop"&&select2)
+				Save (2);
+			else if(Application.loadedLevelName!="Level_Shop"&&select3)
+				Save (3);
+			else if(Application.loadedLevelName!="Level_Shop"&&select4)
+				Save (4);
 		}
 		else 
 			GUI.Label (new Rect (1920 - 600, 100, 600, 700), "ENEMY KILLED: " + Score.score + "\r" + "\nMEMORY: " + Score.memory + " MB");
@@ -809,6 +817,30 @@ public class MenuScript : MonoBehaviour {
 						Save (3);
 					else if(Application.loadedLevelName!="Level_Shop"&&select4)
 						Save (4);
+					if(Application.loadedLevelName =="Level_Shop")
+					{
+						if(select1)
+						{
+							Save (1);
+							PlayerPrefs.SetInt ("CurrentLevel1",LevelChangeScript.currentLevel +1);
+						}
+						if(select2)
+						{
+							Save (2);
+							PlayerPrefs.SetInt ("CurrentLevel2",LevelChangeScript.currentLevel +1);
+						}
+						if(select3)
+						{
+							Save (3);
+							PlayerPrefs.SetInt ("CurrentLevel3",LevelChangeScript.currentLevel +1);
+						}
+						if(select4)
+						{
+							Save (4);
+							PlayerPrefs.SetInt ("CurrentLevel4",LevelChangeScript.currentLevel +1);
+						}
+
+					}
 					Application.LoadLevel(0);
 				}
 				if (GUI.Button(new Rect(500, boxHeight - 120, 250, 90), "NO"))
@@ -823,7 +855,8 @@ public class MenuScript : MonoBehaviour {
 				boxHeight = 600;
 				GUI.BeginGroup (new Rect (1920 / 2 - 500,1080/ 2 - 299, 1000, boxHeight));
 				GUI.Box (new Rect (0,0,1000,boxHeight), "");
-				GUI.Label (new Rect(100, 55, 800, 90),"COMPLETION"+"-"+Application.loadedLevel*100/(LevelChangeScript.levels.Count-1)+"%");
+				if(Application.loadedLevelName !="Level_Shop")
+					GUI.Label (new Rect(100, 55, 800, 90),"COMPLETION"+"-"+Application.loadedLevel*100/(LevelChangeScript.levels.Count-1)+"%");
 				if (GUI.Button(new Rect(100, 188, 800, 90), "RESUME"))
 				{
 					ButtonSound.Play();
@@ -922,7 +955,10 @@ public class MenuScript : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt ("CurrentLevel1",Application.loadedLevel );
 			//PlayerPrefs.SetInt ("Score",Score.score );
-			PlayerPrefs.SetInt ("MemoryChips1",player.GetLocalMemory ());
+			if(Application.loadedLevelName !="Level_Shop")
+				PlayerPrefs.SetInt ("MemoryChips1",player.GetLocalMemory ());
+			else 
+				PlayerPrefs.SetInt ("MemoryChips1",Score.memory );
 			PlayerPrefs.SetInt ("MaxHealth1",VitalsScript .MaxHealth);
 			PlayerPrefs.SetInt ("MaxEnergy1",VitalsScript .MaxEnergy);
 			PlayerPrefs.SetInt ("ChargeSkillSend1",Convert.ToInt32(Shop.sendCharge));
@@ -947,7 +983,10 @@ public class MenuScript : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt ("CurrentLevel2",Application.loadedLevel );
 			//PlayerPrefs.SetInt ("Score",Score.score );
-			PlayerPrefs.SetInt ("MemoryChips2",player.GetLocalMemory ());
+			if(Application.loadedLevelName !="Level_Shop")
+				PlayerPrefs.SetInt ("MemoryChips2",player.GetLocalMemory ());
+			else 
+				PlayerPrefs.SetInt ("MemoryChips2",Score.memory );
 			PlayerPrefs.SetInt ("MaxHealth2",VitalsScript .MaxHealth);
 			PlayerPrefs.SetInt ("MaxEnergy2",VitalsScript .MaxEnergy);
 			PlayerPrefs.SetInt ("ChargeSkillSend2",Convert.ToInt32(Shop.sendCharge));
@@ -971,7 +1010,10 @@ public class MenuScript : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt ("CurrentLevel3",Application.loadedLevel );
 			//PlayerPrefs.SetInt ("Score",Score.score );
-			PlayerPrefs.SetInt ("MemoryChips3",player.GetLocalMemory ());
+			if(Application.loadedLevelName !="Level_Shop")
+				PlayerPrefs.SetInt ("MemoryChips3",player.GetLocalMemory ());
+			else 
+				PlayerPrefs.SetInt ("MemoryChips3",Score.memory );
 			PlayerPrefs.SetInt ("MaxHealth3",VitalsScript .MaxHealth);
 			PlayerPrefs.SetInt ("MaxEnergy3",VitalsScript .MaxEnergy);
 			PlayerPrefs.SetInt ("ChargeSkillSend3",Convert.ToInt32(Shop.sendCharge));
@@ -995,7 +1037,10 @@ public class MenuScript : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt ("CurrentLevel4",Application.loadedLevel );
 			//PlayerPrefs.SetInt ("Score",Score.score );
-			PlayerPrefs.SetInt ("MemoryChips4",player.GetLocalMemory ());
+			if(Application.loadedLevelName !="Level_Shop")
+				PlayerPrefs.SetInt ("MemoryChips4",player.GetLocalMemory ());
+			else 
+				PlayerPrefs.SetInt ("MemoryChips4",Score.memory );
 			PlayerPrefs.SetInt ("MaxHealth4",VitalsScript .MaxHealth);
 			PlayerPrefs.SetInt ("MaxEnergy4",VitalsScript .MaxEnergy);
 			PlayerPrefs.SetInt ("ChargeSkillSend4",Convert.ToInt32(Shop.sendCharge));
