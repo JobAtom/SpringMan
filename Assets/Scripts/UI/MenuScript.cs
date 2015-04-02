@@ -776,8 +776,8 @@ public class MenuScript : MonoBehaviour {
 			{
 
 				s.enabled=false;
-				s.PowerUp =false;
-				s.SkillUp =false;
+				//s.PowerUp =false;
+				//s.SkillUp =false;
 			}
 			if(Application.loadedLevelName=="Level_Hospital")
 			{
@@ -897,7 +897,7 @@ public class MenuScript : MonoBehaviour {
 					if(Application.loadedLevelName =="Level_Shop")
 					{
 						s.enabled=true;
-						s.PowerUp=true;
+						//s.PowerUp=true;
 						//s.SkillUp =true;
 					}
 				}

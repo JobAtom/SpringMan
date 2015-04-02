@@ -13,8 +13,8 @@ public class Shop : MonoBehaviour
 
     private bool hasUpdatedGui = false;
   
-    public bool PowerUp;
-    public bool SkillUp;
+   // public bool PowerUp;
+    //public bool SkillUp;
     private int maxHP = 7;
     private int maxEN = 7;
 	private GUIText scorecolor;
@@ -73,8 +73,8 @@ public class Shop : MonoBehaviour
 		//Score.memory = 110;
 		//Score.score = 10;
 		ColorRepeat = 3;
-        PowerUp = true;
-        SkillUp = false;
+      //  PowerUp = true;
+       // SkillUp = true;
 		scorecolor = GameObject.Find ("Score").GetComponent<GUIText> ();
 
 
@@ -336,21 +336,21 @@ public class Shop : MonoBehaviour
 
 
 
-        if (PowerUp)
-        {
+        //if (PowerUp)
+        //{
          
 		
-			GUI.Window (1,new Rect(1920 / 2+300 , 1080 / 2 - 250,600,415),DoMyWindow,"POWERS");
+			GUI.Window (1,new Rect(1920 / 2+300 , 1080 / 2 - 250,600,320),DoMyWindow,"POWERS");
 			GUI.skin.window.fontSize=64;
-		}
+		//}
 
-        if (SkillUp)
-        {
-			GUI.Window (0,new Rect (1920 / 2+300, 1080 / 2 - 250,600,415),DoMyWindow ,"SKILLS");
+//        if (SkillUp)
+  //      {
+			GUI.Window (0,new Rect (1920 / 2+300, 1080 / 2 + 180,600,320),DoMyWindow ,"SKILLS");
 			//Skillup things can be added here;
 
-        }
-		if (GUI.Button(new Rect(100 , 1080 - 200+offset.y/guiScaleFactor , 400 , 150), "POWERUP"))
+    //    }
+		/*if (GUI.Button(new Rect(100 , 1080 - 200+offset.y/guiScaleFactor , 400 , 150), "POWERUP"))
         {
             PowerUp = true;
 			ButtonSound .Play();
@@ -419,8 +419,8 @@ public class Shop : MonoBehaviour
 				barrierlv3Selected =false;
 			if(barrierlv4Selected &&!sendBarrierlv4 )
 				barrierlv4Selected =false;
-        }
-		if (GUI.Button(new Rect(1920*2 / 3+100 , 1080 - 200+offset.y/guiScaleFactor,400 , 150), "CONTINUE"))
+        }*/
+		if (GUI.Button(new Rect(1920 / 3-360 , 1080 - 200+offset.y/guiScaleFactor,400 , 150), "CONTINUE"))
         {
 			ButtonSound .Play();
 			if(healthlv1Selected&&!sendHealthlv1)
@@ -1282,7 +1282,7 @@ public class Shop : MonoBehaviour
 	{
 
 		currentword = "";
-		float time=0.1f;
+		float time=0.01f;
 		TypeSound.Play ();
 		foreach (var letter in text.ToCharArray ())
 		{
