@@ -10,7 +10,7 @@ public class StompScript : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-		if (this.gameObject.GetComponentInParent<SubMarineBoss >() != null)
+		/*if (this.gameObject.GetComponentInParent<SubMarineBoss >() != null)
 		{
 			if(!this.gameObject.GetComponentInParent<SubMarineBoss>().ShotPhase )
 			{
@@ -18,7 +18,7 @@ public class StompScript : MonoBehaviour {
 
 			}
 
-		}
+		}*/
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{

@@ -6,7 +6,7 @@ public class SubMarineBoss : MonoBehaviour {
 	public GameObject[] BossCannon;
 	public GameObject[] SummonPoint;
 	public GameObject HeroChargePoint;
-	public GameObject StompZone;
+	//public GameObject StompZone;
 	public bool ChargePhase;
 	public bool SummonPhase;
 	private bool BeginFight;
@@ -135,7 +135,7 @@ public class SubMarineBoss : MonoBehaviour {
 		{
 			l.SetActive (true);
 		}
-		StompZone .SetActive (true);
+		//StompZone .SetActive (true);
 
 		Invoke ("Charge", 15f);
 
