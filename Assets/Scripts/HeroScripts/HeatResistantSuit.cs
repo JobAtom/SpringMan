@@ -24,12 +24,13 @@ public class HeatResistantSuit : MonoBehaviour
 
 	void decreaseTimer()
 	{
-		if(currentTime<=0)
-		{
-			CancelInvoke("decreaseTimer");
-			outOfTime();
-		}
-		else
+		if (currentTime <= 0) {
+			CancelInvoke ("decreaseTimer");
+			outOfTime ();
+		} 
+		else {
 			currentTime--;
+			Debug.Log (currentTime);
+		}
 	}
 }
