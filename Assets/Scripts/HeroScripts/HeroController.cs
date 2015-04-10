@@ -367,7 +367,7 @@ public class HeroController : MonoBehaviour
     {
 		LevelChangeScript.RestartLevel();
         VitalsScript .CurrentEnergy = 0;
-        VitalsScript .CurrentHealth = VitalsScript.MaxHealth ;
+        VitalsScript .CurrentHealth = 3;
         Score.score = 0;
 		Score.memory = localMemory;
 

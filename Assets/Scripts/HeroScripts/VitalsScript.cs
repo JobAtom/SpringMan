@@ -17,7 +17,7 @@ public class VitalsScript
 
     public VitalsScript()
     {
-        CurrentHealth = MaxHealth;
+        //SCurrentHealth = MaxHealth;
         Energy.Clear();
         Energy.Add(GameObject.Find("Energy_1").GetComponent<GUITexture>());
         Energy.Add(GameObject.Find("Energy_2").GetComponent<GUITexture>());
@@ -108,6 +108,16 @@ public class VitalsScript
             HandleHealth();
         }
     }
+
+	public void Heal(int healBy)
+	{
+		if (CurrentHealth < MaxHealth&&!HeroController .GameOver )
+		{
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController>().HealSound .Play ();
+			CurrentHealth += healBy;
+			HandleHealth();
+		}
+	}
 
     public void HandleEnergy()
     {
