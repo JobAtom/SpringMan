@@ -20,7 +20,7 @@ public class HeroController : MonoBehaviour
 
     public bool facingRight = true;
     private bool letgo = true;
-    private bool jumping;
+    private bool jumping = false;
     private bool falling = true;
 	private bool InWater = false;
 
@@ -32,6 +32,10 @@ public class HeroController : MonoBehaviour
     public VitalsScript Vitals;
 	public GameObject Helmet;
 	public bool suitOn;
+	
+	private float move = 0;
+	private float UpOrDown = 0;
+	private float jump = 0;
 
     public static bool GameOver = false;
 	private bool OnElevator;
@@ -92,7 +96,7 @@ public class HeroController : MonoBehaviour
 
     void Controls()
     {
-
+		#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
         if (Input.GetAxis("Jump") == 1 && numberOfJumps == 0)
         {
             jumping = true;
@@ -104,11 +108,11 @@ public class HeroController : MonoBehaviour
             falling = true;
             numberOfJumps++;
         }
+		#endif
         if (jumping)
         {
 			OnElevator =false;
             Jump();
-
         }
 		else if (falling)
         {
@@ -125,8 +129,15 @@ public class HeroController : MonoBehaviour
 		else if (!grounded&&!this.gameObject.GetComponentInChildren<HeroPowers>().HeroStartCharge )
         {
             falling = true;
+			#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
             if (Input.GetAxis("Jump") == 0)
                 numberOfJumps++;
+			#endif
+			
+			#if UNITY_IOS || UNITY_ANDROID || UNITY_BLACKBERRY || UNITY_WINRT
+			if(jump == 0)
+				numberOfJumps++;
+			#endif
         }
 
         anim.SetBool("Ground", grounded);
@@ -137,8 +148,11 @@ public class HeroController : MonoBehaviour
 			anim.SetFloat ("vSpeed", 0f);
 
 		}
-        float move = Input.GetAxis("Horizontal");
-		float UpOrDown = Input.GetAxis ("Vertical");
+		#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
+        move = Input.GetAxis("Horizontal");
+		UpOrDown = Input.GetAxis ("Vertical");
+		#endif
+		
         anim.SetFloat("Speed", Mathf.Abs(move));
         if (move > 0 && !facingRight)
             Flip();
@@ -155,22 +169,24 @@ public class HeroController : MonoBehaviour
 				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x+0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
 			Helmet.SetActive (true);
 			helmetanim = GameObject.FindGameObjectWithTag ("Helmet").GetComponent<Animator> ();
-			if(grounded&&Input.GetAxis ("Horizontal")>0)
+	
+			if(grounded && move >0)
 			{
 				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x+0.03f,Helmet.transform.position.y,Helmet.transform.position.z);
 			}
-			if(grounded&&Input.GetAxis ("Horizontal")<0)
+			if(grounded && move <0)
 			{
 				Helmet.transform.position=new Vector3 (this.gameObject.transform.position.x-0.03f,Helmet.transform.position.y,Helmet.transform.position.z);
 			}
-			else if(grounded&&Input.GetAxis ("Horizontal")==0)
+			else if(grounded && move ==0)
 			{
 				if(facingRight )
 					Helmet.transform.position=new Vector3(this.gameObject.transform.position.x -0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
 				else
 					Helmet.transform.position=new Vector3(this.gameObject.transform.position.x +0.7f,Helmet.transform.position.y,Helmet.transform.position.z);
 			}
-				
+			
+			#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT	
 			if (Input.GetAxis ("Jump") == 1)
 			{
 				acceleratorNum = 1.6f;
@@ -180,6 +196,19 @@ public class HeroController : MonoBehaviour
 			if (Input.GetAxis ("Jump") == 0)
 				helmetanim.SetBool ("accelerating", false);
 						//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
+			#endif
+			
+			#if UNITY_IOS || UNITY_ANDROID || UNITY_BLACKBERRY || UNITY_WINRT
+			if (jump != 0)
+			{
+				acceleratorNum = 1.6f;
+				helmetanim.SetBool ("accelerating", true);
+			}
+			
+			if(jump == 0)
+				helmetanim.SetBool ("accelerating", false);
+			#endif
+			
 			Swim (UpOrDown * acceleratorNum, rigidbody2D.velocity.x);
 
 		} 
@@ -481,5 +510,31 @@ public class HeroController : MonoBehaviour
 	public int GetLocalMemory()
 	{
 		return localMemory;
+	}
+	
+	//These last 3 functions are only used for mobile touch controls
+	public void StartMoving(float moveTouch)
+	{
+		move = moveTouch;
+	}
+	
+	public void StartSwimming(float swimTouch)
+	{
+		UpOrDown = swimTouch;
+	}
+	
+	public void StartJumping(float jumpTouch)
+	{
+		if(jumpTouch != 0)
+		{
+			jumping = true;
+			falling = false;
+		}
+		else
+		{
+			jumping = false;
+			falling = true;
+		}
+		jump = jumpTouch;
 	}
 }
