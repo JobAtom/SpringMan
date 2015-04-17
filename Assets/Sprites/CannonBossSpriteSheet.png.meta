@@ -1,6 +1,16 @@
 fileFormatVersion: 2
 guid: ab05f12dbf772411abc87c4e1a280d39
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: CannonBossSpriteSheet_0
+    21300002: CannonBossSpriteSheet_1
+    21300004: CannonBossSpriteSheet_2
+    21300006: CannonBossSpriteSheet_3
+    21300008: CannonBossSpriteSheet_4
+    21300010: CannonBossSpriteSheet_5
+    21300012: CannonBossSpriteSheet_6
+    21300014: CannonBossSpriteSheet_7
+    21300016: CannonBossSpriteSheet_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
