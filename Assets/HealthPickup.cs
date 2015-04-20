@@ -17,7 +17,7 @@ public class HealthPickup : MonoBehaviour {
 		if (col.tag == "Player")
 		{
 			player.GetComponent<HeroController>().Vitals.Heal(heal);
-			
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<HeroController>().HealSound .Play ();
 			Destroy (this.gameObject);
 		}
 	}

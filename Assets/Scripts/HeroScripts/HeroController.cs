@@ -17,6 +17,7 @@ public class HeroController : MonoBehaviour
 	public AudioSource HurtSound;
 	public AudioSource HealSound;
 	private int localMemory = 0;
+	public static bool RestartOrNot = false;
 
     public bool facingRight = true;
     private bool letgo = true;
@@ -77,7 +78,7 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+		//Debug.Log (RestartOrNot);
 		if (Application .loadedLevelName != "MainMenu")
 		{
 			Vitals.HandleEnergy ();
@@ -395,6 +396,7 @@ public class HeroController : MonoBehaviour
     public void Restart()
     {
 		LevelChangeScript.RestartLevel();
+		RestartOrNot = true;
         VitalsScript .CurrentEnergy = 0;
         VitalsScript .CurrentHealth = 3;
         Score.score = 0;

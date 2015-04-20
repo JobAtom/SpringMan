@@ -57,6 +57,7 @@ public class LevelChangeScript : MonoBehaviour {
         if (currentLevel < levels.Count)
         {
             Application.LoadLevel(currentLevel + 1);
+			HeroController.RestartOrNot =false;
 			CheckPoint.CheckPointOne = false;
             CheckPoint.triggered = false;
         }
