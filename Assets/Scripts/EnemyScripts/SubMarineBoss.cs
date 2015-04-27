@@ -10,6 +10,9 @@ public class SubMarineBoss : MonoBehaviour {
 	public bool ChargePhase;
 	public bool SummonPhase;
 	private bool BeginFight;
+	public GameObject weekpoint;
+	private GameObject ShowWeekPoint=null;
+	private Transform weekpointposition;
 
 	private Animator anim;
 	private HingeJoint2D hingeJoint2D;
@@ -30,6 +33,7 @@ public class SubMarineBoss : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		hingeJoint2D = GetComponentInChildren<HingeJoint2D>();
 
+		weekpointposition = GameObject.Find ("StompZone").GetComponent<Transform> ();
 	
 	}
 	
@@ -78,6 +82,8 @@ public class SubMarineBoss : MonoBehaviour {
 		anim.SetBool ("startsummoning", false);
 		JointMotor2D motor = hingeJoint2D.motor;
 		motor.motorSpeed = 20;
+		if(ShowWeekPoint==null)
+			ShowWeekPoint=Instantiate (weekpoint, new Vector2(weekpointposition.position.x,weekpointposition.position.y), Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
 		hingeJoint2D.motor = motor;
 		StartShot = true;
 		HeroChargePoint .SetActive (false);
@@ -102,6 +108,8 @@ public class SubMarineBoss : MonoBehaviour {
 		ShotPhase = false;
 		ChargePhase = true;
 		SummonPhase = false;
+		if (ShowWeekPoint != null)
+						Destroy (ShowWeekPoint);
 
 	
 	
@@ -124,6 +132,9 @@ public class SubMarineBoss : MonoBehaviour {
 		ChargePhase = false;
 		ShotPhase = false;
 		SummonPhase = true;
+		if (ShowWeekPoint != null)
+			Destroy (ShowWeekPoint);
+
 
 		//Invoke ("Shot", 3f);
 	}

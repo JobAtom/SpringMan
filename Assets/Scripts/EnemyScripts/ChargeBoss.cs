@@ -9,6 +9,8 @@ public class ChargeBoss : MonoBehaviour {
 	public GameObject background;
 	private GameObject player;
 	private Color bosscolor;
+	public GameObject weekpoint;
+	private GameObject ShowWeekPoint=null;
 
 	// Use this for initialization
 	void Start () {
@@ -62,11 +64,20 @@ public class ChargeBoss : MonoBehaviour {
 		}
 		if (stun) 
 		{
-				this.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
+			this.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
+			if(ShowWeekPoint==null)
+			{
+				if(chargeRight )
+					ShowWeekPoint = Instantiate (weekpoint, new Vector2(this.gameObject.transform.position.x+0.5f,this.gameObject.transform.position.y-1f), Quaternion.Euler (new Vector3 (0, 0, 0))) as GameObject;
+				else
+					ShowWeekPoint = Instantiate (weekpoint, new Vector2(this.gameObject.transform.position.x-0.5f,this.gameObject.transform.position.y-1f), Quaternion.Euler (new Vector3 (0, 0, 0))) as GameObject;
+			}
 		}
 		else
-				this.gameObject.GetComponent<SpriteRenderer> ().color = bosscolor;
-	
+		{
+			this.gameObject.GetComponent<SpriteRenderer> ().color = bosscolor;
+			Destroy (ShowWeekPoint);
+		}	
 	}
 	void Flip()
 	{

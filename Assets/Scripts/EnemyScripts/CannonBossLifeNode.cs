@@ -5,6 +5,9 @@ public class CannonBossLifeNode : MonoBehaviour
 {
 	public int nodeLife;
 	public Sprite damagedNode;
+	public GameObject weekpoint;
+	private GameObject ShowWeekPoint=null;
+
 
 	private bool nodeAlive;
 
@@ -12,6 +15,7 @@ public class CannonBossLifeNode : MonoBehaviour
 	void Start () 
 	{
 		nodeAlive = true;
+		ShowWeekPoint=Instantiate (weekpoint, this.gameObject.transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as GameObject ;
 //		scriptConnector = GameObject.FindGameObjectWithTag("Boss").GetComponent<CannonBossLife>();
 	}
 	
@@ -36,8 +40,10 @@ public class CannonBossLifeNode : MonoBehaviour
 		if(nodeLife == 0 && nodeAlive)
 		{
 			GetComponent<SpriteRenderer>().sprite = damagedNode;
+			Destroy (ShowWeekPoint );
 			GameObject.FindGameObjectWithTag("Boss").GetComponent<CannonBossLife>().bossLifeNodes--;
 			nodeAlive = false;
+
 		}
 	}
 }
