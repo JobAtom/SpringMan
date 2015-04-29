@@ -151,6 +151,7 @@ public class HeroController : MonoBehaviour
 		}
 		#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
         move = Input.GetAxis("Horizontal");
+			
 		UpOrDown = Input.GetAxis ("Vertical");
 		#endif
 		
@@ -517,36 +518,36 @@ public class HeroController : MonoBehaviour
 	//These last 3 functions are only used for mobile touch controls
 	public void StartMoving(float moveTouch)
 	{
-		float i = 0;
+		/*float i = 0;
 		if (moveTouch > 0) {
-						while (i<=moveTouch) {
+						while (i<=Mathf.Sqrt (3)/3) {
 								i += 0.01f;
-								move = i;
+								move = 3*i*i;
 						}
 				} else {
-						while (i>=moveTouch) {
+						while (i<=Mathf.Sqrt (3)/3) {
 								i -= 0.01f;
-								move = i;
+								move =3*i*i;
 						}
-				}
-		//move = moveTouch;
+				}*/
+		move = moveTouch;
 	}
 	
 	public void StartSwimming(float swimTouch)
 	{
-		float i = 0;
+		/*float i = 0;
 		if (swimTouch > 0) {
-			while (i<=swimTouch) {
+			while (i<=Mathf.Sqrt (3)/3) {
 				i += 0.01f;
-				move = i;
+				move = 3*i*i;
 			}
 		} else {
-			while (i>=swimTouch) {
+			while (i>=-Mathf.Sqrt (3)/3) {
 				i -= 0.01f;
-				move = i;
+				move = -3*i*i;
 			}
-		}
-		//UpOrDown = swimTouch;
+		}*/
+		UpOrDown = swimTouch;
 	}
 	
 	public void StartJumping(float jumpTouch)
