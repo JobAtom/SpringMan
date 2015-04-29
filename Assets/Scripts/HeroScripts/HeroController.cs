@@ -34,7 +34,7 @@ public class HeroController : MonoBehaviour
 	public GameObject Helmet;
 	public bool suitOn;
 	
-	private float move = 0;
+	public float move = 0;
 	private float UpOrDown = 0;
 	private float jump = 0;
 
@@ -517,12 +517,36 @@ public class HeroController : MonoBehaviour
 	//These last 3 functions are only used for mobile touch controls
 	public void StartMoving(float moveTouch)
 	{
-		move = moveTouch;
+		float i = 0;
+		if (moveTouch > 0) {
+						while (i<=moveTouch) {
+								i += 0.01f;
+								move = i;
+						}
+				} else {
+						while (i>=moveTouch) {
+								i -= 0.01f;
+								move = i;
+						}
+				}
+		//move = moveTouch;
 	}
 	
 	public void StartSwimming(float swimTouch)
 	{
-		UpOrDown = swimTouch;
+		float i = 0;
+		if (swimTouch > 0) {
+			while (i<=swimTouch) {
+				i += 0.01f;
+				move = i;
+			}
+		} else {
+			while (i>=swimTouch) {
+				i -= 0.01f;
+				move = i;
+			}
+		}
+		//UpOrDown = swimTouch;
 	}
 	
 	public void StartJumping(float jumpTouch)
