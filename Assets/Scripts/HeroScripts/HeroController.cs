@@ -40,7 +40,15 @@ public class HeroController : MonoBehaviour
 
     public static bool GameOver = false;
 	private bool OnElevator;
-
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_BLACKBERRY || UNITY_WINRT
+	private bool delayedH=false;
+	private bool delayedV=false;
+	private float horizontalNum=0;
+	private float verticalNum = 0;
+	private bool moveRight = false;
+	private bool moveUp = false;
+	private bool DoNotMove=true;
+	#endif
 
 	public bool GetFall()
 	{
@@ -75,7 +83,14 @@ public class HeroController : MonoBehaviour
 
         CheckPoint.Check();
     }
-
+	void calldelayH()
+	{
+		delayedH = true;
+	}
+	void calldelayV()
+	{
+		delayedV = true;
+	}
     void FixedUpdate()
     {
 		//Debug.Log (RestartOrNot);
@@ -151,10 +166,66 @@ public class HeroController : MonoBehaviour
 		}
 		#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
         move = Input.GetAxis("Horizontal");
-			
+
+
 		UpOrDown = Input.GetAxis ("Vertical");
 		#endif
-		
+		#if UNITY_IOS||UNITY_ANDROID||UNITY_BLACKBERRY||UNITY_WINRT
+		if(moveRight&&!DoNotMove)
+		{	
+			if(horizontalNum   <=1)
+			{
+				if(delayedH)
+				{
+				horizontalNum +=0.1f;
+				move=horizontalNum ;
+				delayedH=false;
+				}
+			Invoke ("calldelayH",0.1f);
+			}
+		}
+		if(!moveRight&&!DoNotMove)
+		{	
+			if(horizontalNum   >=-1)
+			{
+				if(delayedH)
+				{
+					horizontalNum -=0.1f;
+					move=horizontalNum ;
+					delayedH=false;
+				}
+				Invoke ("calldelayH",0.1f);
+			}
+		}
+		if(moveUp&&!DoNotMove)
+		{
+			if(verticalNum  <=1)
+			{
+				if(delayedV)
+				{
+					verticalNum+=0.1f;
+					UpOrDown=verticalNum;
+					delayedV=false;
+				}
+				Invoke ("calldelayV",0.1f);
+			}
+		}
+		if(!moveUp&&!DoNotMove)
+		{
+			if(verticalNum>=-1)
+			{
+				if(delayedV)
+				{
+					verticalNum-=0.1f;
+					UpOrDown=verticalNum;
+					delayedV=false;
+				}
+				Invoke ("calldelayV",0.1f);
+				
+				
+			}
+		}
+		#endif
         anim.SetFloat("Speed", Mathf.Abs(move));
         if (move > 0 && !facingRight)
             Flip();
@@ -518,36 +589,51 @@ public class HeroController : MonoBehaviour
 	//These last 3 functions are only used for mobile touch controls
 	public void StartMoving(float moveTouch)
 	{
-		/*float i = 0;
-		if (moveTouch > 0) {
-						while (i<=Mathf.Sqrt (3)/3) {
-								i += 0.01f;
-								move = 3*i*i;
-						}
-				} else {
-						while (i<=Mathf.Sqrt (3)/3) {
-								i -= 0.01f;
-								move =3*i*i;
-						}
-				}*/
-		move = moveTouch;
+		//Debug.Log ("come in");
+
+		if (moveTouch > 0) 
+		{
+			moveRight = true;
+			DoNotMove=false;
+		}
+		if (moveTouch < 0) 
+		{
+			moveRight = false;
+			DoNotMove=false;
+		}
+		if (moveTouch == 0)
+		{
+			move =0;
+			horizontalNum=0;
+			DoNotMove=true;
+		}
+
+
+			
+		//move = moveTouch;
 	}
 	
 	public void StartSwimming(float swimTouch)
 	{
-		/*float i = 0;
-		if (swimTouch > 0) {
-			while (i<=Mathf.Sqrt (3)/3) {
-				i += 0.01f;
-				move = 3*i*i;
-			}
-		} else {
-			while (i>=-Mathf.Sqrt (3)/3) {
-				i -= 0.01f;
-				move = -3*i*i;
-			}
-		}*/
-		UpOrDown = swimTouch;
+		if(swimTouch>0)
+		{
+			moveUp=true;
+			DoNotMove=false;
+		}
+		if(swimTouch<0)
+		{
+			moveUp=false;
+			DoNotMove=false;
+			
+			
+		}
+		if (swimTouch == 0)
+		{
+			move =0;
+			verticalNum=0;
+			DoNotMove=true;
+		}
+		//UpOrDown = swimTouch;
 	}
 	
 	public void StartJumping(float jumpTouch)
