@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnitySampleAssets.CrossPlatformInput;
 
 public class HeroController : MonoBehaviour
 {
@@ -133,9 +134,7 @@ public class HeroController : MonoBehaviour
 			#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
             if (Input.GetAxis("Jump") == 0)
                 numberOfJumps++;
-			#endif
-			
-			#if UNITY_IOS || UNITY_ANDROID || UNITY_BLACKBERRY || UNITY_WINRT
+			#else
 			if(jump == 0)
 				numberOfJumps++;
 			#endif
@@ -151,8 +150,10 @@ public class HeroController : MonoBehaviour
 		}
 		#if !UNITY_IOS && !UNITY_ANDROID && !UNITY_BLACKBERRY && !UNITY_WINRT
         move = Input.GetAxis("Horizontal");
-			
 		UpOrDown = Input.GetAxis ("Vertical");
+		#else
+		move = CrossPlatformInputManager.GetAxis("Horizontal");
+		UpOrDown = CrossPlatformInputManager.GetAxis("Vertical");
 		#endif
 		
         anim.SetFloat("Speed", Mathf.Abs(move));
@@ -198,9 +199,7 @@ public class HeroController : MonoBehaviour
 			if (Input.GetAxis ("Jump") == 0)
 				helmetanim.SetBool ("accelerating", false);
 						//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,20f);
-			#endif
-			
-			#if UNITY_IOS || UNITY_ANDROID || UNITY_BLACKBERRY || UNITY_WINRT
+			#else
 			if (jump != 0)
 			{
 				acceleratorNum = 1.6f;
