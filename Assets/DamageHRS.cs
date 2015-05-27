@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class DamageHRS : MonoBehaviour {
-	public int damageRate = 10;
+	public float damageRate = 1f;
 
 	private GameObject heatSuit;
 	private GameObject player;
@@ -25,8 +25,9 @@ public class DamageHRS : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
+		//Debug.Log("Entered Trigger");
 		if(other.tag == "Player")
-			InvokeRepeating("DamageSuit",1,1.25f);
+			InvokeRepeating("DamageSuit",0,1.25f);
 	}
 
 	void OnTriggerExit2D(Collider2D other){
