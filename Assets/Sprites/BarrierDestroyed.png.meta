@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: f4f66cf913b4aaf4fa7731bb8b2a89bb
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BarrierDestroyed_0
+    21300002: BarrierDestroyed_1
+    21300004: BarrierDestroyed_2
+    21300006: BarrierDestroyed_3
+    21300008: BarrierDestroyed_4
+    21300010: BarrierDestroyed_5
+    21300012: BarrierDestroyed_6
+    21300014: BarrierDestroyed_7
+    21300016: BarrierDestroyed_8
+    21300018: BarrierDestroyed_9
+    21300020: BarrierDestroyed_10
+    21300022: BarrierDestroyed_11
+    21300024: BarrierDestroyed_12
+    21300026: BarrierDestroyed_13
+    21300028: BarrierDestroyed_14
+    21300030: BarrierDestroyed_15
+    21300032: BarrierDestroyed_16
+    21300034: BarrierDestroyed_17
+    21300036: BarrierDestroyed_18
+    21300038: BarrierDestroyed_19
+    21300040: BarrierDestroyed_20
+    21300042: BarrierDestroyed_21
+    21300044: BarrierDestroyed_22
+    21300046: BarrierDestroyed_23
+    21300048: BarrierDestroyed_24
+    21300050: BarrierDestroyed_25
+    21300052: BarrierDestroyed_26
+    21300054: BarrierDestroyed_27
+    21300056: BarrierDestroyed_28
+    21300058: BarrierDestroyed_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BarrierDestroyed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_1
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1700
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_2
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1700
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_3
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1700
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_4
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1700
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1360
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_6
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1360
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_7
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1360
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_8
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1360
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_9
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1360
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_11
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1020
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_12
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1020
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_13
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1020
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_14
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 1020
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_16
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 680
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_17
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 680
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_18
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 680
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_19
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 680
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_21
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 340
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_22
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 340
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_23
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 340
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_24
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 340
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_26
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_27
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_28
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 0
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BarrierDestroyed_29
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 0
+        width: 1120
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

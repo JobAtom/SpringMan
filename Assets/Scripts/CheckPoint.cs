@@ -22,7 +22,7 @@ public class CheckPoint : MonoBehaviour
             CheckPointOne = true;
             SavedScore = Score.score;
 			SavedMemory =Score.memory ;
-			Instantiate (Barrier, new Vector3 (0.5859733f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
+			Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
 			//Destroy (this.gameObject);
             //HeroPosition.position=new Vector2(this.transform.position.x,this.transform.position.y+10f);
         }
@@ -37,7 +37,7 @@ public class CheckPoint : MonoBehaviour
             CheckPointOne = true;
             SavedScore = Score.score;
 			SavedMemory=Score.memory ;
-            Instantiate (Barrier, new Vector3 (0.5859733f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
+            Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
         }
     }
 

@@ -84,9 +84,9 @@ public class HeroPowers : MonoBehaviour
         if (success)
         {
             if (meteor.transform.position.y - transform.position.y < 8)
-				Instantiate(Barrier, new Vector3(meteor.transform.position.x+0.5859733f, meteor.transform.position.y - 5, meteor.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+				Instantiate(Barrier, new Vector3(meteor.transform.position.x, meteor.transform.position.y - 5, meteor.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
             else
-				Instantiate(Barrier, new Vector3(meteor.transform.position.x+0.5859733f, transform.position.y + 12, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+				Instantiate(Barrier, new Vector3(meteor.transform.position.x, transform.position.y + 12, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
 
         }
     }

@@ -18,10 +18,16 @@ public class Meteor : MonoBehaviour {
 	private float distance;
 	public float count=0;
 	public static float  barrierTime=2f;
+	
+	private float barrierAnim;
+	private const float numOfBarrierFrames = 30f;
+	private const float sampleRate = 15f;
 
 
 	// Use this for initialization
 	void Start () {
+		barrierAnim = (numOfBarrierFrames/barrierTime)/sampleRate;
+		
 		started = false;
 		slowed = false;
 
@@ -65,6 +71,8 @@ public class Meteor : MonoBehaviour {
 			started = false;
 
 			barrier=other.gameObject;
+			barrier.GetComponent<Animator>().SetBool("MeteorHit",true);
+			barrier.GetComponent<Animator>().speed = barrierAnim;
 
 			Invoke ("HitBarrier",count);
 		}
@@ -73,7 +81,11 @@ public class Meteor : MonoBehaviour {
 			count=count+barrierTime;
 			started = false;
 			barrier=other.gameObject;
+			barrier.GetComponent<Animator>().SetBool("MeteorHit",true);
+			barrier.GetComponent<Animator>().speed = 0.01f;
+				
 			Invoke("HitBarrier",180f);
+			
 			//Destroy (other.gameObject);
 		}
 		else if(other.tag == "PowerfulBarrier"&&started)
