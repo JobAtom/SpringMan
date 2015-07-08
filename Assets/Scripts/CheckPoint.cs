@@ -44,11 +44,13 @@ public class CheckPoint : MonoBehaviour
     public static bool Check()
     {
         var check = GameObject.Find("Checkpoint");
+        GameObject meteor = GameObject.FindGameObjectWithTag("Meteor");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (check != null && CheckPoint.CheckPointOne)
         {
             check.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 255);
-            GameObject.FindGameObjectsWithTag("Player")[0].transform.position = new Vector2(check.transform.position.x, check.transform.position.y + 7);
-            GameObject.FindGameObjectsWithTag("Meteor")[0].transform.position = new Vector2(0, check.transform.position.y + 80);
+            player.transform.position = new Vector2(check.transform.position.x, check.transform.position.y + 7);
+            meteor.transform.position = new Vector2(meteor.transform.position.x, check.transform.position.y + 80);
             Score.score = SavedScore;
 			Score.memory =SavedMemory ;
             triggered = true;
