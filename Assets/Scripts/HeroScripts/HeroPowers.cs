@@ -95,7 +95,7 @@ public class HeroPowers : MonoBehaviour
 	{
 		bool success = heroController.Vitals.UseEnergy (3);
 		if(success)
-			GameObject.FindGameObjectWithTag("HeatResistantSuit").GetComponent<HeatResistantSuit>().changeTime(HRSTimeBoost);
+			GameObject.Find ("HeatResistantSuit").GetComponent<HeatResistantSuit>().changeTime(HRSTimeBoost);
 	}
 
 	public void UseDrill()

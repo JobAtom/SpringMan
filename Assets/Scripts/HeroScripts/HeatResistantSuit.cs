@@ -8,8 +8,14 @@ public class HeatResistantSuit : MonoBehaviour
 
 	void Start () 
 	{
+		PutOnSuit();
 		currentTime = maxTime;
 		InvokeRepeating("decreaseTimer",1,1.25f);
+	}
+	
+	void PutOnSuit(){
+		HeroController player = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>();
+		player.suitOn = true;
 	}
 
 	public void changeTime(float time)
@@ -30,7 +36,7 @@ public class HeatResistantSuit : MonoBehaviour
 		} 
 		else {
 			currentTime--;
-			Debug.Log (currentTime);
+			//Debug.Log (currentTime);
 		}
 	}
 }

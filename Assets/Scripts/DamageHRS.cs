@@ -4,18 +4,16 @@ using System.Collections;
 public class DamageHRS : MonoBehaviour {
 	public float damageRate = 1f;
 
-	private GameObject heatSuit;
+	private HeatResistantSuit heatSuit;
 	private GameObject player;
-	private HeatResistantSuit suitScript;
 
 
 	private bool causeDamage = false;
 
 	// Use this for initialization
 	void Start () {
-		heatSuit = GameObject.FindGameObjectWithTag ("HeatResistantSuit");
+		heatSuit = GameObject.Find("HeatResistantSuit").GetComponent<HeatResistantSuit>();
 		player = GameObject.FindGameObjectWithTag ("Player");
-		suitScript = heatSuit.GetComponent<HeatResistantSuit> ();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +34,6 @@ public class DamageHRS : MonoBehaviour {
 	}
 
 	void DamageSuit(){
-		suitScript.currentTime -= damageRate;
+		heatSuit.currentTime -= damageRate;
 	}
 }

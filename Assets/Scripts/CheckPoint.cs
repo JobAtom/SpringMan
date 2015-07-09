@@ -9,7 +9,11 @@ public class CheckPoint : MonoBehaviour
     public static int SavedScore = 0;
 	public static int SavedMemory = 0;
     public static bool triggered = false;
-
+	private HeroController player;
+	
+	void Start(){
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>();	
+	}
     // Use this for initialization
     //void OnCollisionEnter2D(Collision2D other)
 	void OnCollisionEnter2D(Collision2D other)
@@ -22,7 +26,8 @@ public class CheckPoint : MonoBehaviour
             CheckPointOne = true;
             SavedScore = Score.score;
 			SavedMemory =Score.memory ;
-			Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
+			if(!player.suitOn)
+				Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
 			//Destroy (this.gameObject);
             //HeroPosition.position=new Vector2(this.transform.position.x,this.transform.position.y+10f);
         }
@@ -37,7 +42,8 @@ public class CheckPoint : MonoBehaviour
             CheckPointOne = true;
             SavedScore = Score.score;
 			SavedMemory=Score.memory ;
-            Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
+			if(!player.suitOn)
+            	Instantiate (Barrier, new Vector3 (0.0f, transform.position.y + 10, transform.position.z), Quaternion.Euler (new Vector3 (0, 0, 0)));
         }
     }
 
